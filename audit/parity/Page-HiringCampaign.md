@@ -29,3 +29,6 @@ React: `src/pages/screens/HiringCampaign.tsx` (+ `PageFrame.tsx`). Роут `/pa
 
 ### D52
 - Адаптив/скролл: убран overflow-x-clip (скролл документом, не контейнером); убрана белая линия под топ-навом (откат хедера); сняты фикс min-width + переносы. DOM: overflow=0 на 1440/1024/900/768/375; десктоп-вид как в Figma ✅.
+
+### D54
+- Hero (1:4147): удалены лишние атомы — углы Teams/Access и дропдауны (Frontend-team/Innovation Lab/Lead Developer/Member/Level 4/Add). Остались заголовок + Active campaign + Finish/Cancel; контент центрирован (ds-card-top--centered). По актуальному рефу Figma (gold-на-жёлтом = невидимы). DOM: corners=0, dropdowns=0, overflow=0 ✅.

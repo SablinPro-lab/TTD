@@ -434,6 +434,9 @@ Bar tone=green (насыщ.+бледный, палитра), бары стран
 ## [CardMetric=graph 1936 + bar mask + Pipeline full-width + фон 4013] — 2026-06-24
 CardMetric: капсула→Graph (Figma 1:1936). Bar: mask (space) — без обрезки, ровные ряды, палитра. Canban: колонки flex:1 full-width (organism) + full-bleed на странице. Hero-фон 4013 на месте. Отступы 4095 сверены. Graph.height опционален. Сверено DOM+скрин. D49.
 
+## [Страница 4 — удалены лишние атомы hero (1:4147)] — 2026-06-24
+По актуальному Figma 1:4147 (gold-на-жёлтом = невидимы) hero = только заголовок + Active campaign + Finish/Cancel. Удалены углы Teams/Access и дропдауны (Frontend-team/…/Level 4/Add) из CardTop на HiringCampaign. Добавлен модификатор ds-card-top--centered (default без углов/тегов → контент по центру вертикали). DOM: corners=0, dropdowns=0, center, overflow=0; Candidate не затронут. D54.
+
 ## [Прозрачная шапка + плотнее 20% + зелёный Back + CardTop Variant2 от самого верха] — 2026-06-24
 Header: фон убран (transparent), отступы плотнее 20% (calc токенов 14→11.2/20→16). Back — зелёный (text-green, текст+иконка). CardTop glass от top=0: на десктопе (≥768) прозрачная шапка абсолютно поверх hero (стекло от самого верха за шапкой), на мобиле — шапка в потоке над hero (без наложения). Top-отступ контента glass ≈114 (xxl+l, токены) очищает шапку; min-h 540. DOM: десктоп 1440 overlay+overflow0, мобайл 375 без наложения+overflow0, скролл документом. Скрин подтверждён. D53.
 

@@ -1,6 +1,19 @@
 [
   {
     "date": "2026-06-24",
+    "page": "Hiring campaign",
+    "component": "HiringCampaign",
+    "type": "fixed",
+    "change": "Hero (1:4147) очищен от лишних атомов: удалены углы Teams/Access и дропдауны (Frontend-team/Innovation Lab/Lead Developer/Member/Level 4/Add) — в Figma они gold-на-жёлтом, фактически невидимы. Остались заголовок + Active campaign + Finish/Cancel."
+  },
+  {
+    "date": "2026-06-24",
+    "component": "CardTop",
+    "type": "changed",
+    "change": "default-hero без углов/тегов («чистый», напр. Hiring campaign) — контент центрируется по вертикали (модификатор ds-card-top--centered) вместо space-between."
+  },
+  {
+    "date": "2026-06-24",
     "component": "Header",
     "type": "changed",
     "change": "Фон шапки убран полностью (прозрачная). Отступы плотнее на 20% (через токены: 14→11.2 / 20→16)."

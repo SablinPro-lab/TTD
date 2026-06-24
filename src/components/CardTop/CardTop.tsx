@@ -68,6 +68,9 @@ export function CardTop({
   const left = tags.map(normTag)
   const right = tagsRight.map(normTag)
   const topTags = tagsPosition === 'top'
+  // «Чистый» hero (default, без углов и тегов, напр. Hiring campaign 1:4147) — контент центрируется
+  // по вертикали (нет верхних/нижних блоков, которые бы распределялись через space-between).
+  const clean = !glass && !cornerLeft && !cornerRight && left.length === 0 && right.length === 0
   const renderTag = (t: CardTopTag, i: number) => (
     <div key={`${t.label}-${i}`} className="ds-card-top__tag-wrap">
       {t.headline && <span className="ds-card-top__tag-headline">{t.headline}</span>}
@@ -103,7 +106,7 @@ export function CardTop({
   ) : null
 
   return (
-    <div className={`ds-card-top ds-card-top--${variant}`}>
+    <div className={`ds-card-top ds-card-top--${variant}${clean ? ' ds-card-top--centered' : ''}`}>
       {/* Фон. default (node 1:3745): фото + mix-blend color/hard-light жёлтый.
           glass (node 1:3768): широкое фото со стеклом, затухающее в bg-base. */}
       <div className="ds-card-top__bg" aria-hidden="true">
