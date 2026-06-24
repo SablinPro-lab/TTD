@@ -31,7 +31,7 @@ export function Team({ name, peopleCount, productivity, highlight, members = [],
             <span className="ds-team__label">Productivity</span>
             <span className="ds-team__value">{productivity}</span>
           </div>
-          <Bar value={parseInt(productivity, 10) || 0} />
+          <Bar value={parseInt(productivity, 10) || 0} tone="green" />
         </div>
       )}
       {highlight && (

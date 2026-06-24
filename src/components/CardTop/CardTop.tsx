@@ -35,6 +35,8 @@ export interface CardTopProps {
   segmented?: ReactNode
   /** Доп. слот под сегментом (напр. кнопка на странице All teams). */
   footer?: ReactNode
+  /** Активная пилюля-действие (тёмная) — Figma: PROMOTE active (#000). */
+  activeAction?: string
 }
 
 function normTag(t: CardTopTag | string): CardTopTag {
@@ -57,7 +59,7 @@ function TagIcon() {
  */
 export function CardTop({
   name, role, cornerLeft, cornerRight, actions = [], onAction,
-  tags = [], tagsRight = [], onTag, accent, variant = 'default', segmented, footer,
+  tags = [], tagsRight = [], onTag, accent, variant = 'default', segmented, footer, activeAction,
 }: CardTopProps) {
   const glass = variant === 'glass'
   const left = tags.map(normTag)
@@ -103,7 +105,7 @@ export function CardTop({
         {actions.length > 0 && (
           <div className="ds-card-top__actions">
             {actions.map((a) => (
-              <button key={a} type="button" className="ds-card-top__pill" onClick={() => onAction?.(a)}>{a}</button>
+              <button key={a} type="button" className={`ds-card-top__pill${a === activeAction ? ' is-active' : ''}`} onClick={() => onAction?.(a)}>{a}</button>
             ))}
           </div>
         )}

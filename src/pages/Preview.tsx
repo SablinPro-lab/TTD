@@ -190,6 +190,36 @@ function NavTree({
       </label>
 
       <nav className="-mx-ds-xs flex flex-1 flex-col gap-ds-xxs overflow-y-auto px-ds-xs" aria-label="Навигация по компонентам">
+        {/* Pages — наверху, отдельной свёрнутой группой (роуты на страницы) */}
+        {(() => {
+          const pageItems = PAGES.filter((p) => match(p.label))
+          if (term && pageItems.length === 0) return null
+          const expanded = term ? true : !collapsed.pages
+          return (
+            <div className="flex flex-col">
+              <button
+                type="button" onClick={() => toggle('pages')} aria-expanded={expanded}
+                className="flex items-center justify-between gap-ds-xs rounded-m px-ds-s py-ds-xs text-caps tracking-caps uppercase text-text-secondary transition-colors hover:text-text-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-tech-purple"
+              >
+                <span className="flex items-center gap-ds-xs">Pages <span className="text-text-secondary">· {pageItems.length}</span></span>
+                <IconChevron className={`h-4 w-4 transition-transform ${expanded ? '' : '-rotate-90'}`} />
+              </button>
+              {expanded && (
+                <ul className="m-0 flex list-none flex-col gap-px p-0 pl-ds-xs">
+                  {pageItems.map((p) => (
+                    <li key={p.to}>
+                      <Link to={p.to} onClick={onNavigate}
+                        className="block rounded-m px-ds-s py-1.5 text-m text-text-secondary transition-colors hover:bg-control-secondary hover:text-text-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-tech-purple">
+                        {p.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          )
+        })()}
+
         {GROUPS.map((g) => {
           const items = g.items.filter((i) => match(i.label))
           if (term && items.length === 0) return null
@@ -233,25 +263,6 @@ function NavTree({
             </div>
           )
         })}
-
-        {/* Pages — собранные из ДС страницы (ссылки на роуты) */}
-        {(!term || PAGES.some((p) => p.label.toLowerCase().includes(term))) && (
-          <div className="mt-ds-xs flex flex-col">
-            <span className="flex items-center gap-ds-xs px-ds-s py-ds-xs text-caps tracking-caps uppercase text-text-secondary">
-              Pages <span className="text-text-secondary">· {PAGES.length}</span>
-            </span>
-            <ul className="m-0 flex list-none flex-col gap-px p-0 pl-ds-xs">
-              {PAGES.filter((p) => !term || p.label.toLowerCase().includes(term)).map((p) => (
-                <li key={p.to}>
-                  <Link to={p.to} onClick={onNavigate}
-                    className="block rounded-m px-ds-s py-1.5 text-m text-text-secondary transition-colors hover:bg-control-secondary hover:text-text-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-tech-purple">
-                    {p.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
       </nav>
 
       <div className="flex items-center justify-between border-t border-lines pt-ds-s">
@@ -265,20 +276,17 @@ function NavTree({
 function PreviewInner() {
   const [q, setQ] = useState('')
   const [navOpen, setNavOpen] = useState(false)
-  const [collapsed, setCollapsed] = useState<Record<string, boolean>>({})
-  // левый sidebar: свёрнут по умолчанию; pinned (закреплён открытым) сохраняется, hovered — временно
-  const [pinned, setPinned] = useState(() => {
-    try { return localStorage.getItem('ds-nav-pinned') === '1' } catch { return false }
-  })
-  const [hovered, setHovered] = useState(false)
-  const railOpen = pinned || hovered
-  const togglePin = () => setPinned((p) => {
-    const v = !p
-    try { localStorage.setItem('ds-nav-pinned', v ? '1' : '0') } catch { /* noop */ }
-    return v
+  // секции-аккордеоны: по умолчанию СВЁРНУТЫЕ (true = collapsed); состояние сохраняется
+  const [collapsed, setCollapsed] = useState<Record<string, boolean>>(() => {
+    try { const s = localStorage.getItem('ds-nav-sections'); if (s) return JSON.parse(s) } catch { /* noop */ }
+    return { pages: true, styles: true, atoms: true, molecules: true, organisms: true }
   })
   const active = useScrollSpy(ALL_ITEM_IDS)
-  const toggle = (id: string) => setCollapsed((c) => ({ ...c, [id]: !c[id] }))
+  const toggle = (id: string) => setCollapsed((c) => {
+    const next = { ...c, [id]: !c[id] }
+    try { localStorage.setItem('ds-nav-sections', JSON.stringify(next)) } catch { /* noop */ }
+    return next
+  })
   const term = q.trim().toLowerCase()
   const matches = (name: string, desc: string) => !term || (name + ' ' + desc).toLowerCase().includes(term)
 
@@ -297,38 +305,9 @@ function PreviewInner() {
 
   return (
     <div className="min-h-screen bg-bg-base text-text-primary lg:flex">
-      {/* desktop sidebar — свёрнут по умолчанию (рельс 56px); разворот по hover/клику, плавно.
-          Раскрытая панель оверлеит контент (не двигает раскладку), pinned сохраняется. */}
-      <aside
-        className="sticky top-0 z-30 hidden h-screen w-14 shrink-0 lg:block"
-        onMouseEnter={() => setHovered(true)}
-        onMouseLeave={() => setHovered(false)}
-        aria-label="Боковая навигация"
-      >
-        <div
-          className={`absolute inset-y-0 left-0 flex h-screen flex-col overflow-hidden border-r border-lines bg-card-white
-            transition-[width] duration-200 ease-out ${railOpen ? 'w-72 p-ds-l shadow-[0_10px_34px_rgba(0,0,0,0.08)]' : 'w-14 items-center py-ds-l'}`}
-        >
-          {railOpen ? (
-            <>
-              <button
-                type="button" onClick={togglePin} aria-pressed={pinned}
-                aria-label={pinned ? 'Свернуть меню' : 'Закрепить меню открытым'}
-                className="mb-ds-s self-end rounded-m p-ds-xxs text-text-secondary transition-colors hover:text-text-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-tech-purple"
-              >
-                <IconChevron className="h-4 w-4 rotate-90" />
-              </button>
-              <NavTree q={q} setQ={setQ} active={active} collapsed={collapsed} toggle={toggle} onNavigate={() => {}} />
-            </>
-          ) : (
-            <button
-              type="button" onClick={togglePin} aria-expanded={false} aria-label="Развернуть меню"
-              className="rounded-m p-ds-xs text-text-primary transition-colors hover:bg-control-secondary focus:outline-none focus-visible:ring-2 focus-visible:ring-tech-purple"
-            >
-              <IconMenu />
-            </button>
-          )}
-        </div>
+      {/* desktop sidebar — видимый; секции-аккордеоны свёрнуты по умолчанию */}
+      <aside className="sticky top-0 hidden h-screen w-72 shrink-0 border-r border-lines bg-card-white p-ds-l lg:block">
+        <NavTree q={q} setQ={setQ} active={active} collapsed={collapsed} toggle={toggle} onNavigate={() => {}} />
       </aside>
 
       {/* mobile drawer */}

@@ -1,6 +1,50 @@
 [
   {
     "date": "2026-06-24",
+    "component": "Bar",
+    "type": "changed",
+    "change": "Проп tone (green): заполнение — насыщенный tech-green #00867b, хвост — бледный card-green #d4eee7 (строго из палитры). big = 2 ряда точек. Бары на страницах переведены на green."
+  },
+  {
+    "date": "2026-06-24",
+    "component": "Profile",
+    "type": "changed",
+    "change": "Проп color (peach/mint/pink/olive/lavender) для разноцветных пилюль; прогресс-бар long — зелёный (tone=green)."
+  },
+  {
+    "date": "2026-06-24",
+    "component": "Team",
+    "type": "changed",
+    "change": "Бар продуктивности — зелёный (tone=green) по Figma team bar."
+  },
+  {
+    "date": "2026-06-24",
+    "component": "CardTop",
+    "type": "changed",
+    "change": "Проп activeAction — активная тёмная пилюля (Figma PROMOTE #000)."
+  },
+  {
+    "date": "2026-06-24",
+    "component": "Preview",
+    "type": "changed",
+    "change": "Sidebar: секции-аккордеоны свёрнуты по умолчанию (persist в localStorage ds-nav-sections); раздел Pages перенесён НАВЕРХ отдельным свёрнутым аккордеоном. Рельс убран — видимый sidebar."
+  },
+  {
+    "date": "2026-06-24",
+    "page": "All teams",
+    "component": "AllTeams",
+    "type": "fixed",
+    "change": "Цвета метрик строго из палитры: Health=card-red, Productivity=card-pink, Distribution=card-lavender, Hiring=card-olive. Бар команды — зелёный."
+  },
+  {
+    "date": "2026-06-24",
+    "page": "Candidate",
+    "component": "Candidate",
+    "type": "fixed",
+    "change": "Активная PROMOTE (тёмная); Personal Development — бар big+green (2 ряда); Reports/Mentoring — разноцветные пилюли (peach/mint/pink/olive/lavender) из палитры."
+  },
+  {
+    "date": "2026-06-24",
     "page": "All teams",
     "component": "AllTeams",
     "type": "fixed",

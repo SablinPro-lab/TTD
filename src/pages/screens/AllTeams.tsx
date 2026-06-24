@@ -8,10 +8,11 @@ import {
 } from '../../components'
 import { PageFrame } from './PageFrame'
 
+// Figma 1:4010: фоны метрик из палитры — card-red / card-pink / card-lavender / card-olive.
 const METRICS = [
   { title: 'Health', caption: 'Overall: Good', color: 'red' as const, values: [100, 58] },
-  { title: 'Productivity', caption: '+12% This Month', color: 'lavender' as const, values: [100, 58] },
-  { title: 'Distribution', caption: '8 Teams Active', color: 'green' as const, values: [100, 58] },
+  { title: 'Productivity', caption: '+12% This Month', color: 'pink' as const, values: [100, 58] },
+  { title: 'Distribution', caption: '8 Teams Active', color: 'lavender' as const, values: [100, 58] },
   { title: 'Hiring', caption: '15 Open Position', color: 'olive' as const, values: [100, 58] },
 ]
 

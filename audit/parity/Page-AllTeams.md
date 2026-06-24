@@ -16,3 +16,7 @@
 
 **Чек:** текст ✓ · изображения ✓ · dropdowns (SwitchGroup) ✓ · раскладка ✓ · скругление ✓ · отступы ✓
 **Статус: ✅** — 0 ❌.
+
+### D47
+- Цвета метрик из палитры: Health=card-red, Productivity=card-pink, Distribution=card-lavender, Hiring=card-olive ✅
+- Бар команды — tone=green (#00867b/#d4eee7) ✅. Hero glass 830×480 cover (полноширинный) ✅.

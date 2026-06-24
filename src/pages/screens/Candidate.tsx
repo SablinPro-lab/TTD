@@ -16,16 +16,17 @@ const ACHIEVEMENTS: { label: string; sub: string }[] = [
 
 const STAGES = ['Onboarding', 'Adapting', 'Performing', 'Ready']
 
-const REPORTS: { name: string; role: string; variant: 'short' | 'short-outlined' }[] = [
-  { name: 'Michael Lee', role: 'Product manager', variant: 'short' },
-  { name: 'Emily Carter', role: 'UX designer', variant: 'short-outlined' },
-  { name: 'David Smith', role: 'Data analyst', variant: 'short' },
+// Figma 1:4092: разноцветные пилюли из палитры.
+const REPORTS: { name: string; role: string; color: 'peach' | 'mint' | 'pink' }[] = [
+  { name: 'Michael Lee', role: 'Product manager', color: 'peach' },
+  { name: 'Emily Carter', role: 'UX designer', color: 'mint' },
+  { name: 'David Smith', role: 'Data analyst', color: 'pink' },
 ]
 
-const MENTORING: { name: string; role: string; variant: 'short' | 'short-outlined' }[] = [
-  { name: 'Michael Thompson', role: 'Project manager', variant: 'short' },
-  { name: 'Emily Davis', role: 'UX designer', variant: 'short-outlined' },
-  { name: 'James Wilson', role: 'Data analyst', variant: 'short' },
+const MENTORING: { name: string; role: string; color: 'olive' | 'lavender' | 'peach' }[] = [
+  { name: 'Michael Thompson', role: 'Project manager', color: 'olive' },
+  { name: 'Emily Davis', role: 'UX designer', color: 'lavender' },
+  { name: 'James Wilson', role: 'Data analyst', color: 'peach' },
 ]
 
 /** Экран 1:4092 «Candidate» — карточка кандидата: yellow CardTop + notify + ачивки + развитие + связи. */
@@ -40,6 +41,7 @@ export function Candidate() {
           cornerLeft="Teams"
           cornerRight="Access"
           actions={['Promote', 'Negotiate', 'Suspend', 'Fire']}
+          activeAction="Promote"
           tags={['frontend-team', 'Innovation Lab', 'Lead Developer', 'Member']}
           tagsRight={['Level 4 (code red)']}
         />
@@ -69,7 +71,7 @@ export function Candidate() {
           <h2 className="m-0 font-display text-description leading-none text-text-primary">Personal Development</h2>
 
           <div className="flex flex-col gap-ds-xs">
-            <Bar value={62} />
+            <Bar value={62} size="big" tone="green" />
             <div className="flex justify-between">
               {STAGES.map((s) => (
                 <span key={s} className="text-caps uppercase tracking-caps text-text-secondary">{s}</span>
@@ -99,7 +101,7 @@ export function Candidate() {
             <h2 className="m-0 font-display text-description leading-none text-text-primary">Reports to</h2>
             <div className="flex flex-wrap gap-ds-xxs">
               {REPORTS.map((p) => (
-                <Profile key={p.name} variant={p.variant} name={p.name} role={p.role} />
+                <Profile key={p.name} variant="short" name={p.name} role={p.role} color={p.color} />
               ))}
             </div>
             <div>
@@ -111,7 +113,7 @@ export function Candidate() {
             <h2 className="m-0 font-display text-description leading-none text-text-primary">Mentoring:</h2>
             <div className="flex flex-wrap gap-ds-xxs">
               {MENTORING.map((p) => (
-                <Profile key={p.name} variant={p.variant} name={p.name} role={p.role} />
+                <Profile key={p.name} variant="short" name={p.name} role={p.role} color={p.color} />
               ))}
             </div>
           </div>

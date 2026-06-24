@@ -106,6 +106,8 @@
   cursor: pointer;
   transition: box-shadow var(--ds-transition), transform var(--ds-transition), opacity var(--ds-transition);
 }
+/* активная пилюля (Figma: PROMOTE) — тёмная заливка, светлый текст */
+.ds-card-top__pill.is-active { background: var(--ds-color-black); color: var(--ds-color-text-on-color); }
 .ds-card-top__pill:hover { box-shadow: var(--ds-shadow-1); transform: translateY(-1px); }
 .ds-card-top__pill:active { transform: translateY(0); box-shadow: none; }
 .ds-card-top__pill:focus-visible { outline: var(--ds-focus-ring); outline-offset: 2px; }

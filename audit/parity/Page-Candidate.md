@@ -16,3 +16,7 @@
 
 **Чек:** текст ✓ · изображения ✓ · dropdowns (нет; tabs/segmented рабочие) ✓ · раскладка ✓ · скругление ✓ · отступы ✓
 **Статус: ✅** — 0 ❌.
+
+### D47
+- Активная PROMOTE (тёмная #000), остальные белые ✅. Personal Development — бар big+green (2 ряда) ✅.
+- Reports/Mentoring — разноцветные пилюли: peach/mint/pink (Reports), olive/lavender/peach (Mentoring) ✅.

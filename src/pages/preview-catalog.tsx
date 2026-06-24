@@ -98,6 +98,7 @@ const BarDemo: FC = () => {
   return (
     <div className="flex w-full flex-col gap-ds-s">
       <Bar value={v} /><Bar value={v} size="big" />
+      <Bar value={v} tone="green" /><Bar value={v} size="big" tone="green" />
       <input type="range" min={0} max={100} value={v} onChange={(e) => setV(Number(e.target.value))}
         className="w-full accent-tech-purple focus:outline-none focus-visible:ring-2 focus-visible:ring-tech-purple rounded-over" aria-label="Bar value" />
     </div>

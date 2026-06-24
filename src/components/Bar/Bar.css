@@ -38,3 +38,8 @@
   background-size: var(--ds-step) var(--ds-step);
   background-repeat: repeat;
 }
+
+/* tone=green (Figma team/productivity/progress bar): хвост — бледный card-green #d4eee7,
+   заполнение — насыщенный tech-green #00867b. Строго из палитры. */
+.ds-bar--tone-green { color: var(--ds-color-card-green); }
+.ds-bar--tone-green .ds-bar__fill { color: var(--ds-color-tech-green); }
