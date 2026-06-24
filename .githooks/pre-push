@@ -1,0 +1,16 @@
+#!/bin/sh
+# Гейт: перед каждым push — свежий security-check (правило проекта, см. CONTRIBUTING.md).
+# Включить в свежем клоне: git config core.hooksPath .githooks
+TODAY=$(date +%Y-%m-%d)
+if [ -f "audit/security-check-$TODAY.md" ]; then
+  echo "🛡️  security-check за $TODAY найден — push разрешён."
+  exit 0
+fi
+echo ""
+echo "⛔ Push заблокирован: нет security-check за сегодня ($TODAY)."
+echo "   Правило проекта (CONTRIBUTING.md → «Security-чек перед push и deploy»):"
+echo "   перед каждым push/deploy — свежий прогон, 🔴 = 0, отчёт в audit/security-check-<дата>.md."
+echo "   → запусти /security-check, затем повтори push."
+echo "   → осознанный trivial-пуш без новых рисков: git push --no-verify"
+echo ""
+exit 1
