@@ -22,3 +22,7 @@ React: `src/pages/screens/HiringCampaign.tsx` (+ `PageFrame.tsx`). Роут `/pa
 ### D50
 - Hero (1:4147): фон — жёлтое фото (image cover) ✅; только Finish(active)/Cancel — Suspend/Fire убраны (DOM 2 пилюли) ✅; дропдауны (Frontend-team/Innovation Lab/Lead Developer/Member + Level 4) перенесены ВВЕРХ, сгруппированы, нижний ряд убран (DOM topAboveHero=true) ✅.
 - Pipeline (Canban): строки плотнее — row radius 4, имя 20, row-text gap 8; аватары серый+person ✅.
+
+### D51
+- Pipeline вынесен в after-слот PageFrame — full-width 1220 без 100vw/overflow (DOM overflow=0), скролл доходит до последнего блока (canban bottom 2538 < scrollH 2628) ✓.
+- Hero (1:4147): только Finish/Cancel, дропдауны сверху — соответствует ✓.

@@ -24,3 +24,6 @@
 ### D50
 - Full-size hero (1:4013): glass full-bleed во всю ширину (DOM left=0, без оверфлоу), заголовок «Engineering Team» центр ✅.
 - Аватары списка Team — серый #979797 + чёткий person, единообразно ✅.
+
+### D51
+- Hero — w-full слот (без 100vw): overflow=0, full-width, контент центр; overlay убран; белая линия под топ-навом ✓. Скролл до конца ✓.

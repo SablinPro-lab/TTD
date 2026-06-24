@@ -33,7 +33,14 @@ const PIPELINE = [
 /** Экран 1:4144 «Hiring campaign» — кампания найма: yellow CardTop + Task-чеклист + метрики + воронка + пайплайн. */
 export function HiringCampaign() {
   return (
-    <PageFrame>
+    <PageFrame
+      after={
+        // Pipeline — полноширинный блок (Figma 1:2048 canban на уровне страницы); слот after = w-full (без 100vw)
+        <div className="mx-auto max-w-[1280px] px-ds-xl">
+          <Canban title="Pipeline" columns={PIPELINE} />
+        </div>
+      }
+    >
       <div className="-mx-ds-l flex flex-col gap-ds-xxs">
         {/* Figma 1:4147: дропдауны вверху (Frontend-team/Innovation Lab/Lead Developer/Member + Level 4),
             заголовок + Active campaign + кнопки finish(active)/cancel внизу. Только Finish/Cancel —
@@ -80,13 +87,6 @@ export function HiringCampaign() {
           ]}
         />
 
-      </div>
-
-      {/* Pipeline — full-width борд во всю ширину страницы (Figma: canban на уровне страницы) */}
-      <div className="mt-ds-xxl w-screen ml-[calc(50%-50vw)]">
-        <div className="mx-auto max-w-[1280px] px-ds-xl">
-          <Canban title="Pipeline" columns={PIPELINE} />
-        </div>
       </div>
     </PageFrame>
   )

@@ -32,26 +32,26 @@ const TEAMS = Array.from({ length: 6 }, () => ({
 export function AllTeams() {
   const [view, setView] = useState('Overview')
 
-  return (
-    <PageFrame>
-      {/* Full-size hero (Figma 1:4013): фоновое изображение во ВСЮ ширину страницы (bg-фрейм 1442 «вытекает»
-          за 830-карточку), контент центрирован. Выносим из 830-колонки в full-bleed. */}
-      <div className="-mt-ds-xl mb-ds-xxs w-screen ml-[calc(50%-50vw)]">
-        <CardTop
-          variant="glass"
-          name="All teams"
-          role="Overview of all teams and their performance metrics"
-          segmented={
-            <SwitchGroup
-              options={['Overview', 'Employees', 'Report']}
-              value={view}
-              onChange={setView}
-            />
-          }
-          footer={<Button variant="cta">Add team</Button>}
+  // Full-size hero (Figma 1:4013): фон во всю ширину страницы, контент центр. Передаём в слот hero
+  // PageFrame (w-full, без 100vw — нет overflow). Центрирование/фон — внутри CardTop glass.
+  const hero = (
+    <CardTop
+      variant="glass"
+      name="All teams"
+      role="Overview of all teams and their performance metrics"
+      segmented={
+        <SwitchGroup
+          options={['Overview', 'Employees', 'Report']}
+          value={view}
+          onChange={setView}
         />
-      </div>
+      }
+      footer={<Button variant="cta">Add team</Button>}
+    />
+  )
 
+  return (
+    <PageFrame hero={hero}>
       {/* секции выровнены по Figma-фрейму 830px; -mx-ds-l компенсирует горизонтальный padding main */}
       <div className="-mx-ds-l flex flex-col gap-ds-xxs">
         {/* 4-up метрик: карточки на равные доли по ширине (w-full переопределяет фикс-205),

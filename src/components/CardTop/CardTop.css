@@ -40,12 +40,8 @@
   min-height: 460px;
   padding-block: 56px;       /* воздух сверху/снизу поверх фона */
 }
+/* Figma 1:4013: чистое фото на всю секцию, БЕЗ overlay/затухания/блюра */
 .ds-card-top__bg-glass { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-/* лёгкое затухание по краям (верх/низ) в фон страницы — баннер органично «вливается» в секцию */
-.ds-card-top__bg-fade {
-  position: absolute; inset: 0;
-  background: linear-gradient(to bottom, var(--ds-color-bg-base) 0%, rgba(242, 242, 242, 0) 16%, rgba(242, 242, 242, 0) 78%, var(--ds-color-bg-base) 100%);
-}
 /* контент glass-hero — центрирован, ширина по контент-колонке страницы (Figma Frame1698 754 ≈ 830 base) */
 .ds-card-top--glass > :not(.ds-card-top__bg) {
   width: 100%;

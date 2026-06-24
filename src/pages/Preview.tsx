@@ -88,19 +88,20 @@ function StylesSection({ q }: { q: string }) {
       <div className="flex flex-col gap-ds-l">
         {show(blocks[0]) && (
           <StyleBlock id="typography" title="Typography" desc="Три семейства и шкала кеглей.">
+            {/* мета (имя/размер) — СЛЕВА, перед образцом: лаконичный вид (размер перед шрифтом) */}
             <div className="flex flex-col">
               {FONTS.map(([cls, label]) => (
-                <div key={cls} className="flex items-baseline justify-between gap-ds-m border-b border-lines py-ds-s first:pt-0 last:border-0">
+                <div key={cls} className="flex items-baseline gap-ds-l border-b border-lines py-ds-s first:pt-0 last:border-0">
+                  <span className={`${lbl} w-32 shrink-0`}>{label}</span>
                   <span className={`${cls} text-text-primary`} style={{ fontSize: 26 }}>The quick brown fox</span>
-                  <span className={lbl}>{label}</span>
                 </div>
               ))}
             </div>
             <div className="flex flex-col">
               {SCALE.map((s) => (
-                <div key={s.label} className="flex items-center gap-ds-l border-b border-lines py-ds-s first:pt-0 last:border-0">
+                <div key={s.label} className="flex items-baseline gap-ds-l border-b border-lines py-ds-s first:pt-0 last:border-0">
+                  <span className={`${lbl} w-32 shrink-0`}>{s.label} · {s.px}px</span>
                   <span className={`${s.cls} font-display leading-none text-text-primary`}>Ag</span>
-                  <span className={`ml-auto ${lbl}`}>{s.label} · {s.px}px</span>
                 </div>
               ))}
             </div>

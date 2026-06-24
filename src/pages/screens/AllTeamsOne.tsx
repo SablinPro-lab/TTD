@@ -22,9 +22,8 @@ export function AllTeamsOne() {
   const [view, setView] = useState('Team')
 
   return (
-    <PageFrame>
-      {/* Full-size hero (Figma 1:4013): фоновое изображение во ВСЮ ширину страницы, контент центрирован. */}
-      <div className="-mt-ds-xl mb-ds-xxs w-screen ml-[calc(50%-50vw)]">
+    <PageFrame
+      hero={
         <CardTop
           variant="glass"
           name="Engineering Team"
@@ -37,8 +36,8 @@ export function AllTeamsOne() {
             />
           }
         />
-      </div>
-
+      }
+    >
       <div className="-mx-ds-l flex flex-col gap-ds-xxs">
         <Notify>
           Kai finished the UI designs, Anya onboarded 3 new hires, and the team had a successful offsite event.

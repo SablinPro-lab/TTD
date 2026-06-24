@@ -108,10 +108,8 @@ export function CardTop({
           glass (node 1:3768): широкое фото со стеклом, затухающее в bg-base. */}
       <div className="ds-card-top__bg" aria-hidden="true">
         {glass ? (
-          <>
-            <img className="ds-card-top__bg-glass" src={cardTopGlass} alt="" />
-            <span className="ds-card-top__bg-fade" />
-          </>
+          // Figma 1:4013: чистое фоновое изображение, БЕЗ overlay/затухания (object-fit: cover)
+          <img className="ds-card-top__bg-glass" src={cardTopGlass} alt="" />
         ) : (
           <>
             <img className="ds-card-top__bg-img" src={cardTopBg} alt="" />

@@ -7,14 +7,21 @@ export interface PageFrameProps {
   children: ReactNode
   /** Этапы пайплайна — если заданы, Header показывает прогресс-бар + uppercase-стадии. */
   stages?: string[]
+  /** Полноширинный hero над основным контентом (Figma 1:4013). w-full = ширина body (НЕ 100vw),
+   *  поэтому нет паразитного горизонтального overflow на ширину скроллбара. */
+  hero?: ReactNode
+  /** Полноширинный блок под основным контентом (напр. Pipeline 1:2048) — тоже без 100vw. */
+  after?: ReactNode
 }
 
 /**
  * PageFrame — общий каркас экранов (Figma `header` + центрированный контейнер 830px).
  * Шапка: логотип «Hired & Wired», CTA «Generate report», табы, user-menu, кнопка «← Back»
  * (стрелка в ряду крошек, Figma SecondRow) и хлебные крошки. Контент по центру (830px).
+ * Полноширинные секции (hero/after) — отдельные `w-full`-слоты, а не 100vw-фокус: это
+ * исключает горизонтальный overflow (правый отступ / гориз. скролл / «мелкий» адаптив).
  */
-export function PageFrame({ children, stages }: PageFrameProps) {
+export function PageFrame({ children, stages, hero, after }: PageFrameProps) {
   const [tab, setTab] = useState('teams')
   const navigate = useNavigate()
   // «Назад»: к предыдущей странице, иначе в каталог превью.
@@ -23,7 +30,7 @@ export function PageFrame({ children, stages }: PageFrameProps) {
     else navigate('/')
   }
   return (
-    <div className="min-h-screen bg-bg-base text-text-primary">
+    <div className="min-h-screen overflow-x-clip bg-bg-base text-text-primary">
       <Header
         logo="Hired & Wired"
         action={<Button variant="cta">Generate report</Button>}
@@ -38,7 +45,11 @@ export function PageFrame({ children, stages }: PageFrameProps) {
         onBack={goBack}
         stages={stages}
       />
+      {/* белая линия-разделитель под топ-навигацией (Figma 1:4011) */}
+      <div className="h-px w-full bg-card-white" aria-hidden="true" />
+      {hero && <div className="w-full">{hero}</div>}
       <main className="mx-auto w-[830px] max-w-full px-ds-l py-ds-xl">{children}</main>
+      {after && <div className="w-full pb-ds-xxl">{after}</div>}
     </div>
   )
 }

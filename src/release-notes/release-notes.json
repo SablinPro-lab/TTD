@@ -1,6 +1,37 @@
 [
   {
     "date": "2026-06-24",
+    "component": "PageFrame",
+    "type": "fixed",
+    "change": "Убран горизонтальный overflow (правый отступ / гориз. скролл / «мелкий» адаптив): полноширинные секции (hero/after) теперь w-full слоты, а не 100vw-фокус. На корне overflow-x-clip как страховка. Скролл доходит до конца."
+  },
+  {
+    "date": "2026-06-24",
+    "component": "PageFrame",
+    "type": "added",
+    "change": "Слоты hero (полноширинный баннер над контентом) и after (полноширинный блок под контентом, напр. Pipeline). Возвращена белая линия-разделитель под топ-навигацией (Figma 1:4011)."
+  },
+  {
+    "date": "2026-06-24",
+    "component": "CardTop",
+    "type": "fixed",
+    "change": "glass-hero (1:4013): убран overlay/затухание поверх фона — чистое изображение (object-fit: cover); контент центрирован, hero рендерится full-width через слот PageFrame (без 100vw)."
+  },
+  {
+    "date": "2026-06-24",
+    "page": "Hiring campaign",
+    "component": "HiringCampaign",
+    "type": "fixed",
+    "change": "Pipeline вынесен в after-слот PageFrame (full-width 1220 без 100vw/overflow). Hero (1:4147): только Finish/Cancel, дропдауны сверху."
+  },
+  {
+    "date": "2026-06-24",
+    "component": "Preview",
+    "type": "changed",
+    "change": "Типографика: размер/мета вынесены ПЕРЕД образцом (мета слева фикс-колонкой) — лаконичный вид."
+  },
+  {
+    "date": "2026-06-24",
     "component": "Avatar",
     "type": "changed",
     "change": "Плейсхолдер — насыщенный нейтрально-серый кружок (#979797) + чёткая белая иконка person (opacity 1), единообразно во всех контекстах (Team, Reports to, Mentoring, Pipeline)."
