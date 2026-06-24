@@ -33,15 +33,20 @@
   flex: 1;
   justify-content: flex-end;
 }
-/* long: точечный бар тянется до правого края (как в Figma) */
-.ds-profile--long .ds-profile__aside .ds-bar { flex: 1; min-width: 0; }
 
-/* long: padding 14px по вертикали, без горизонтали; нижняя линия #eaeaea (node 1:1854) */
+/* long: РОВНАЯ СЕТКА — фиксированные колонки, чтобы статусы и бары выстраивались
+   по одной вертикали во всех строках списка Team:
+   [аватар] [имя/роль 220px] [статус 150px] [бар flex]. */
 .ds-profile--long {
+  gap: var(--ds-indent-m);
   padding: var(--ds-indent-s) 0;
   border-bottom: 1px solid var(--ds-color-control-secondary);
   min-width: 460px;
 }
+.ds-profile--long .ds-profile__text { flex: 0 0 220px; min-width: 0; }
+.ds-profile--long .ds-profile__aside { justify-content: flex-start; gap: var(--ds-indent-m); }
+.ds-profile--long .ds-profile__aside .ds-status { flex: 0 0 150px; min-width: 0; }
+.ds-profile--long .ds-profile__aside .ds-bar { flex: 1; min-width: 0; }
 
 /* short / short-outlined: padding 14px со всех сторон, gap 14px, radius 4px (node 1:1862/1:1867) */
 .ds-profile--short {

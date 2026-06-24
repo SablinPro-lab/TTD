@@ -2,4 +2,5 @@
 export { AllTeams } from './AllTeams'
 export { AllTeamsOne } from './AllTeamsOne'
 export { Candidate } from './Candidate'
+export { HiringCampaign } from './HiringCampaign'
 export { PageFrame } from './PageFrame'

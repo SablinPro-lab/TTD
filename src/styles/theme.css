@@ -147,6 +147,7 @@
   --ds-color-text-primary: #000000;
   --ds-color-text-secondary: #5c5c5c;
 }
-/* SwitchGroup: активная пилюля остаётся белой на жёлтом контейнере */
-.dark .ds-switch-group { --ds-color-control-on-color: #ffffff; }
+/* SwitchGroup активная пилюля + трек капсулы CardMetric остаются белыми на пастельном острове */
+.dark .ds-switch-group,
+.dark .ds-card-metric { --ds-color-control-on-color: #ffffff; }
 

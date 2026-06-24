@@ -20,3 +20,6 @@
 ### D47
 - Цвета метрик из палитры: Health=card-red, Productivity=card-pink, Distribution=card-lavender, Hiring=card-olive ✅
 - Бар команды — tone=green (#00867b/#d4eee7) ✅. Hero glass 830×480 cover (полноширинный) ✅.
+
+### D48
+- Метрики: столбики → капсульный индикатор (progress-pill, трек белый + заполнение чёрное), caption снизу ✅. Шапка (glass-hero 1:4013) — совпадает ✅.

@@ -20,3 +20,6 @@
 ### D47
 - Активная PROMOTE (тёмная #000), остальные белые ✅. Personal Development — бар big+green (2 ряда) ✅.
 - Reports/Mentoring — разноцветные пилюли: peach/mint/pink (Reports), olive/lavender/peach (Mentoring) ✅.
+
+### D48
+- Шапка (header 1:4093): пайплайн 9 стадий + BACK + крошки — совпадает ✅.

@@ -1,6 +1,25 @@
 [
   {
     "date": "2026-06-24",
+    "page": "Hiring campaign",
+    "component": "HiringCampaign",
+    "type": "added",
+    "change": "Новая страница (Figma 1:4144): yellow CardTop + Task-чеклист (6) + 3 CardMetrica + CampaignPreview «Funnel» + Canban Pipeline. Роут /pages/hiring-campaign, добавлена в navbar Pages."
+  },
+  {
+    "date": "2026-06-24",
+    "component": "CardMetric",
+    "type": "changed",
+    "change": "Столбчатый мини-график → горизонтальный капсульный индикатор (progress-pill): проп progress, трек белый + заполнение чёрное (из палитры). Размер/раскладка по рефу."
+  },
+  {
+    "date": "2026-06-24",
+    "component": "Profile",
+    "type": "changed",
+    "change": "variant=long — ровная сетка колонок (имя 220 | статус 150 | бар flex): статусы и бары списка Team выстроены по одной вертикали."
+  },
+  {
+    "date": "2026-06-24",
     "component": "Bar",
     "type": "changed",
     "change": "Проп tone (green): заполнение — насыщенный tech-green #00867b, хвост — бледный card-green #d4eee7 (строго из палитры). big = 2 ряда точек. Бары на страницах переведены на green."
