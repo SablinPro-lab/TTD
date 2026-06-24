@@ -3,7 +3,8 @@
   align-items: center;
   justify-content: space-between;
   gap: var(--ds-indent-m);
-  padding: var(--ds-indent-s) var(--ds-indent-m); /* 14 / 20 по Figma */
+  /* отступы плотнее на 20% (по токенам системы): 14→11.2 / 20→16 */
+  padding: calc(var(--ds-indent-s) * 0.8) calc(var(--ds-indent-m) * 0.8);
   font-family: var(--ds-font-family);
   /* адаптив: на узких экранах ряды переносятся, без фикс. min-width (раньше 720 → overflow) */
   flex-wrap: wrap;

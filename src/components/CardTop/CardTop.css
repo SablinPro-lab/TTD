@@ -29,16 +29,17 @@
    радиус снят, фикс-ширина снята, картинка — cover на всю секцию. Страница оборачивает в w-screen. */
 .ds-card-top--glass {
   background: var(--ds-color-bg-base);
-  justify-content: flex-end; /* hero-блок выше, сегмент к низу (Figma Variant2: justify-end, gap 160) */
-  gap: 110px;                /* вертикальный ритм между блоком имени и табами */
+  justify-content: flex-end; /* hero-блок выше, сегмент к низу (Figma Variant2: justify-end) */
+  gap: var(--ds-indent-xxl); /* 90 — вертикальный ритм между блоком имени и табами */
   align-items: center;
   text-align: center;
   width: 100%;
   min-width: 0;
   border-radius: 0;          /* full-bleed баннер — без скругления */
   box-shadow: none;
-  min-height: 460px;
-  padding-block: 56px;       /* воздух сверху/снизу поверх фона */
+  min-height: 540px;
+  /* top-отступ очищает прозрачную шапку поверх hero (≈114 = xxl+l), bottom — xxl. Из токенов. */
+  padding: calc(var(--ds-indent-xxl) + var(--ds-indent-l)) var(--ds-indent-xl) var(--ds-indent-xxl);
 }
 /* Figma 1:4013: чистое фото на всю секцию, БЕЗ overlay/затухания/блюра */
 .ds-card-top__bg-glass { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }

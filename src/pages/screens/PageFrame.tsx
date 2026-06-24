@@ -30,23 +30,36 @@ export function PageFrame({ children, stages, hero, after }: PageFrameProps) {
     if (window.history.length > 1) navigate(-1)
     else navigate('/')
   }
+  const header = (
+    <Header
+      logo="Hired & Wired"
+      action={<Button variant="cta">Generate report</Button>}
+      tabs={[
+        { label: 'All teams', value: 'teams' },
+        { label: 'All templates', value: 'tpl' },
+      ]}
+      value={tab}
+      onTabChange={setTab}
+      userMenu="Profile · Log out"
+      breadcrumbs={['Home', 'Something', 'Something']}
+      onBack={goBack}
+      stages={stages}
+    />
+  )
+
   return (
     <div className="min-h-screen bg-bg-base text-text-primary">
-      <Header
-        logo="Hired & Wired"
-        action={<Button variant="cta">Generate report</Button>}
-        tabs={[
-          { label: 'All teams', value: 'teams' },
-          { label: 'All templates', value: 'tpl' },
-        ]}
-        value={tab}
-        onTabChange={setTab}
-        userMenu="Profile · Log out"
-        breadcrumbs={['Home', 'Something', 'Something']}
-        onBack={goBack}
-        stages={stages}
-      />
-      {hero && <div className="w-full">{hero}</div>}
+      {hero ? (
+        // hero-страницы: CardTop (Variant2) начинается от САМОГО ВЕРХА (100% ширины, вне main, без отступов).
+        // Десктоп (≥768): прозрачная шапка абсолютно ПОВЕРХ hero. Мобайл: шапка в потоке НАД hero
+        // (без наложения — на узких шапка переносится и стала бы высокой). Порядок в DOM: шапка → hero.
+        <div className="relative">
+          <div className="md:absolute md:inset-x-0 md:top-0 md:z-20">{header}</div>
+          <div className="w-full">{hero}</div>
+        </div>
+      ) : (
+        header
+      )}
       <main className="mx-auto w-[830px] max-w-full px-ds-l py-ds-xl">{children}</main>
       {after && <div className="w-full pb-ds-xxl">{after}</div>}
     </div>

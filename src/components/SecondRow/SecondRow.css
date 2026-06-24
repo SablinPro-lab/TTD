@@ -4,7 +4,8 @@
   /* Figma column-gap 90 (Default) между Back и крошками; адаптив: перенос с малым row-gap, без min-width */
   gap: var(--ds-indent-xs) var(--ds-indent-xxl);
   flex-wrap: wrap;
-  padding: var(--ds-indent-s) var(--ds-indent-m); /* 14 / 20 по Figma */
+  /* отступы плотнее на 20% (по токенам): 14→11.2 / 20→16 */
+  padding: calc(var(--ds-indent-s) * 0.8) calc(var(--ds-indent-m) * 0.8);
   font-family: var(--ds-font-family);
   min-width: 0;
 }
@@ -23,10 +24,12 @@
   flex-wrap: wrap;
 }
 
-/* Figma Back (Default): белая заливка + зелёная рамка 1px #00867b (= text-green) + стрелка */
+/* Figma Back (Default): белая заливка + зелёная рамка 1px #00867b (= text-green) + стрелка.
+   «Green style»: текст и иконка (currentColor) — зелёные (text-green), цельный зелёный outline-вид. */
 .ds-second-row__back {
   background: var(--ds-color-control-on-color);
   border: 1px solid var(--ds-color-text-green);
+  color: var(--ds-color-text-green);
   display: inline-flex;
   align-items: center;
   gap: var(--ds-indent-xxs);

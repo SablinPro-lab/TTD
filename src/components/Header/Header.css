@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   font-family: var(--ds-font-family);
-  background: var(--ds-color-bg-base);
+  background: transparent; /* фон убран полностью — шапка прозрачная (поверх hero / страницы) */
   /* адаптив: без фикс. min-width — шапка ужимается/переносится на узких экранах (см. TopMenu wrap) */
   width: 100%;
 }
