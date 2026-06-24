@@ -3,7 +3,8 @@
   flex-direction: column;
   font-family: var(--ds-font-family);
   background: var(--ds-color-bg-base);
-  min-width: 720px;
+  /* адаптив: без фикс. min-width — шапка ужимается/переносится на узких экранах (см. TopMenu wrap) */
+  width: 100%;
 }
 
 /* Figma Frame 1382: VERTICAL, gap 8, padding 0/20 — бар + подписи этапов */
@@ -16,8 +17,9 @@
 
 .ds-header__stages {
   display: flex;
+  flex-wrap: wrap; /* адаптив: 9 микро-подписей стадий переносятся на узких, без overflow */
   justify-content: space-between;
-  gap: var(--ds-indent-xs);
+  gap: var(--ds-indent-xxs) var(--ds-indent-xs);
 }
 
 .ds-header__stage {

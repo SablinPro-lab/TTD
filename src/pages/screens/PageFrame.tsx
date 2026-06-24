@@ -18,8 +18,9 @@ export interface PageFrameProps {
  * PageFrame — общий каркас экранов (Figma `header` + центрированный контейнер 830px).
  * Шапка: логотип «Hired & Wired», CTA «Generate report», табы, user-menu, кнопка «← Back»
  * (стрелка в ряду крошек, Figma SecondRow) и хлебные крошки. Контент по центру (830px).
- * Полноширинные секции (hero/after) — отдельные `w-full`-слоты, а не 100vw-фокус: это
- * исключает горизонтальный overflow (правый отступ / гориз. скролл / «мелкий» адаптив).
+ * Полноширинные секции (hero/after) — отдельные `w-full`-слоты (НЕ 100vw): равны ширине body,
+ * поэтому не создают горизонтального overflow и не требуют overflow-клипа. Скролл — естественный,
+ * документом (никакого контейнерного скролла). Контент-колонка адаптивна (max-w-[830px] + max-w-full).
  */
 export function PageFrame({ children, stages, hero, after }: PageFrameProps) {
   const [tab, setTab] = useState('teams')
@@ -30,7 +31,7 @@ export function PageFrame({ children, stages, hero, after }: PageFrameProps) {
     else navigate('/')
   }
   return (
-    <div className="min-h-screen overflow-x-clip bg-bg-base text-text-primary">
+    <div className="min-h-screen bg-bg-base text-text-primary">
       <Header
         logo="Hired & Wired"
         action={<Button variant="cta">Generate report</Button>}
@@ -45,8 +46,6 @@ export function PageFrame({ children, stages, hero, after }: PageFrameProps) {
         onBack={goBack}
         stages={stages}
       />
-      {/* белая линия-разделитель под топ-навигацией (Figma 1:4011) */}
-      <div className="h-px w-full bg-card-white" aria-hidden="true" />
       {hero && <div className="w-full">{hero}</div>}
       <main className="mx-auto w-[830px] max-w-full px-ds-l py-ds-xl">{children}</main>
       {after && <div className="w-full pb-ds-xxl">{after}</div>}

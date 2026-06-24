@@ -45,6 +45,18 @@
 .ds-canban__col:last-child { padding-right: 0; }
 .ds-canban__col + .ds-canban__col { border-left: 1px solid var(--ds-color-lines); }
 
+/* адаптив (мобайл ≤640): заголовок мельче, колонки стопкой во всю ширину (без гориз. overflow/скролла) */
+@media (max-width: 640px) {
+  .ds-canban__title { font-size: var(--ds-font-size-description); } /* 30 вместо 84 */
+  .ds-canban__board { flex-direction: column; gap: var(--ds-indent-l); padding: var(--ds-indent-l); }
+  .ds-canban__col { padding: 0; }
+  .ds-canban__col + .ds-canban__col {
+    border-left: none;
+    border-top: 1px solid var(--ds-color-lines);
+    padding-top: var(--ds-indent-l);
+  }
+}
+
 /* шапка колонки: заголовок-сериф слева, счётчик-сериф (серый) справа (Frame 1399) */
 .ds-canban__col-head {
   display: flex;

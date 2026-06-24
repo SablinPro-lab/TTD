@@ -69,8 +69,8 @@ export function HiringCampaign() {
           </div>
         </section>
 
-        {/* 3 метрики-числа (CardMetrica) */}
-        <div className="grid grid-cols-3 gap-ds-xxs [&>.ds-card-metrica]:w-full">
+        {/* 3 метрики-числа (CardMetrica) — адаптив: 1 на узких, 3 на ≥640 */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-ds-xxs [&>.ds-card-metrica]:w-full">
           <CardMetrica title="Applications" value={142} caption="Total received" />
           <CardMetrica title="in Progress" value={28} caption="Active candidates" />
           <CardMetrica title="Conversion Rate" value="19.7%" caption="To interview stage" />

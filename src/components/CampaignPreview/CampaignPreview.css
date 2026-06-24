@@ -8,7 +8,7 @@
   border-radius: var(--ds-radius-l);
   padding: var(--ds-indent-xl);
   font-family: var(--ds-font-family);
-  min-width: 460px;
+  min-width: 0; /* адаптив: ужимается на узких (раньше 460 → overflow) */
 }
 
 /* head: SPACE_BETWEEN, центрирование по вертикали (Frame 1415) */
@@ -25,7 +25,7 @@
 .ds-campaign__head-aside { display: flex; align-items: center; justify-content: flex-end; gap: var(--ds-indent-s); }
 
 /* метрики: ряд столбцов, SPACE_BETWEEN; value над label gap 8px (Frame 1397/1381/1380) */
-.ds-campaign__metrics { display: flex; justify-content: space-between; gap: var(--ds-indent-m); }
+.ds-campaign__metrics { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--ds-indent-l) var(--ds-indent-m); }
 .ds-campaign__metric { display: flex; flex-direction: column; gap: var(--ds-indent-xs); }
 /* Figma: значение — Instrument Serif 84px, lh 90%, ls -1% (node 1:1893) */
 .ds-campaign__value {

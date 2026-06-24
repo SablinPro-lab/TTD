@@ -54,16 +54,16 @@ export function AllTeams() {
     <PageFrame hero={hero}>
       {/* секции выровнены по Figma-фрейму 830px; -mx-ds-l компенсирует горизонтальный padding main */}
       <div className="-mx-ds-l flex flex-col gap-ds-xxs">
-        {/* 4-up метрик: карточки на равные доли по ширине (w-full переопределяет фикс-205),
-            высота — фикс 195 (Figma): НЕ h-full, иначе flex-график схлопывается до min-height */}
-        <div className="grid grid-cols-4 gap-ds-xxs [&>.ds-card-metric]:w-full">
+        {/* 4-up метрик (адаптив: 2 на узких, 4 на ≥640). Карточки на равные доли по ширине
+            (w-full переопределяет фикс-205); высота — фикс 195 (НЕ h-full, иначе график схлопывается) */}
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-ds-xxs [&>.ds-card-metric]:w-full">
           {METRICS.map((m) => (
             <CardMetric key={m.title} title={m.title} caption={m.caption} color={m.color} values={m.values} />
           ))}
         </div>
 
-        {/* 2-up команд: снимаем min-width карточки, чтобы две колонки уложились в 830px-фрейм */}
-        <div className="grid grid-cols-2 gap-ds-xxs [&>.ds-team]:min-w-0">
+        {/* команды (адаптив: 1 на узких, 2 на ≥640). Снимаем min-width карточки, чтобы укладывались */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-ds-xxs [&>.ds-team]:min-w-0">
           {TEAMS.map((t, i) => (
             <Team
               key={i}

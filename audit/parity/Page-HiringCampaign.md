@@ -26,3 +26,6 @@ React: `src/pages/screens/HiringCampaign.tsx` (+ `PageFrame.tsx`). Роут `/pa
 ### D51
 - Pipeline вынесен в after-слот PageFrame — full-width 1220 без 100vw/overflow (DOM overflow=0), скролл доходит до последнего блока (canban bottom 2538 < scrollH 2628) ✓.
 - Hero (1:4147): только Finish/Cancel, дропдауны сверху — соответствует ✓.
+
+### D52
+- Адаптив/скролл: убран overflow-x-clip (скролл документом, не контейнером); убрана белая линия под топ-навом (откат хедера); сняты фикс min-width + переносы. DOM: overflow=0 на 1440/1024/900/768/375; десктоп-вид как в Figma ✅.

@@ -41,12 +41,23 @@
   gap: var(--ds-indent-m);
   padding: var(--ds-indent-s) 0;
   border-bottom: 1px solid var(--ds-color-control-secondary);
-  min-width: 460px;
+  min-width: 0; /* адаптив: строка ужимается на узких (раньше 460 → overflow контента) */
 }
 .ds-profile--long .ds-profile__text { flex: 0 0 220px; min-width: 0; }
 .ds-profile--long .ds-profile__aside { justify-content: flex-start; gap: var(--ds-indent-m); }
 .ds-profile--long .ds-profile__aside .ds-status { flex: 0 0 150px; min-width: 0; }
 .ds-profile--long .ds-profile__aside .ds-bar { flex: 1; min-width: 0; }
+
+/* адаптив (мобайл ≤640): строка Team переносится — имя/роль сверху, статус+бар снизу,
+   фикс-колонки и min-width бара снимаются, чтобы не было горизонтального overflow.
+   Десктоп-сетка (D48: text 220 / status 150 / bar flex) на ширине ≥641 не меняется. */
+@media (max-width: 640px) {
+  .ds-profile--long { flex-wrap: wrap; gap: var(--ds-indent-xs) var(--ds-indent-m); }
+  .ds-profile--long .ds-profile__text { flex: 1 1 auto; }
+  .ds-profile--long .ds-profile__aside { flex: 1 1 100%; gap: var(--ds-indent-s); }
+  .ds-profile--long .ds-profile__aside .ds-status { flex: 0 1 auto; }
+  .ds-profile--long .ds-profile__aside .ds-bar { min-width: 0; }
+}
 
 /* short / short-outlined: Figma node 1:1862 — padding 14, gap 14, radius 4, ~204 wide.
    Reports to / Mentoring (юзер): крупнее/шире и просторнее — padding 20, min-width 240,

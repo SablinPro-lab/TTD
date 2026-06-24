@@ -6,7 +6,7 @@
   padding: var(--ds-indent-s) 0; /* 14 верх/низ, 0 по бокам */
   font-family: var(--ds-font-family);
   border-bottom: 1px solid var(--ds-color-lines); /* #eaeaea */
-  min-width: 520px;
+  min-width: 0; /* адаптив: ужимается на узких (раньше 520 → overflow); тело flex:1, заголовок переносится */
 }
 
 /* Frame 1474 — вертикальный блок контента, gap 10 (Figma) */

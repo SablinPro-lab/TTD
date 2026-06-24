@@ -1,10 +1,12 @@
 .ds-second-row {
   display: flex;
   align-items: center;
-  gap: var(--ds-indent-xxl); /* Figma gap 90 (Default) между Back и крошками */
+  /* Figma column-gap 90 (Default) между Back и крошками; адаптив: перенос с малым row-gap, без min-width */
+  gap: var(--ds-indent-xs) var(--ds-indent-xxl);
+  flex-wrap: wrap;
   padding: var(--ds-indent-s) var(--ds-indent-m); /* 14 / 20 по Figma */
   font-family: var(--ds-font-family);
-  min-width: 560px;
+  min-width: 0;
 }
 
 /* вариант builider: Back слева, действия справа — SPACE_BETWEEN, gap 60 */
@@ -17,7 +19,8 @@
 .ds-second-row__lead {
   display: flex;
   align-items: center;
-  gap: var(--ds-indent-xl);
+  gap: var(--ds-indent-xs) var(--ds-indent-xl);
+  flex-wrap: wrap;
 }
 
 /* Figma Back (Default): белая заливка + зелёная рамка 1px #00867b (= text-green) + стрелка */
@@ -33,6 +36,7 @@
 .ds-second-row__crumbs {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: var(--ds-indent-xs); /* 8 */
   font-size: var(--ds-font-size-text-gr); /* 11px */
   color: var(--ds-color-text-primary); /* чёрный, НЕ secondary */

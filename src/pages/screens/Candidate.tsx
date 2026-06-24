@@ -53,7 +53,7 @@ export function Candidate() {
         {/* Achievements — оливковая карточка: заголовок + 4 колонки-метрики + кнопка */}
         <section className="flex flex-col gap-ds-xl rounded-l bg-card-olive p-ds-xl">
           <h2 className="m-0 font-display text-description leading-none text-text-primary">Achievements</h2>
-          <div className="grid grid-cols-4 gap-ds-m">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-ds-m">
             {ACHIEVEMENTS.map((a) => (
               <div key={a.label} className="flex flex-col gap-ds-xs">
                 <span className="font-display text-h3 leading-none text-text-primary">{a.label}</span>

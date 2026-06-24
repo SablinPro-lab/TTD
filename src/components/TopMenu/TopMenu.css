@@ -5,14 +5,17 @@
   gap: var(--ds-indent-m);
   padding: var(--ds-indent-s) var(--ds-indent-m); /* 14 / 20 по Figma */
   font-family: var(--ds-font-family);
-  min-width: 720px;
+  /* адаптив: на узких экранах ряды переносятся, без фикс. min-width (раньше 720 → overflow) */
+  flex-wrap: wrap;
 }
 
-/* левый блок: логотип + (действие + табы), gap 90 в Figma → XXL≈90 */
+/* левый блок: логотип + (действие + табы), gap 90 в Figma → XXL≈90.
+   На узких — перенос и меньший зазор, чтобы не распирать ряд. */
 .ds-topmenu__left {
   display: flex;
   align-items: center;
   gap: var(--ds-indent-xxl);
+  flex-wrap: wrap;
 }
 
 /* действие + табы, внутренний gap 20 (M) */

@@ -10,8 +10,8 @@
   box-shadow: var(--ds-shadow-2);
   position: relative;
   overflow: hidden;
-  /* Figma 830×480 — высокая воздушная карточка; SPACE_BETWEEN распределяет углы/имя/теги */
-  min-width: 600px;
+  /* Figma 830×480 — высокая воздушная карточка; SPACE_BETWEEN распределяет углы/имя/теги.
+     Адаптив: без фикс min-width (раньше 600 → overflow на узких); ширину держит контейнер. */
   min-height: 480px;
 }
 
