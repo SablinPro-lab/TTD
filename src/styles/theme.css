@@ -117,18 +117,10 @@
   --ds-color-control-on-color: #18181b; /* «белые» поверхности → тёмные карточки */
   --ds-color-bg-base: #0b0b0d;
   --ds-color-lines: #2a2a31;
-  --ds-color-card-white: #161619;
-  --ds-color-card-red: #3a2422;
-  --ds-color-card-pink: #34232c;
-  --ds-color-card-lavender: #26243a;
-  --ds-color-card-olive: #2e3018;
-  --ds-color-card-green: #16302b;
-  --ds-color-card-peach: #3a2a24;
-  --ds-color-oncard-red: #36231f;
-  --ds-color-oncard-green: #16302b;
-  --ds-color-oncard-yellow: #3a3413;
-  --ds-color-bar-empty: #26262b;
-  --ds-color-bar-filled: #5a6b67;
+  --ds-color-card-white: #161619;       /* нейтральная «белая» карточка → тёмная */
+  /* Бренд/пастель (card-*, oncard-*, tech-*, super-yellow, brown, bar-filled) НЕ переопределяем —
+     цвета ТОЧНЫЕ в обеих темах (D44). Текст на этих «всегда светлых» островах — ниже (ink-reset). */
+  --ds-color-bar-empty: #26262b;        /* трек бара — нейтральный, инвертируется */
   /* тени/hover в тёмной теме */
   --ds-shadow-1: 0 1px 3px rgba(0, 0, 0, 0.5);
   --ds-shadow-2: 0 2px 12px rgba(0, 0, 0, 0.55);
@@ -137,4 +129,24 @@
   --ds-color-control-on-color-hover: #20202a;
   --ds-color-black-hover: #e4e4e7;
 }
+
+/*
+ * Ink-reset (D44): «острова» на пастельных/брендовых поверхностях остаются светлыми в обеих темах,
+ * поэтому текст на них всегда тёмный. Локально переопределяем переменные текста — компоненты править
+ * не нужно (они читают var(--ds-color-text-*)). Так бренд-цвета точные, а контраст сохраняется.
+ */
+.dark .ds-flownode,
+.dark .ds-card-metric,
+.dark .ds-profile--short,
+.dark .ds-project__tag,
+.dark .ds-tag--static,
+.dark .ds-button--onColor,
+.dark .ds-dropdown--onColor,
+.dark .ds-card-top,
+.dark .ds-switch-group {
+  --ds-color-text-primary: #000000;
+  --ds-color-text-secondary: #5c5c5c;
+}
+/* SwitchGroup: активная пилюля остаётся белой на жёлтом контейнере */
+.dark .ds-switch-group { --ds-color-control-on-color: #ffffff; }
 

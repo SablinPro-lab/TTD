@@ -1,6 +1,12 @@
 [
   {
     "date": "2026-06-24",
+    "component": "Tokens",
+    "type": "fixed",
+    "change": "Тёмная тема: бренд/пастель-цвета (card-*, oncard-*, bar-filled) больше НЕ мутнеют — точные в обеих темах. Текст на пастельных островах — ink-reset (всегда тёмный) без правки компонентов."
+  },
+  {
+    "date": "2026-06-24",
     "component": "CardTop",
     "type": "changed",
     "change": "Фон как в Figma: фото (cardtop-bg.jpg) + mix-blend color/hard-light жёлтый → жёлто-тонированное фото с кругами. Высота 480, 4 тега слева (2×2) + Add."
