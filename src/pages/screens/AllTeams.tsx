@@ -15,14 +15,15 @@ const METRICS = [
   { title: 'Hiring', caption: '15 Open Position', color: 'olive' as const, values: [100, 58] },
 ]
 
-const TEAMS = [
-  { name: 'Engineering Team', peopleCount: 24, productivity: '89%', highlight: 'Petya was drinking too much tea this week', members: [{}, { name: 'petya' }, { name: 'dog' }], extra: 21 },
-  { name: 'Design Team', peopleCount: 12, productivity: '76%', highlight: 'Shipped the new design system tokens', members: [{}, {}, {}], extra: 9 },
-  { name: 'Product Team', peopleCount: 8, productivity: '82%', highlight: 'Closed three discovery interviews', members: [{}, {}, { name: 'dog' }], extra: 5 },
-  { name: 'Marketing Team', peopleCount: 16, productivity: '68%', highlight: 'Launched the spring campaign', members: [{}, { name: 'petya' }, {}], extra: 13 },
-  { name: 'Sales Team', peopleCount: 20, productivity: '91%', highlight: 'Hit quarterly quota two weeks early', members: [{}, {}, {}], extra: 17 },
-  { name: 'Support Team', peopleCount: 10, productivity: '73%', highlight: 'Cut response time to under an hour', members: [{}, { name: 'dog' }, {}], extra: 7 },
-]
+// Figma 1:4010: 6 идентичных карточек «Engineering Team» (клоны).
+const TEAMS = Array.from({ length: 6 }, () => ({
+  name: 'Engineering Team',
+  peopleCount: 24,
+  productivity: '89%',
+  highlight: 'Petya was drinking too much tea this week',
+  members: [{}, { name: 'petya' }, { name: 'dog' }],
+  extra: 21,
+}))
 
 /** Экран 1:4010 «All teams» — обзор всех команд: glass-hero + метрики + сетка команд. */
 export function AllTeams() {
@@ -55,9 +56,9 @@ export function AllTeams() {
 
         {/* 2-up команд: снимаем min-width карточки, чтобы две колонки уложились в 830px-фрейм */}
         <div className="grid grid-cols-2 gap-ds-xxs [&>.ds-team]:min-w-0">
-          {TEAMS.map((t) => (
+          {TEAMS.map((t, i) => (
             <Team
-              key={t.name}
+              key={i}
               name={t.name}
               peopleCount={t.peopleCount}
               productivity={t.productivity}

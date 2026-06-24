@@ -266,6 +266,17 @@ function PreviewInner() {
   const [q, setQ] = useState('')
   const [navOpen, setNavOpen] = useState(false)
   const [collapsed, setCollapsed] = useState<Record<string, boolean>>({})
+  // левый sidebar: свёрнут по умолчанию; pinned (закреплён открытым) сохраняется, hovered — временно
+  const [pinned, setPinned] = useState(() => {
+    try { return localStorage.getItem('ds-nav-pinned') === '1' } catch { return false }
+  })
+  const [hovered, setHovered] = useState(false)
+  const railOpen = pinned || hovered
+  const togglePin = () => setPinned((p) => {
+    const v = !p
+    try { localStorage.setItem('ds-nav-pinned', v ? '1' : '0') } catch { /* noop */ }
+    return v
+  })
   const active = useScrollSpy(ALL_ITEM_IDS)
   const toggle = (id: string) => setCollapsed((c) => ({ ...c, [id]: !c[id] }))
   const term = q.trim().toLowerCase()
@@ -286,9 +297,38 @@ function PreviewInner() {
 
   return (
     <div className="min-h-screen bg-bg-base text-text-primary lg:flex">
-      {/* desktop sidebar */}
-      <aside className="sticky top-0 hidden h-screen w-72 shrink-0 border-r border-lines bg-card-white p-ds-l lg:block">
-        <NavTree q={q} setQ={setQ} active={active} collapsed={collapsed} toggle={toggle} onNavigate={() => {}} />
+      {/* desktop sidebar — свёрнут по умолчанию (рельс 56px); разворот по hover/клику, плавно.
+          Раскрытая панель оверлеит контент (не двигает раскладку), pinned сохраняется. */}
+      <aside
+        className="sticky top-0 z-30 hidden h-screen w-14 shrink-0 lg:block"
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
+        aria-label="Боковая навигация"
+      >
+        <div
+          className={`absolute inset-y-0 left-0 flex h-screen flex-col overflow-hidden border-r border-lines bg-card-white
+            transition-[width] duration-200 ease-out ${railOpen ? 'w-72 p-ds-l shadow-[0_10px_34px_rgba(0,0,0,0.08)]' : 'w-14 items-center py-ds-l'}`}
+        >
+          {railOpen ? (
+            <>
+              <button
+                type="button" onClick={togglePin} aria-pressed={pinned}
+                aria-label={pinned ? 'Свернуть меню' : 'Закрепить меню открытым'}
+                className="mb-ds-s self-end rounded-m p-ds-xxs text-text-secondary transition-colors hover:text-text-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-tech-purple"
+              >
+                <IconChevron className="h-4 w-4 rotate-90" />
+              </button>
+              <NavTree q={q} setQ={setQ} active={active} collapsed={collapsed} toggle={toggle} onNavigate={() => {}} />
+            </>
+          ) : (
+            <button
+              type="button" onClick={togglePin} aria-expanded={false} aria-label="Развернуть меню"
+              className="rounded-m p-ds-xs text-text-primary transition-colors hover:bg-control-secondary focus:outline-none focus-visible:ring-2 focus-visible:ring-tech-purple"
+            >
+              <IconMenu />
+            </button>
+          )}
+        </div>
       </aside>
 
       {/* mobile drawer */}

@@ -107,9 +107,11 @@ export function CardTop({
             ))}
           </div>
         )}
-        {segmented && <div className="ds-card-top__segmented">{segmented}</div>}
         {footer && <div className="ds-card-top__footer">{footer}</div>}
       </div>
+
+      {/* glass-hero: сегментный контрол — отдельным блоком внизу карточки (Figma: switch_group y≈410) */}
+      {segmented && <div className="ds-card-top__segmented">{segmented}</div>}
 
       {(left.length > 0 || right.length > 0) && (
         <div className="ds-card-top__tags">

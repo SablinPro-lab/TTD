@@ -18,3 +18,5 @@ import { Button } from '../Button'
   <SecondRow onBack={() => {}} breadcrumbs={['Home', 'Something', 'Something']} />
   <SecondRow onBack={() => {}} actions={<><Button variant="secondary">Save</Button><Button variant="cta">Deploy</Button></>} />
 </div>
+
+<!-- D46: кнопка Back получила стрелку (←, inline svg) + aria-label «Назад». Используется как «назад» на страницах (PageFrame → Header onBack → navigate(-1)). -->

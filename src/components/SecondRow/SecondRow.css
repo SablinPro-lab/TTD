@@ -20,11 +20,15 @@
   gap: var(--ds-indent-xl);
 }
 
-/* Figma Back (Default): белая заливка + зелёная рамка 1px #00867b (= text-green) */
+/* Figma Back (Default): белая заливка + зелёная рамка 1px #00867b (= text-green) + стрелка */
 .ds-second-row__back {
   background: var(--ds-color-control-on-color);
   border: 1px solid var(--ds-color-text-green);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ds-indent-xxs);
 }
+.ds-second-row__back-icon { flex: none; }
 
 .ds-second-row__crumbs {
   display: flex;

@@ -31,7 +31,7 @@ const MENTORING: { name: string; role: string; variant: 'short' | 'short-outline
 /** Экран 1:4092 «Candidate» — карточка кандидата: yellow CardTop + notify + ачивки + развитие + связи. */
 export function Candidate() {
   return (
-    <PageFrame stages={['Sourcing', 'Screening', 'Interview', 'Offer', 'Hired']}>
+    <PageFrame stages={['Applied', 'Interviewed', 'Onboarding', 'Half-term', 'Common', 'Leads team', 'Minus one', 'C-level', 'Fired']}>
       <div className="-mx-ds-l flex flex-col gap-ds-xxs">
         <CardTop
           variant="default"

@@ -1,6 +1,45 @@
 [
   {
     "date": "2026-06-24",
+    "page": "All teams",
+    "component": "AllTeams",
+    "type": "fixed",
+    "change": "Parity 1:4010: порядок hero исправлен (ADD TEAM в центре, SwitchGroup внизу, gap 160); 6 карточек команд — идентичные «Engineering Team» как в Figma."
+  },
+  {
+    "date": "2026-06-24",
+    "page": "All teams one",
+    "component": "AllTeamsOne",
+    "type": "fixed",
+    "change": "Parity 1:4071: статусы/роли строк команды приведены к Figma (On Track green / Rocket Growth purple / Failing red), 10 точных строк."
+  },
+  {
+    "date": "2026-06-24",
+    "page": "Candidate",
+    "component": "Candidate",
+    "type": "fixed",
+    "change": "Parity 1:4092: пайплайн — 9 стадий как в Figma (Applied…Fired) вместо 5."
+  },
+  {
+    "date": "2026-06-24",
+    "component": "Preview",
+    "type": "changed",
+    "change": "Левый sidebar свёрнут по умолчанию (рельс 56px); разворот по hover + клик (pin, сохраняется в localStorage), плавный transition, a11y (aria-expanded/pressed, фокус-кольца). Раскрытая панель оверлеит контент, не двигая раскладку."
+  },
+  {
+    "date": "2026-06-24",
+    "component": "SecondRow",
+    "type": "changed",
+    "change": "Кнопка Back: добавлена стрелка (←) + aria-label «Назад». На страницах работает как «назад» (navigate(-1) → каталог)."
+  },
+  {
+    "date": "2026-06-24",
+    "component": "CardTop",
+    "type": "changed",
+    "change": "glass: сегментный контрол вынесен отдельным блоком вниз (gap 160) — корректный порядок hero на страницах."
+  },
+  {
+    "date": "2026-06-24",
     "component": "Tokens",
     "type": "fixed",
     "change": "ink-reset тёмной темы ограничен .ds-card-top--default — glass-hero следует теме (текст светлый на тёмном фоне), не форсится тёмным."

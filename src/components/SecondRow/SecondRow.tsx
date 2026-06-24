@@ -23,7 +23,12 @@ export function SecondRow({ onBack, breadcrumbs = [], actions }: SecondRowProps)
     <div className={`ds-second-row ${hasActions ? 'ds-second-row--builder' : ''}`}>
       <div className="ds-second-row__lead">
         {onBack && (
-          <Button variant="secondary" className="ds-second-row__back" onClick={onBack}>Back</Button>
+          <Button variant="secondary" className="ds-second-row__back" onClick={onBack} aria-label="Назад">
+            <svg className="ds-second-row__back-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <path d="M15 18l-6-6 6-6" />
+            </svg>
+            Back
+          </Button>
         )}
         {breadcrumbs.length > 0 && (
           <nav className="ds-second-row__crumbs">

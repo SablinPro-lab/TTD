@@ -1,18 +1,20 @@
 import { useState } from 'react'
 import { CardTop, SwitchGroup, Notify, Profile } from '../../components'
+import type { StatusVariant } from '../../components'
 import { PageFrame } from './PageFrame'
 
-const PEOPLE: { name: string; role: string; progress: number }[] = [
-  { name: 'Sarah Johnson', role: 'Senior Developer', progress: 64 },
-  { name: 'Michael Smith', role: 'Product Manager', progress: 58 },
-  { name: 'Emily Davis', role: 'UX Designer', progress: 72 },
-  { name: 'David Brown', role: 'Data Analyst', progress: 49 },
-  { name: 'Linda Garcia', role: 'Data Engineer', progress: 81 },
-  { name: 'James Wilson', role: 'Software Engineer', progress: 55 },
-  { name: 'Alice Thompson', role: 'Marketing Specialist', progress: 67 },
-  { name: 'Robert Martinez', role: 'QA Engineer', progress: 43 },
-  { name: 'Jessica Taylor', role: 'UX Designer', progress: 76 },
-  { name: 'Charles Lee', role: 'System Architect', progress: 60 },
+// Figma 1:4071: имена/роли/статусы строго по макету. On Track→green, Rocket Growth→purple, Failing→red.
+const PEOPLE: { name: string; role: string; progress: number; status: { variant: StatusVariant; label: string } }[] = [
+  { name: 'Sarah Johnson', role: 'Senior Developer', progress: 92, status: { variant: 'green', label: 'On Track' } },
+  { name: 'Michael Smith', role: 'Product Manager', progress: 100, status: { variant: 'purple', label: 'Rocket Growth' } },
+  { name: 'Emily Davis', role: 'UX Designer', progress: 88, status: { variant: 'green', label: 'On Track' } },
+  { name: 'David Brown', role: 'QA Engineer', progress: 100, status: { variant: 'purple', label: 'Rocket Growth' } },
+  { name: 'Linda Garcia', role: 'Data Analyst', progress: 84, status: { variant: 'green', label: 'On Track' } },
+  { name: 'James Wilson', role: 'Software Engineer', progress: 70, status: { variant: 'red', label: 'Failing' } },
+  { name: 'Alice Thompson', role: 'Marketing Specialist', progress: 86, status: { variant: 'green', label: 'On Track' } },
+  { name: 'Robert Martinez', role: 'Sales Executive', progress: 64, status: { variant: 'red', label: 'Failing' } },
+  { name: 'Jessica Taylor', role: 'Content Strategist', progress: 90, status: { variant: 'green', label: 'On Track' } },
+  { name: 'Charles Lee', role: 'Systems Analyst', progress: 72, status: { variant: 'red', label: 'Failing' } },
 ]
 
 /** Экран 1:4071 «All teams one» — детальный обзор команды: glass-hero + notify + список людей. */
@@ -49,7 +51,7 @@ export function AllTeamsOne() {
                 variant="long"
                 name={p.name}
                 role={p.role}
-                status={{ variant: 'green', label: 'On Track' }}
+                status={p.status}
                 progress={p.progress}
               />
             ))}

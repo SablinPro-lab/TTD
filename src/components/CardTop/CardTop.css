@@ -26,7 +26,8 @@
 /* ── glass-вариант (Figma node 1:3768): стеклянный hero страницы ── */
 .ds-card-top--glass {
   background: var(--ds-color-bg-base);
-  justify-content: flex-end; /* контент к низу */
+  justify-content: flex-end; /* hero-блок выше, сегмент к низу (Figma Variant2: justify-end, gap 160) */
+  gap: 160px;                /* Figma gap между Frame1698 и switch_group (геометрия макета) */
   align-items: center;
   text-align: center;
 }
@@ -41,8 +42,8 @@
 .ds-card-top--glass .ds-card-top__role { color: var(--ds-color-text-secondary); text-align: center; margin-top: 0; }
 /* glass: пилюли-действия — чёрные (Figma Variant2) */
 .ds-card-top--glass .ds-card-top__pill { background: var(--ds-color-black); color: var(--ds-color-text-on-color); }
-.ds-card-top__segmented { display: flex; justify-content: center; margin-top: var(--ds-indent-m); }
-.ds-card-top__footer { display: flex; justify-content: center; margin-top: var(--ds-indent-m); }
+.ds-card-top__segmented { display: flex; justify-content: center; }
+.ds-card-top__footer { display: flex; justify-content: center; }
 
 /* углы: TEAMS / ACCESS — Pixform 10px UPPER, ls 20%, brown #d1a63b */
 .ds-card-top__corners {
