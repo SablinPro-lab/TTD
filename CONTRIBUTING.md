@@ -14,6 +14,29 @@
 отступ) — сначала в Figma (секция `styles`), потом в `src/styles/theme.css`. Хардкод хексов и
 пикселей в компонентах запрещён — только `var(--ds-*)`.
 
+## 🪞 Зеркальный нейминг (обязательно)
+
+> **Названия фреймов, компонентов, токенов и стилей в Figma ЗЕРКАЛЬНО повторяются в React.**
+> Любое расхождение — баг, чинится сразу. Семантика имени одна; меняется только регистр/формат по
+> фиксированной таблице конвертации ниже (Figma использует `snake_case` и пути `category/name`,
+> React — `PascalCase` для компонентов и `--ds-<category>-<name>` для токенов).
+
+| Сущность | Figma | React | Пример |
+| --- | --- | --- | --- |
+| Компонент | `snake_case` (имя ноды/сета) | `PascalCase` (папка + файл + экспорт) | `card_top` → `CardTop` |
+| Вариант | `Property 1=<value>` | проп `variant` / соответствующий проп | `Property 1=glass` → `variant="glass"` |
+| Страница/экран | имя фрейма | `PascalCase` файл в `src/pages/screens/` | `All_teams` → `AllTeams` |
+| Цвет-токен | `color/<group>/<name>` | `--ds-color-<group>-<name>` | `color/tech/green` → `--ds-color-tech-green` |
+| Отступ-токен | `indents/<name>` | `--ds-indent-<name>` | `indents/s-(inner)` → `--ds-indent-s` |
+| Радиус-токен | `rounds/<name>` | `--ds-radius-<name>` | `rounds/over` → `--ds-radius-over` |
+| Шрифт-токен | `font/family/<name>` | `--ds-font-family[-<name>]` | `font/family/pixel` → `--ds-font-family-pixel` |
+| Размер шрифта | `font/size/<name>` | `--ds-font-size-<name>` | `font/size/description` → `--ds-font-size-description` |
+
+Правила:
+- Новый компонент/токен — имя берём из Figma и конвертируем по таблице; не выдумываем синонимы.
+- Слова в имени НЕ меняем (`card_top` → `CardTop`, не `ProfileHeader`).
+- Реестр соответствий компонент↔node-id ведём в `audit/parity/INDEX.md`.
+
 ## Поток работы
 
 ```

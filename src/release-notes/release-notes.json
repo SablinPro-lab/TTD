@@ -1,6 +1,39 @@
 [
   {
     "date": "2026-06-24",
+    "page": "All teams",
+    "component": "AllTeams",
+    "type": "added",
+    "change": "Страница (Figma 1:4010): glass-hero + 4 цветные CardMetric + сетка 6 Team. Роут /pages/all-teams."
+  },
+  {
+    "date": "2026-06-24",
+    "page": "All teams one",
+    "component": "AllTeamsOne",
+    "type": "added",
+    "change": "Страница (Figma 1:4071): glass-hero Engineering Team + Notify + список 10 профилей (Profile long). Роут /pages/all-teams-one."
+  },
+  {
+    "date": "2026-06-24",
+    "page": "Candidate",
+    "component": "Candidate",
+    "type": "added",
+    "change": "Страница (Figma 1:4092): header+пайплайн, жёлтый CardTop, Notify, Achievements, Personal Development, Reports to, Mentoring. Роут /pages/candidate."
+  },
+  {
+    "date": "2026-06-24",
+    "component": "ReleaseNotes",
+    "type": "added",
+    "change": "Страница /release-notes: таблица обновлений (дата/компонент/изменение/тип) из release-notes.json, поиск, тёмная тема. Зеркало Figma Release Notes."
+  },
+  {
+    "date": "2026-06-24",
+    "component": "Preview",
+    "type": "changed",
+    "change": "В навигатор добавлен раздел Pages (ссылки на 3 страницы + Release Notes)."
+  },
+  {
+    "date": "2026-06-24",
     "component": "CardTop",
     "type": "added",
     "change": "Вариант glass (Figma 1:3768): стеклянный hero страниц — широкое фото с затуханием в bg-base, чёрные пилюли, слоты segmented/footer."

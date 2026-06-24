@@ -1,11 +1,20 @@
 import { useEffect, useState } from 'react'
 import type { ReactNode } from 'react'
+import { Link } from 'react-router-dom'
 import {
   ToastProvider, ThemeToggle, Card, useScrollSpy,
   IconSearch, IconChevron, IconMenu, IconClose,
 } from './preview-ui'
 import { CATALOG, LEVELS } from './preview-catalog'
 import './preview.css'
+
+/* Страницы, собранные из дизайн-системы (роуты вне превью-каталога). */
+const PAGES: { to: string; label: string }[] = [
+  { to: '/pages/all-teams', label: 'All teams' },
+  { to: '/pages/all-teams-one', label: 'All teams one' },
+  { to: '/pages/candidate', label: 'Candidate' },
+  { to: '/release-notes', label: 'Release Notes' },
+]
 
 /* ── Styles-секция: данные ── */
 const STYLE_ITEMS: { id: string; label: string }[] = [
@@ -224,6 +233,25 @@ function NavTree({
             </div>
           )
         })}
+
+        {/* Pages — собранные из ДС страницы (ссылки на роуты) */}
+        {(!term || PAGES.some((p) => p.label.toLowerCase().includes(term))) && (
+          <div className="mt-ds-xs flex flex-col">
+            <span className="flex items-center gap-ds-xs px-ds-s py-ds-xs text-caps tracking-caps uppercase text-text-secondary">
+              Pages <span className="text-text-secondary">· {PAGES.length}</span>
+            </span>
+            <ul className="m-0 flex list-none flex-col gap-px p-0 pl-ds-xs">
+              {PAGES.filter((p) => !term || p.label.toLowerCase().includes(term)).map((p) => (
+                <li key={p.to}>
+                  <Link to={p.to} onClick={onNavigate}
+                    className="block rounded-m px-ds-s py-1.5 text-m text-text-secondary transition-colors hover:bg-control-secondary hover:text-text-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-tech-purple">
+                    {p.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </nav>
 
       <div className="flex items-center justify-between border-t border-lines pt-ds-s">

@@ -418,3 +418,6 @@ CampaignPreview→5 метрик; Notify→длинный текст+pill; CardM
 
 ## [Canban-раскладка + CardTop] — 2026-06-24
 Canban: борд скроллится внутри карточки (заголовок больше не уезжает, страница не ломается). CardTop: золотой #ffb700 + текстура + высота 480 (space-between) — как в Figma (было ярко-жёлтое и короткое). D43.2
+
+## [TTD + 3 страницы + Release Notes + navbar Pages + зеркальный нейминг] — 2026-06-24
+Репо привязан к TTD. Построены 3 страницы (All teams/All teams one/Candidate) из ДС, роуты /pages/*, parity-файлы. CardTop+glass, CardMetric+color. Страница /release-notes. Navbar+Pages. CONTRIBUTING: зеркальный нейминг + правило release-notes/доки. Все страницы сверены скриншотами Figma↔React, сборка зелёная. D45.
