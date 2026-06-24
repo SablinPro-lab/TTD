@@ -23,6 +23,27 @@
 /* контент — над фоном */
 .ds-card-top > :not(.ds-card-top__bg) { position: relative; z-index: 1; }
 
+/* ── glass-вариант (Figma node 1:3768): стеклянный hero страницы ── */
+.ds-card-top--glass {
+  background: var(--ds-color-bg-base);
+  justify-content: flex-end; /* контент к низу */
+  align-items: center;
+  text-align: center;
+}
+.ds-card-top__bg-glass { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+/* затухание в фон страницы снизу */
+.ds-card-top__bg-fade {
+  position: absolute; inset: 0;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 30%, var(--ds-color-bg-base) 100%);
+}
+.ds-card-top--glass .ds-card-top__hero { align-items: center; width: 100%; }
+.ds-card-top--glass .ds-card-top__name { text-align: center; }
+.ds-card-top--glass .ds-card-top__role { color: var(--ds-color-text-secondary); text-align: center; margin-top: 0; }
+/* glass: пилюли-действия — чёрные (Figma Variant2) */
+.ds-card-top--glass .ds-card-top__pill { background: var(--ds-color-black); color: var(--ds-color-text-on-color); }
+.ds-card-top__segmented { display: flex; justify-content: center; margin-top: var(--ds-indent-m); }
+.ds-card-top__footer { display: flex; justify-content: center; margin-top: var(--ds-indent-m); }
+
 /* углы: TEAMS / ACCESS — Pixform 10px UPPER, ls 20%, brown #d1a63b */
 .ds-card-top__corners {
   display: flex;

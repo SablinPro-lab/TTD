@@ -1,6 +1,18 @@
 [
   {
     "date": "2026-06-24",
+    "component": "CardTop",
+    "type": "added",
+    "change": "Вариант glass (Figma 1:3768): стеклянный hero страниц — широкое фото с затуханием в bg-base, чёрные пилюли, слоты segmented/footer."
+  },
+  {
+    "date": "2026-06-24",
+    "component": "CardMetric",
+    "type": "added",
+    "change": "Проп color (green/red/pink/lavender/olive/peach) — цветные метрики для страниц."
+  },
+  {
+    "date": "2026-06-24",
     "component": "Tokens",
     "type": "fixed",
     "change": "Тёмная тема: бренд/пастель-цвета (card-*, oncard-*, bar-filled) больше НЕ мутнеют — точные в обеих темах. Текст на пастельных островах — ink-reset (всегда тёмный) без правки компонентов."

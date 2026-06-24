@@ -5,10 +5,12 @@ import { CardMetric } from './CardMetric'
 **Назначение.** Компактная карточка: заголовок + подпись-итог внизу.
 Источник правды: Figma → ds-molecules → `card metric` (node `1:1936`). **Статус:** stable.
 
-| prop      | значения  | по умолч. |
-| --------- | --------- | --------- |
-| `title`   | `string`  | —         |
-| `caption` | `string`  | —         |
+| prop      | значения                                                  | по умолч.    |
+| --------- | --------------------------------------------------------- | ------------ |
+| `title`   | `string`                                                  | —            |
+| `caption` | `string`                                                  | —            |
+| `values`  | `number[]` (высоты столбцов 0–100)                         | `[100, 55]`  |
+| `color`   | `green \| red \| pink \| lavender \| olive \| peach`       | `green`      |
 
 ## Живой вариант
 

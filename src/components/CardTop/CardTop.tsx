@@ -1,4 +1,6 @@
+import type { ReactNode } from 'react'
 import cardTopBg from '../../assets/cardtop-bg.jpg'
+import cardTopGlass from '../../assets/cardtop-glass.jpg'
 import './CardTop.css'
 
 export interface CardTopTag {
@@ -27,6 +29,12 @@ export interface CardTopProps {
   onTag?: (label: string) => void
   /** Цвет акцентной шапки (по умолчанию Figma yellow #ffb700). */
   accent?: string
+  /** Вариант (Figma `Property 1`): default — жёлтая карточка-профиль; glass — стеклянный hero страницы. */
+  variant?: 'default' | 'glass'
+  /** Слот сегментного контрола снизу (glass-hero страниц: All teams / Engineering Team). */
+  segmented?: ReactNode
+  /** Доп. слот под сегментом (напр. кнопка на странице All teams). */
+  footer?: ReactNode
 }
 
 function normTag(t: CardTopTag | string): CardTopTag {
@@ -49,8 +57,9 @@ function TagIcon() {
  */
 export function CardTop({
   name, role, cornerLeft, cornerRight, actions = [], onAction,
-  tags = [], tagsRight = [], onTag, accent,
+  tags = [], tagsRight = [], onTag, accent, variant = 'default', segmented, footer,
 }: CardTopProps) {
+  const glass = variant === 'glass'
   const left = tags.map(normTag)
   const right = tagsRight.map(normTag)
   const renderTag = (t: CardTopTag, i: number) => (
@@ -64,12 +73,22 @@ export function CardTop({
   )
 
   return (
-    <div className="ds-card-top">
-      {/* Figma фон (node 1:3745): фото + чёрный mix-blend:color + жёлтый mix-blend:hard-light */}
+    <div className={`ds-card-top ds-card-top--${variant}`}>
+      {/* Фон. default (node 1:3745): фото + mix-blend color/hard-light жёлтый.
+          glass (node 1:3768): широкое фото со стеклом, затухающее в bg-base. */}
       <div className="ds-card-top__bg" aria-hidden="true">
-        <img className="ds-card-top__bg-img" src={cardTopBg} alt="" />
-        <span className="ds-card-top__bg-color" />
-        <span className="ds-card-top__bg-tint" style={accent ? { background: accent } : undefined} />
+        {glass ? (
+          <>
+            <img className="ds-card-top__bg-glass" src={cardTopGlass} alt="" />
+            <span className="ds-card-top__bg-fade" />
+          </>
+        ) : (
+          <>
+            <img className="ds-card-top__bg-img" src={cardTopBg} alt="" />
+            <span className="ds-card-top__bg-color" />
+            <span className="ds-card-top__bg-tint" style={accent ? { background: accent } : undefined} />
+          </>
+        )}
       </div>
       {(cornerLeft || cornerRight) && (
         <div className="ds-card-top__corners">
@@ -88,6 +107,8 @@ export function CardTop({
             ))}
           </div>
         )}
+        {segmented && <div className="ds-card-top__segmented">{segmented}</div>}
+        {footer && <div className="ds-card-top__footer">{footer}</div>}
       </div>
 
       {(left.length > 0 || right.length > 0) && (
