@@ -142,7 +142,7 @@
 .dark .ds-tag--static,
 .dark .ds-button--onColor,
 .dark .ds-dropdown--onColor,
-.dark .ds-card-top,
+.dark .ds-card-top--default,
 .dark .ds-switch-group {
   --ds-color-text-primary: #000000;
   --ds-color-text-secondary: #5c5c5c;

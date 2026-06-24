@@ -1,6 +1,12 @@
 [
   {
     "date": "2026-06-24",
+    "component": "Tokens",
+    "type": "fixed",
+    "change": "ink-reset тёмной темы ограничен .ds-card-top--default — glass-hero следует теме (текст светлый на тёмном фоне), не форсится тёмным."
+  },
+  {
+    "date": "2026-06-24",
     "page": "All teams",
     "component": "AllTeams",
     "type": "added",
