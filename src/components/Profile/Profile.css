@@ -48,9 +48,13 @@
 .ds-profile--long .ds-profile__aside .ds-status { flex: 0 0 150px; min-width: 0; }
 .ds-profile--long .ds-profile__aside .ds-bar { flex: 1; min-width: 0; }
 
-/* short / short-outlined: padding 14px со всех сторон, gap 14px, radius 4px (node 1:1862/1:1867) */
+/* short / short-outlined: Figma node 1:1862 — padding 14, gap 14, radius 4, ~204 wide.
+   Reports to / Mentoring (юзер): крупнее/шире и просторнее — padding 20, min-width 240,
+   аватар нейтрально-серый (см. Avatar). Имя — Akkurat 20 (Figma h3, единое со списками). */
 .ds-profile--short {
-  padding: var(--ds-indent-s);
+  padding: var(--ds-indent-m);  /* 20 — больше внутренних отступов */
+  gap: var(--ds-indent-s);      /* 14 */
+  min-width: 240px;             /* шире, карточка не сжимается до текста */
   background: var(--ds-color-oncard-red); /* персиковый #f7e0dd */
   display: inline-flex;
 }

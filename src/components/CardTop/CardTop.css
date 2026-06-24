@@ -23,19 +23,36 @@
 /* контент — над фоном */
 .ds-card-top > :not(.ds-card-top__bg) { position: relative; z-index: 1; }
 
-/* ── glass-вариант (Figma node 1:3768): стеклянный hero страницы ── */
+/* ── glass-вариант (Figma node 1:3768/1:4013): FULL-SIZE hero страницы ──
+   Фоновое изображение во ВСЮ ширину секции (в Figma bg-фрейм 1442 «вытекает» за 830-карточку),
+   контент (имя/подзаголовок/табы) центрирован поверх фона. Не «карточка-блок», а полноширинный баннер:
+   радиус снят, фикс-ширина снята, картинка — cover на всю секцию. Страница оборачивает в w-screen. */
 .ds-card-top--glass {
   background: var(--ds-color-bg-base);
   justify-content: flex-end; /* hero-блок выше, сегмент к низу (Figma Variant2: justify-end, gap 160) */
-  gap: 160px;                /* Figma gap между Frame1698 и switch_group (геометрия макета) */
+  gap: 110px;                /* вертикальный ритм между блоком имени и табами */
   align-items: center;
   text-align: center;
+  width: 100%;
+  min-width: 0;
+  border-radius: 0;          /* full-bleed баннер — без скругления */
+  box-shadow: none;
+  min-height: 460px;
+  padding-block: 56px;       /* воздух сверху/снизу поверх фона */
 }
 .ds-card-top__bg-glass { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-/* затухание в фон страницы снизу */
+/* лёгкое затухание по краям (верх/низ) в фон страницы — баннер органично «вливается» в секцию */
 .ds-card-top__bg-fade {
   position: absolute; inset: 0;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 30%, var(--ds-color-bg-base) 100%);
+  background: linear-gradient(to bottom, var(--ds-color-bg-base) 0%, rgba(242, 242, 242, 0) 16%, rgba(242, 242, 242, 0) 78%, var(--ds-color-bg-base) 100%);
+}
+/* контент glass-hero — центрирован, ширина по контент-колонке страницы (Figma Frame1698 754 ≈ 830 base) */
+.ds-card-top--glass > :not(.ds-card-top__bg) {
+  width: 100%;
+  max-width: var(--ds-size-base-width); /* 830 */
+  margin-inline: auto;
+  padding-inline: var(--ds-indent-xl);
+  box-sizing: border-box;
 }
 .ds-card-top--glass .ds-card-top__hero { align-items: center; width: 100%; }
 .ds-card-top--glass .ds-card-top__name { text-align: center; }
@@ -112,7 +129,15 @@
 .ds-card-top__pill:active { transform: translateY(0); box-shadow: none; }
 .ds-card-top__pill:focus-visible { outline: var(--ds-focus-ring); outline-offset: 2px; }
 
-/* нижние ряды тегов: лево / право — SPACE_BETWEEN (Figma Frame 1699) */
+/* верхняя группа (Figma 1:4147): углы + ряд дропдаунов сгруппированы сверху,
+   hero (имя/роль/кнопки) уходит вниз через space-between карточки */
+.ds-card-top__top {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-indent-m); /* 20 между углами и дропдаунами */
+}
+
+/* ряды тегов: лево / право — SPACE_BETWEEN (Figma Frame 1699) */
 .ds-card-top__tags {
   display: flex;
   justify-content: space-between;

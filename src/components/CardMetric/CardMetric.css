@@ -1,5 +1,5 @@
-/* Figma card_metric Default (1:1937): зелёная карточка #d4eee7, radius 12px,
-   padding 30px, gap 24px, фикс. размер 190×195. */
+/* Figma card_metric (1:4015-4018): пастельная карточка, radius 12px, padding 30px, gap 24px,
+   размер 205×195. Индикатор — `graph` (две широкие скруглённые плитки), НЕ капсула (DECISIONS D50). */
 .ds-card-metric {
   display: flex;
   flex-direction: column;
@@ -8,7 +8,7 @@
   border-radius: var(--ds-radius-l);
   padding: var(--ds-indent-xl);
   font-family: var(--ds-font-family);
-  width: 190px;
+  width: 205px;
   height: 195px;
   box-sizing: border-box;
 }

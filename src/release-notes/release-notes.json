@@ -1,6 +1,50 @@
 [
   {
     "date": "2026-06-24",
+    "component": "Avatar",
+    "type": "changed",
+    "change": "Плейсхолдер — насыщенный нейтрально-серый кружок (#979797) + чёткая белая иконка person (opacity 1), единообразно во всех контекстах (Team, Reports to, Mentoring, Pipeline)."
+  },
+  {
+    "date": "2026-06-24",
+    "component": "CardTop",
+    "type": "changed",
+    "change": "glass-hero — FULL-SIZE: фоновое изображение во всю ширину секции, контент центрирован (баннер, без скругления/фикс-ширины). Добавлен tagsPosition='top' — дропдауны сверху под углами (Figma 1:4147)."
+  },
+  {
+    "date": "2026-06-24",
+    "component": "CardMetric",
+    "type": "fixed",
+    "change": "Карточка 205×195, индикатор — широкие чанковые плитки graph (исправлен h-full, ломавший высоту графика). По Figma 1:4015-4018 (graph, не капсула)."
+  },
+  {
+    "date": "2026-06-24",
+    "component": "Profile",
+    "type": "changed",
+    "change": "short (Reports to/Mentoring) — крупнее/просторнее: padding 20, min-width 240; аватар нейтрально-серый. Имя 20 (Akkurat, Figma)."
+  },
+  {
+    "date": "2026-06-24",
+    "component": "Canban",
+    "type": "changed",
+    "change": "Pipeline-строки плотнее по Figma 1:2048: row radius 4 (rounds/S), имя 20 (Akkurat h3), row-text gap 8; аватары серый+person."
+  },
+  {
+    "date": "2026-06-24",
+    "page": "All teams",
+    "component": "AllTeams",
+    "type": "changed",
+    "change": "Full-size hero во всю ширину страницы (1:4013); метрики — uniform [100,59] (Figma-клон); аватары команд — единый person."
+  },
+  {
+    "date": "2026-06-24",
+    "page": "Hiring campaign",
+    "component": "HiringCampaign",
+    "type": "changed",
+    "change": "Hero (1:4147): жёлтое фото-фон, дропдауны сверху, только Finish(active)/Cancel (Suspend/Fire убраны)."
+  },
+  {
+    "date": "2026-06-24",
     "component": "CardMetric",
     "type": "fixed",
     "change": "Убрана «изобретённая» капсула — возврат к Figma 1:1936 точь-в-точь: используется компонент Graph (граф из баров, bg-base). Зеркальный нейм."

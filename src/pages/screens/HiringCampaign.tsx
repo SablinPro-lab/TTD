@@ -35,16 +35,20 @@ export function HiringCampaign() {
   return (
     <PageFrame>
       <div className="-mx-ds-l flex flex-col gap-ds-xxs">
+        {/* Figma 1:4147: дропдауны вверху (Frontend-team/Innovation Lab/Lead Developer/Member + Level 4),
+            заголовок + Active campaign + кнопки finish(active)/cancel внизу. Только Finish/Cancel —
+            Suspend/Fire не показываем (DECISIONS D50). Фон — жёлтое фото (variant=default). */}
         <CardTop
           variant="default"
           name="Senior Frontend Developer Campaign"
           role="Active campaign"
           cornerLeft="Teams"
           cornerRight="Access"
-          actions={['Finish', 'Cancel', 'Suspend', 'Fire']}
+          actions={['Finish', 'Cancel']}
           activeAction="Finish"
           tags={['Frontend-team', 'Innovation Lab', 'Lead Developer', 'Member']}
           tagsRight={['Level 4 (code red)']}
+          tagsPosition="top"
         />
 
         {/* Task — белая карточка: заголовок-сериф + список задач (Task organism) */}

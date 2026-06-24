@@ -69,18 +69,19 @@
 /* список строк, gap 2 (Frame 1404) */
 .ds-canban__list { display: flex; flex-direction: column; gap: var(--ds-indent-xxxs); }
 
-/* строка-человек: серая пилюля, аватар · имя · роль */
+/* строка-человек = profile (Figma 1:2048 → profile инстанс): серая пилюля #eaeaea, аватар · имя · роль.
+   padding 14, gap 14, radius 4 (rounds/S), row-text gap 8 (Frame 1361). Компактно и плотно. */
 .ds-canban__row {
   display: flex;
   align-items: center;
   gap: var(--ds-indent-s);
   background: var(--ds-color-control-secondary);
-  border-radius: var(--ds-radius-m);
+  border-radius: var(--ds-radius-s);
   padding: var(--ds-indent-s);
   box-sizing: border-box;
 }
-.ds-canban__row-text { display: flex; flex-direction: column; gap: var(--ds-indent-xxxs); }
-.ds-canban__row-name { font-size: var(--ds-font-size-m); color: var(--ds-color-text-primary); }
+.ds-canban__row-text { display: flex; flex-direction: column; gap: var(--ds-indent-xs); min-width: 0; }
+.ds-canban__row-name { font-size: var(--ds-font-size-h3); line-height: 1.1; color: var(--ds-color-text-primary); }
 .ds-canban__row-role {
   font-family: var(--ds-font-family-pixel);
   font-size: var(--ds-font-size-control);

@@ -433,3 +433,6 @@ Bar tone=green (насыщ.+бледный, палитра), бары стран
 
 ## [CardMetric=graph 1936 + bar mask + Pipeline full-width + фон 4013] — 2026-06-24
 CardMetric: капсула→Graph (Figma 1:1936). Bar: mask (space) — без обрезки, ровные ряды, палитра. Canban: колонки flex:1 full-width (organism) + full-bleed на странице. Hero-фон 4013 на месте. Отступы 4095 сверены. Graph.height опционален. Сверено DOM+скрин. D49.
+
+## [Full-size hero + метрики=graph 4015-4018 + аватары + страница 4 (4147) + Reports/Mentoring + Pipeline] — 2026-06-24
+Hero glass → FULL-BLEED баннер (фон во всю ширину, контент центр; AllTeams+AllTeamsOne, подтв. скрином 1440). Метрики: причина «мини-графиков» = h-full ломал высоту 195 → бары схлопывались; убран h-full, плитки graph широкие/чанковые (205×195, [100,59]) — по Figma 1:4015-4018 это graph, НЕ капсула (конфликт решён в пользу Figma). Аватары: серый #979797 + белый person (opacity 1), единообразно, dog убран. Страница 4 (1:4147): жёлтое фото, только Finish/Cancel, дропдауны вверх (CardTop tagsPosition='top'). Reports/Mentoring: Profile short крупнее (pad 20, min-w 240), аватар серый. Pipeline (Canban organism): row radius 4, имя 20, row-text gap 8. Сверено DOM. D50.

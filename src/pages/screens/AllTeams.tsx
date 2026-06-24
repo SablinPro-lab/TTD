@@ -8,22 +8,23 @@ import {
 } from '../../components'
 import { PageFrame } from './PageFrame'
 
-// Figma 1:4010 / 1:1936: фоны метрик из палитры — card-red / card-pink / card-lavender / card-olive.
-// Индикатор — блочный график (компонент Graph), 2 столбца bg-base.
+// Figma 1:4015-4018: фоны метрик из палитры — card-red / card-pink / card-lavender / card-olive.
+// Индикатор — `graph` (две скруглённые плитки bg-base, выровнены по низу): инстанс одинаков
+// во всех 4 карточках → высоты [100,59] (Rectangle 82px + 48px). Не капсула — это graph (см. DECISIONS D50).
 const METRICS = [
   { title: 'Health', caption: 'Overall: Good', color: 'red' as const, values: [100, 59] },
-  { title: 'Productivity', caption: '+12% This Month', color: 'pink' as const, values: [100, 72] },
-  { title: 'Distribution', caption: '8 Teams Active', color: 'lavender' as const, values: [100, 48] },
-  { title: 'Hiring', caption: '15 Open Position', color: 'olive' as const, values: [100, 40] },
+  { title: 'Productivity', caption: '+12% This Month', color: 'pink' as const, values: [100, 59] },
+  { title: 'Distribution', caption: '8 Teams Active', color: 'lavender' as const, values: [100, 59] },
+  { title: 'Hiring', caption: '15 Open Position', color: 'olive' as const, values: [100, 59] },
 ]
 
-// Figma 1:4010: 6 идентичных карточек «Engineering Team» (клоны).
+// Figma 1:4010: 6 идентичных карточек «Engineering Team» (клоны). Аватары — единый person (без dog).
 const TEAMS = Array.from({ length: 6 }, () => ({
   name: 'Engineering Team',
   peopleCount: 24,
   productivity: '89%',
   highlight: 'Petya was drinking too much tea this week',
-  members: [{}, { name: 'petya' }, { name: 'dog' }],
+  members: [{}, {}, {}],
   extra: 21,
 }))
 
@@ -33,8 +34,9 @@ export function AllTeams() {
 
   return (
     <PageFrame>
-      {/* секции выровнены по Figma-фрейму 830px; -mx-ds-l компенсирует горизонтальный padding main */}
-      <div className="-mx-ds-l flex flex-col gap-ds-xxs">
+      {/* Full-size hero (Figma 1:4013): фоновое изображение во ВСЮ ширину страницы (bg-фрейм 1442 «вытекает»
+          за 830-карточку), контент центрирован. Выносим из 830-колонки в full-bleed. */}
+      <div className="-mt-ds-xl mb-ds-xxs w-screen ml-[calc(50%-50vw)]">
         <CardTop
           variant="glass"
           name="All teams"
@@ -48,9 +50,13 @@ export function AllTeams() {
           }
           footer={<Button variant="cta">Add team</Button>}
         />
+      </div>
 
-        {/* 4-up метрик: карточки тянутся на равные доли (Figma flex-1), переопределяя их фикс-ширину */}
-        <div className="grid grid-cols-4 gap-ds-xxs [&>.ds-card-metric]:h-full [&>.ds-card-metric]:w-full">
+      {/* секции выровнены по Figma-фрейму 830px; -mx-ds-l компенсирует горизонтальный padding main */}
+      <div className="-mx-ds-l flex flex-col gap-ds-xxs">
+        {/* 4-up метрик: карточки на равные доли по ширине (w-full переопределяет фикс-205),
+            высота — фикс 195 (Figma): НЕ h-full, иначе flex-график схлопывается до min-height */}
+        <div className="grid grid-cols-4 gap-ds-xxs [&>.ds-card-metric]:w-full">
           {METRICS.map((m) => (
             <CardMetric key={m.title} title={m.title} caption={m.caption} color={m.color} values={m.values} />
           ))}

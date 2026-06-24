@@ -25,6 +25,9 @@ export interface CardTopProps {
   tags?: (CardTopTag | string)[]
   /** Теги-пилюли справа внизу (напр. «Level 4 (code red)»). Опционально + «Add». */
   tagsRight?: (CardTopTag | string)[]
+  /** Где располагать ряды тегов/дропдаунов: внизу (по умолч.) или вверху под углами
+   *  (Figma 1:4147 «Hiring campaign»: дропдауны вверху, кнопки finish/cancel — внизу). */
+  tagsPosition?: 'top' | 'bottom'
   /** Колбэк нажатия тега / «Add». */
   onTag?: (label: string) => void
   /** Цвет акцентной шапки (по умолчанию Figma yellow #ffb700). */
@@ -59,11 +62,12 @@ function TagIcon() {
  */
 export function CardTop({
   name, role, cornerLeft, cornerRight, actions = [], onAction,
-  tags = [], tagsRight = [], onTag, accent, variant = 'default', segmented, footer, activeAction,
+  tags = [], tagsRight = [], tagsPosition = 'bottom', onTag, accent, variant = 'default', segmented, footer, activeAction,
 }: CardTopProps) {
   const glass = variant === 'glass'
   const left = tags.map(normTag)
   const right = tagsRight.map(normTag)
+  const topTags = tagsPosition === 'top'
   const renderTag = (t: CardTopTag, i: number) => (
     <div key={`${t.label}-${i}`} className="ds-card-top__tag-wrap">
       {t.headline && <span className="ds-card-top__tag-headline">{t.headline}</span>}
@@ -73,6 +77,30 @@ export function CardTop({
       </button>
     </div>
   )
+
+  const cornersEl = (cornerLeft || cornerRight) ? (
+    <div className="ds-card-top__corners">
+      <span>{cornerLeft}</span>
+      <span>{cornerRight}</span>
+    </div>
+  ) : null
+
+  const tagsEl = (left.length > 0 || right.length > 0) ? (
+    <div className="ds-card-top__tags">
+      <div className="ds-card-top__tags-group">
+        {left.map(renderTag)}
+        {left.length > 0 && (
+          <button type="button" className="ds-card-top__add" onClick={() => onTag?.('Add')}>Add</button>
+        )}
+      </div>
+      <div className="ds-card-top__tags-group ds-card-top__tags-group--right">
+        {right.map(renderTag)}
+        {right.length > 0 && (
+          <button type="button" className="ds-card-top__add" onClick={() => onTag?.('Add')}>Add</button>
+        )}
+      </div>
+    </div>
+  ) : null
 
   return (
     <div className={`ds-card-top ds-card-top--${variant}`}>
@@ -92,12 +120,14 @@ export function CardTop({
           </>
         )}
       </div>
-      {(cornerLeft || cornerRight) && (
-        <div className="ds-card-top__corners">
-          <span>{cornerLeft}</span>
-          <span>{cornerRight}</span>
+
+      {/* tagsPosition=top (Figma 1:4147): углы + дропдауны сгруппированы сверху */}
+      {topTags ? (
+        <div className="ds-card-top__top">
+          {cornersEl}
+          {tagsEl}
         </div>
-      )}
+      ) : cornersEl}
 
       <div className="ds-card-top__hero">
         <span className="ds-card-top__name">{name}</span>
@@ -115,22 +145,8 @@ export function CardTop({
       {/* glass-hero: сегментный контрол — отдельным блоком внизу карточки (Figma: switch_group y≈410) */}
       {segmented && <div className="ds-card-top__segmented">{segmented}</div>}
 
-      {(left.length > 0 || right.length > 0) && (
-        <div className="ds-card-top__tags">
-          <div className="ds-card-top__tags-group">
-            {left.map(renderTag)}
-            {left.length > 0 && (
-              <button type="button" className="ds-card-top__add" onClick={() => onTag?.('Add')}>Add</button>
-            )}
-          </div>
-          <div className="ds-card-top__tags-group ds-card-top__tags-group--right">
-            {right.map(renderTag)}
-            {right.length > 0 && (
-              <button type="button" className="ds-card-top__add" onClick={() => onTag?.('Add')}>Add</button>
-            )}
-          </div>
-        </div>
-      )}
+      {/* ряды тегов внизу (по умолчанию); при tagsPosition=top они уже отрисованы сверху */}
+      {!topTags && tagsEl}
     </div>
   )
 }

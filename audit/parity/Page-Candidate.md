@@ -26,3 +26,6 @@
 
 ### D49
 - Отступы (1:4095): padding 30, space-between, hero 30, actions/tags 2, секции 4 — сверено ✅.
+
+### D50
+- Reports to / Mentoring (Profile short): крупнее/просторнее — DOM 240×82, padding 20, gap 14, radius 4, имя 20 ✅; аватар нейтрально-серый #979797 + person ✅. Цвета пилюль из палитры ✅.

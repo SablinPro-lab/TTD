@@ -1,13 +1,14 @@
 /* Avatar — круглая картинка (Figma: Ellipse 30px, image-fill, БЕЗ кольца/обводки).
-   Силуэт на сером фоне — graceful-fallback только когда src отсутствует. */
+   Плейсхолдер (нет src): насыщенный нейтрально-серый кружок + ЧЁТКАЯ белая иконка person.
+   Единообразно во всех контекстах (Team, Reports to, Mentoring, Pipeline). */
 .ds-avatar {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   border-radius: var(--ds-radius-over);
   overflow: hidden;
-  background: var(--ds-color-control-secondary);
-  color: var(--ds-color-text-secondary);
+  background: var(--ds-color-text-secondary); /* #979797 — насыщенный серый, контраст и на белом, и на пастели */
+  color: var(--ds-color-text-on-color);       /* person — белый, чёткий */
   flex: none;
 }
 
@@ -22,9 +23,10 @@
   object-fit: cover;
 }
 
+/* иконка person/paw — на всю высоту кружка, без полупрозрачности (чёткая, контрастная) */
 .ds-avatar__glyph {
-  width: 64%;
-  height: 64%;
+  width: 66%;
+  height: 66%;
   fill: currentColor;
-  opacity: 0.55;
+  opacity: 1;
 }

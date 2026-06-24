@@ -23,7 +23,8 @@ export function AllTeamsOne() {
 
   return (
     <PageFrame>
-      <div className="-mx-ds-l flex flex-col gap-ds-xxs">
+      {/* Full-size hero (Figma 1:4013): фоновое изображение во ВСЮ ширину страницы, контент центрирован. */}
+      <div className="-mt-ds-xl mb-ds-xxs w-screen ml-[calc(50%-50vw)]">
         <CardTop
           variant="glass"
           name="Engineering Team"
@@ -36,7 +37,9 @@ export function AllTeamsOne() {
             />
           }
         />
+      </div>
 
+      <div className="-mx-ds-l flex flex-col gap-ds-xxs">
         <Notify>
           Kai finished the UI designs, Anya onboarded 3 new hires, and the team had a successful offsite event.
         </Notify>
