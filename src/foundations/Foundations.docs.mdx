@@ -1,0 +1,86 @@
+export const COLORS = [
+  ['black', '--ds-color-black'], ['text-primary', '--ds-color-text-primary'],
+  ['text-secondary', '--ds-color-text-secondary'], ['text-green', '--ds-color-text-green'],
+  ['text-brown', '--ds-color-text-brown'], ['bg-base', '--ds-color-bg-base'],
+  ['control-secondary', '--ds-color-control-secondary'], ['lines', '--ds-color-lines'],
+  ['gray', '--ds-color-gray'], ['super-yellow', '--ds-color-super-yellow'],
+  ['tech-purple', '--ds-color-tech-purple'], ['tech-green', '--ds-color-tech-green'],
+  ['tech-red', '--ds-color-tech-red'], ['card-red', '--ds-color-card-red'],
+  ['card-green', '--ds-color-card-green'], ['oncard-yellow', '--ds-color-oncard-yellow'],
+  ['bar-filled', '--ds-color-bar-filled'],
+]
+export const SIZES = [['h1', 84], ['description', 30], ['h3', 20], ['M', 15], ['text-gr', 11], ['caps', 8]]
+export const SPACE = [['xxxs', 2], ['xxs', 4], ['xs', 8], ['s', 14], ['m', 20], ['l', 24], ['xl', 30], ['xxl', 90]]
+export const RADII = [['s', 4], ['m', 8], ['l', 12], ['over', 999]]
+
+# Foundations · Tokens
+
+Токены — зеркало **remote-библиотеки Figma Variables**. Источник правды — библиотека (не локальные
+стили). Каталог: `audit/tokens.figma.json`, снимок для синка: `.figma-tokens.json`. **Статус:** stable.
+
+## Шрифты (3 семейства)
+
+<div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+  <div style={{ fontFamily: 'var(--ds-font-family)', fontSize: 24 }}>Grotesk — Akkurat LL Cyr TT (основной текст)</div>
+  <div style={{ fontFamily: 'var(--ds-font-family-display)', fontSize: 28 }}>Antiqa — Instrument Serif (дисплейный)</div>
+  <div style={{ fontFamily: 'var(--ds-font-family-pixel)', fontSize: 20 }}>Pixel — Pixform</div>
+</div>
+
+_Проприетарные файлы не бандлятся — рендер через фолбэки (DECISIONS D22)._
+
+## Шкала кеглей
+
+<div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+  {SIZES.map(([n, px]) => (
+    <div key={n} style={{ fontSize: px, lineHeight: 1.1 }}>{n} — {px}px</div>
+  ))}
+</div>
+
+## Цвета
+
+<div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(150px, 1fr))', gap: 12 }}>
+  {COLORS.map(([n, v]) => (
+    <div key={n} style={{ fontSize: 12 }}>
+      <div style={{ height: 44, borderRadius: 4, border: '1px solid var(--ds-color-lines)', background: `var(${v})` }} />
+      <div style={{ marginTop: 4 }}>{n}</div>
+    </div>
+  ))}
+</div>
+
+## Отступы (indents)
+
+<div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+  {SPACE.map(([n, px]) => (
+    <div key={n} style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 12 }}>
+      <div style={{ width: px, height: 12, background: 'var(--ds-color-tech-purple)' }} />
+      <span>{n} — {px}px</span>
+    </div>
+  ))}
+</div>
+
+## Радиусы (rounds)
+
+<div style={{ display: 'flex', gap: 16, alignItems: 'flex-end' }}>
+  {RADII.map(([n, px]) => (
+    <div key={n} style={{ fontSize: 12, textAlign: 'center' }}>
+      <div style={{ width: 56, height: 56, background: 'var(--ds-color-control-secondary)', borderRadius: px }} />
+      <div style={{ marginTop: 4 }}>{n} — {px}px</div>
+    </div>
+  ))}
+</div>
+
+## Использование в Tailwind
+
+Токены `--ds-*` проброшены в `theme.extend` (Stage Prepare, D29) — доступны как утилиты:
+
+| группа | примеры утилит |
+| --- | --- |
+| Цвета | `bg-bg-base`, `text-text-secondary`, `bg-tech-green`, `border-lines`, `bg-super-yellow` |
+| Шрифты | `font-sans` (Grotesk), `font-display` (Instrument Serif), `font-pixel` |
+| Кегли | `text-caps`, `text-m`, `text-h3`, `text-description`, `text-h1` |
+| Отступы | `p-ds-m`, `gap-ds-s`, `px-ds-l`, `-mt-ds-neg-xs` |
+| Радиусы | `rounded-s`, `rounded-m`, `rounded-l`, `rounded-over` (pill) |
+| Разрядка | `tracking-caps` · ширина: `max-w-ds-base` |
+
+Источник правды — `src/styles/theme.css` (зеркало remote-библиотеки Figma). Покрытие токенов —
+`audit/tokens.coverage.md` (54/54, без битых ссылок).

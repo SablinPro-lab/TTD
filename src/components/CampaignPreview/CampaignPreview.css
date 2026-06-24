@@ -1,0 +1,45 @@
+/* Figma campaign_preview Default (1:1885): белая карточка, radius 12px,
+   padding 30px, gap 90px между head и метриками. */
+.ds-campaign {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-indent-xxl);
+  background: var(--ds-color-control-on-color);
+  border-radius: var(--ds-radius-l);
+  padding: var(--ds-indent-xl);
+  font-family: var(--ds-font-family);
+  min-width: 460px;
+}
+
+/* head: SPACE_BETWEEN, центрирование по вертикали (Frame 1415) */
+.ds-campaign__head { display: flex; align-items: center; justify-content: space-between; gap: var(--ds-indent-m); }
+/* Figma: заголовок — Instrument Serif 40px, ls -1% (node 1:1887). 40px-токена нет → ближайший description(30) + override на 40px (tokenGap) */
+.ds-campaign__title {
+  font-family: var(--ds-font-family-display);
+  font-size: var(--ds-font-size-h2);
+  letter-spacing: -0.01em;
+  line-height: 1;
+  color: var(--ds-color-text-primary);
+}
+/* aside: status + кнопка, gap 14px, прижато вправо (Frame 1416) */
+.ds-campaign__head-aside { display: flex; align-items: center; justify-content: flex-end; gap: var(--ds-indent-s); }
+
+/* метрики: ряд столбцов, SPACE_BETWEEN; value над label gap 8px (Frame 1397/1381/1380) */
+.ds-campaign__metrics { display: flex; justify-content: space-between; gap: var(--ds-indent-m); }
+.ds-campaign__metric { display: flex; flex-direction: column; gap: var(--ds-indent-xs); }
+/* Figma: значение — Instrument Serif 84px, lh 90%, ls -1% (node 1:1893) */
+.ds-campaign__value {
+  font-family: var(--ds-font-family-display);
+  font-size: var(--ds-font-size-h1);
+  line-height: 0.9;
+  letter-spacing: -0.01em;
+  color: var(--ds-color-text-primary);
+}
+/* Figma: подпись — Akkurat 8px UPPER, ls 20% (node 1:1899) */
+.ds-campaign__label {
+  font-family: var(--ds-font-family);
+  font-size: var(--ds-font-size-caps);
+  letter-spacing: var(--ds-letter-spacing-caps);
+  text-transform: uppercase;
+  color: var(--ds-color-text-primary);
+}

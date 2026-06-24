@@ -1,0 +1,111 @@
+.ds-dropdown {
+  display: inline-flex;
+  flex-direction: column;
+  gap: var(--ds-indent-xs); /* Figma itemSpacing 8 */
+  font-family: var(--ds-font-family);
+}
+
+/* Figma «head line»: Akkurat 8px (caps), upper, 20%; цвет зависит от варианта */
+.ds-dropdown__label {
+  font-family: var(--ds-font-family);
+  font-size: var(--ds-font-size-caps); /* 8px */
+  letter-spacing: var(--ds-letter-spacing-pixel); /* Figma 20% */
+  text-transform: uppercase;
+}
+.ds-dropdown--default .ds-dropdown__label { color: var(--ds-color-text-primary); } /* Figma #000 */
+.ds-dropdown--onColor .ds-dropdown__label { color: var(--ds-color-control-brown); } /* Figma #d1a63b */
+
+.ds-dropdown__wrap {
+  position: relative;
+  min-width: 200px;
+}
+
+/* Figma control «Frame 1456»: HORIZONTAL space-between, padding 8/14, radius 4 */
+.ds-dropdown__control {
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--ds-indent-xs);
+  font-family: var(--ds-font-family-pixel); /* Figma Pixform */
+  font-size: var(--ds-font-size-control); /* Figma 10px (tokenGap) */
+  letter-spacing: var(--ds-letter-spacing-pixel); /* Figma 20% */
+  text-transform: uppercase;
+  border: none;
+  border-radius: var(--ds-radius-s); /* 4 */
+  padding: var(--ds-indent-xs) var(--ds-indent-s); /* 8/14 */
+  cursor: pointer;
+  color: inherit;
+  text-align: left;
+  transition: background var(--ds-transition), box-shadow var(--ds-transition), transform var(--ds-transition);
+}
+.ds-dropdown__control:active { transform: translateY(1px); }
+.ds-dropdown__control:focus-visible { outline: var(--ds-focus-ring); outline-offset: 2px; }
+
+.ds-dropdown__value { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+.ds-dropdown__chevron {
+  flex: none;
+  width: 16px; /* Figma icon 16×16 */
+  height: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: transform var(--ds-transition);
+}
+.ds-dropdown__control.is-open .ds-dropdown__chevron { transform: rotate(180deg); }
+
+/* default: Figma fill #eaeaea (control-secondary), без тени; текст #000 / placeholder #979797 */
+.ds-dropdown__control--default {
+  background: var(--ds-color-control-secondary); /* #eaeaea */
+  color: var(--ds-color-text-primary); /* #000 filled */
+}
+/* placeholder (filled=off) — текст #979797 (Figma) */
+.ds-dropdown__control--default .ds-dropdown__value.is-placeholder { color: var(--ds-color-text-secondary); }
+.ds-dropdown__control--default:hover { background: var(--ds-color-control-secondary-hover); }
+
+/* On color: Figma fill #d1a63b (control-brown); текст #fff */
+.ds-dropdown__control--onColor {
+  background: var(--ds-color-control-brown); /* #d1a63b */
+  color: var(--ds-color-text-on-color); /* #fff */
+}
+.ds-dropdown__control--onColor:hover { box-shadow: var(--ds-shadow-1); }
+
+/* ── меню вниз ── */
+.ds-dropdown__menu {
+  position: absolute;
+  top: calc(100% + var(--ds-indent-xxs));
+  left: 0;
+  right: 0;
+  z-index: 20;
+  margin: 0;
+  padding: var(--ds-indent-xxs);
+  list-style: none;
+  background: var(--ds-color-control-on-color);
+  border-radius: var(--ds-radius-s);
+  box-shadow: var(--ds-shadow-3);
+  max-height: 260px;
+  overflow-y: auto;
+  animation: ds-dropdown-in 0.12s ease;
+}
+
+@keyframes ds-dropdown-in {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.ds-dropdown__option {
+  padding: var(--ds-indent-xs) var(--ds-indent-s);
+  border-radius: var(--ds-radius-s);
+  font-family: var(--ds-font-family-pixel);
+  font-size: var(--ds-font-size-control);
+  letter-spacing: var(--ds-letter-spacing-pixel);
+  text-transform: uppercase;
+  color: var(--ds-color-text-primary);
+  cursor: pointer;
+  transition: background var(--ds-transition);
+}
+.ds-dropdown__option:hover { background: var(--ds-color-control-secondary); }
+.ds-dropdown__option.is-selected { background: var(--ds-color-control-secondary); font-weight: var(--ds-font-weight-medium); }

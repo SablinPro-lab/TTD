@@ -1,0 +1,50 @@
+.ds-textarea {
+  display: inline-flex;
+  flex-direction: column;
+  gap: var(--ds-indent-xs); /* Figma itemSpacing 8 */
+  font-family: var(--ds-font-family);
+}
+
+/* Figma «head line»: Akkurat 8px (caps), upper, 20%, цвет #000 */
+.ds-textarea__label {
+  font-family: var(--ds-font-family);
+  font-size: var(--ds-font-size-caps); /* 8px */
+  letter-spacing: var(--ds-letter-spacing-pixel); /* Figma 20% */
+  text-transform: uppercase;
+  color: var(--ds-color-text-primary); /* Figma #000 */
+}
+
+/* Figma поле: padding 8/14, radius 4, fill ≈ #ececec (control-secondary),
+   текст сверху (counterAxis MIN); текст — Pixform 10px upper 20% */
+.ds-textarea__field {
+  font-family: var(--ds-font-family-pixel); /* Figma Pixform */
+  font-size: var(--ds-font-size-control); /* Figma 10px (tokenGap) */
+  letter-spacing: var(--ds-letter-spacing-pixel); /* Figma 20% */
+  text-transform: uppercase;
+  color: var(--ds-color-text-primary);
+  background: var(--ds-color-control-secondary); /* Figma #ececec ≈ #eaeaea */
+  border: none;
+  border-radius: var(--ds-radius-s); /* 4 */
+  padding: var(--ds-indent-xs) var(--ds-indent-s); /* 8/14 */
+  outline: none;
+  resize: vertical;
+  min-width: 280px;
+  box-shadow: 0 0 0 0 transparent;
+  transition: background var(--ds-transition), box-shadow var(--ds-transition), opacity var(--ds-transition);
+}
+
+/* Figma placeholder «type something here»: 10px upper 20%, цвет #cbcbcb (gray) */
+.ds-textarea__field::placeholder {
+  color: var(--ds-color-gray); /* Figma #cbcbcb */
+  opacity: 1;
+  text-transform: uppercase;
+  letter-spacing: var(--ds-letter-spacing-pixel);
+  font-size: var(--ds-font-size-control);
+}
+
+.ds-textarea__field:hover:not(:disabled):not(:focus) { background: var(--ds-color-control-secondary-hover); }
+.ds-textarea__field:focus { box-shadow: 0 0 0 2px var(--ds-color-focus); }
+.ds-textarea__field:disabled { opacity: 0.45; cursor: not-allowed; }
+
+.ds-textarea--error .ds-textarea__field,
+.ds-textarea--error .ds-textarea__field:focus { box-shadow: 0 0 0 2px var(--ds-color-tech-red); }

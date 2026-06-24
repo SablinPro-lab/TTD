@@ -1,0 +1,56 @@
+/* Figma team Default (1:1921): белая карточка, radius 12px, padding 30px, gap 24px. */
+.ds-team {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-indent-l);
+  background: var(--ds-color-control-on-color);
+  border-radius: var(--ds-radius-l);
+  padding: var(--ds-indent-xl);
+  font-family: var(--ds-font-family);
+  min-width: 440px;
+}
+
+/* шапка: имя слева, «N people» справа, SPACE_BETWEEN, выравнивание по нижнему краю (Frame 1350) */
+.ds-team__row { display: flex; align-items: baseline; justify-content: space-between; gap: var(--ds-indent-m); }
+/* Figma: имя — Akkurat Regular 20px, ls -2% (node 1:1923) */
+.ds-team__name { font-size: var(--ds-font-size-h3); font-weight: var(--ds-font-weight-regular); letter-spacing: -0.02em; color: var(--ds-color-text-primary); }
+
+/* productivity: label-row над баром, gap 8px (Frame 1348) */
+.ds-team__prod { display: flex; flex-direction: column; gap: var(--ds-indent-xs); }
+.ds-team__prod-head { display: flex; align-items: baseline; justify-content: space-between; gap: var(--ds-indent-xs); }
+
+/* highlight: лейбл над текстом, gap 8px (Frame 1349) */
+.ds-team__highlight { display: flex; flex-direction: column; gap: var(--ds-indent-xs); }
+
+/* участники: аватары + «+N more», CENTER, gap 14px (Frame 1351) */
+.ds-team__members { display: flex; align-items: center; gap: var(--ds-indent-s); }
+
+/* Figma: серые мини-лейблы PRODUCTIVITY / WEEK HIGHLIGHT — Akkurat 8px UPPER, ls 20%, #cbcbcb (1:1927, 1:1931) */
+.ds-team__label {
+  font-family: var(--ds-font-family);
+  font-size: var(--ds-font-size-caps);
+  letter-spacing: var(--ds-letter-spacing-caps);
+  text-transform: uppercase;
+  color: var(--ds-color-gray);
+}
+/* Figma: «89%» — Akkurat 8px UPPER, чёрный (node 1:1928) */
+.ds-team__value {
+  font-family: var(--ds-font-family);
+  font-size: var(--ds-font-size-caps);
+  letter-spacing: var(--ds-letter-spacing-caps);
+  text-transform: uppercase;
+  color: var(--ds-color-text-primary);
+}
+
+/* Figma: «24 PEOPLE», highlight-текст, «+21 MORE» — Pixform 10px UPPER, ls 20% (1:1924, 1:1932, 1:1935) */
+.ds-team__people,
+.ds-team__more,
+.ds-team__highlight-text {
+  font-family: var(--ds-font-family-pixel);
+  font-size: var(--ds-font-size-text-gr);
+  letter-spacing: var(--ds-letter-spacing-caps);
+  text-transform: uppercase;
+}
+.ds-team__people,
+.ds-team__more,
+.ds-team__highlight-text { color: var(--ds-color-text-primary); }

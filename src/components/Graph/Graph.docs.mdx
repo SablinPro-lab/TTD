@@ -1,0 +1,33 @@
+import { useState } from 'react'
+import { Graph } from './Graph'
+import { Button } from '../Button'
+
+# Graph
+
+**Назначение.** Простой блочный график — скруглённые чёрные столбцы.
+Источник правды: Figma → ds-atoms → `graph` (node `1:1829`). **Статус:** beta.
+
+| prop     | значения             | по умолч.   |
+| -------- | -------------------- | ----------- |
+| `values` | `number[]` (0–100)   | `[100, 60]` |
+| `height` | `number` (px)        | `96`        |
+
+## Живой вариант (перегенерируй / меняй число столбцов)
+
+export const rnd = (n) => Array.from({ length: n }, () => 20 + Math.round(Math.random() * 80))
+
+export const Demo = () => {
+  const [vals, setVals] = useState([100, 60])
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+      <Graph values={vals} />
+      <div style={{ display: 'flex', gap: 8 }}>
+        <Button variant="secondary" onClick={() => setVals(rnd(vals.length))}>Перегенерировать</Button>
+        <Button variant="secondary" onClick={() => setVals((v) => rnd(Math.min(6, v.length + 1)))}>+ столбец</Button>
+        <Button variant="secondary" onClick={() => setVals((v) => rnd(Math.max(1, v.length - 1)))}>− столбец</Button>
+      </div>
+    </div>
+  )
+}
+
+<Demo />

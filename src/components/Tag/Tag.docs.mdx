@@ -1,0 +1,28 @@
+import { useState } from 'react'
+import { Tag } from './Tag'
+
+# Tag
+
+**Назначение.** Компактный чип с uppercase-текстом. `control` — интерактивный, `static` — метка.
+Источник правды: Figma → ds-atoms → `tag` (node `1:1772`). **Статус:** stable.
+
+| prop      | значения             | по умолч. |
+| --------- | -------------------- | --------- |
+| `variant` | `control` · `static` | `static`  |
+| `children`| `ReactNode`          | —         |
+| `onClick` | `() => void`         | —         |
+
+## Живые варианты (control — кликабелен)
+
+export const Demo = () => {
+  const [n, setN] = useState(0)
+  return (
+    <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
+      <Tag variant="static">React</Tag>
+      <Tag variant="control" onClick={() => setN(n + 1)}>React · {n}</Tag>
+      <span style={{ fontSize: 13, opacity: 0.6 }}>кликов по control: {n}</span>
+    </div>
+  )
+}
+
+<Demo />

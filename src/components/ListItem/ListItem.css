@@ -1,0 +1,44 @@
+/* ListItem — строка списка (Figma list 1:1787).
+   HORIZONTAL, align CENTER, gap 14px (indent-s), padding 14px сверху/снизу + 0 по бокам,
+   нижняя граница 1px #eaeaea (lines), без фона/скругления.
+   Title: Akkurat Regular 20px (h3), letter-spacing -2%, #000.
+   Meta: Pixform Regular 10px, letter-spacing 20%, UPPER, #000. */
+.ds-list-item {
+  display: flex;
+  align-items: center;
+  gap: var(--ds-indent-s);
+  padding: var(--ds-indent-s) 0;
+  border-bottom: 1px solid var(--ds-color-lines);
+  font-family: var(--ds-font-family);
+  min-width: 420px;
+}
+
+.ds-list-item__title {
+  font-size: var(--ds-font-size-h3);
+  font-weight: var(--ds-font-weight-regular);
+  letter-spacing: -0.02em; /* Figma -2% */
+  color: var(--ds-color-text-primary);
+  white-space: nowrap;
+}
+
+.ds-list-item__meta {
+  display: flex;
+  gap: var(--ds-indent-s);
+  flex: 1;
+  align-items: center;
+}
+
+.ds-list-item__meta-cell {
+  font-family: var(--ds-font-family-pixel);
+  font-size: var(--ds-font-size-control); /* Figma 10px — нет точного токена (caps=8, text-gr=11); tokenGap */
+  font-weight: var(--ds-font-weight-regular);
+  letter-spacing: var(--ds-letter-spacing-pixel); /* Figma 20% — нет точного токена; tokenGap */
+  text-transform: uppercase;
+  color: var(--ds-color-text-primary);
+  white-space: nowrap;
+}
+
+/* последняя мета-колонка (дата) прижата вправо — Figma textAlign RIGHT */
+.ds-list-item__meta-cell:last-child { margin-left: auto; }
+
+.ds-list-item__action { margin-left: auto; }

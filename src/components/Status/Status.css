@@ -1,0 +1,35 @@
+/* Status — Figma 1:1734: точка 5×5 + Pixform-лейбл, gap 10 (≈XS). */
+.ds-status {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ds-indent-xs); /* Figma itemSpacing 10 ≈ XS(8) tokenGap */
+  font-family: var(--ds-font-family);
+}
+
+.ds-status__dot {
+  width: 5px;  /* Figma Ellipse 5×5 (tokenGap) */
+  height: 5px;
+  border-radius: 50%;
+  flex: none;
+  background: var(--ds-color-tech-green);
+}
+
+.ds-status__label {
+  font-family: var(--ds-font-family-pixel); /* Figma: статус-лейбл — Pixform */
+  font-size: var(--ds-font-size-control); /* Figma 10px (tokenGap) */
+  letter-spacing: var(--ds-letter-spacing-pixel); /* Figma 20% */
+  text-transform: uppercase;
+}
+
+.ds-status--purple .ds-status__dot { background: var(--ds-color-tech-purple); }
+.ds-status--purple .ds-status__label { color: var(--ds-color-tech-purple); }
+
+.ds-status--green .ds-status__dot { background: var(--ds-color-tech-green); }
+.ds-status--green .ds-status__label { color: var(--ds-color-tech-green); }
+
+.ds-status--red .ds-status__dot { background: var(--ds-color-tech-red); }
+.ds-status--red .ds-status__label { color: var(--ds-color-tech-red); }
+
+/* stopped: и точка, и лейбл — #cbcbcb (Figma) */
+.ds-status--stopped .ds-status__dot { background: var(--ds-color-tech-gray); }
+.ds-status--stopped .ds-status__label { color: var(--ds-color-tech-gray); }

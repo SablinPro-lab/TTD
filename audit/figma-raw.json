@@ -1,0 +1,290 @@
+{
+  "capturedAt": "2026-06-23 19:11",
+  "fileKey": "ct9b7yfSwULxIG3mIPlSg8",
+  "fileDisplayName": "Тестовая дизайн-система",
+  "rootName": "Document",
+  "pages": [
+    {
+      "id": "0:1",
+      "name": "Page 1"
+    },
+    {
+      "id": "14:13378",
+      "name": "Release Notes"
+    }
+  ],
+  "sections": [
+    "ds-atoms",
+    "ds-molecules",
+    "ds-organisms",
+    "ds-screens",
+    "ds-styles"
+  ],
+  "counts": {
+    "componentSets": 33,
+    "componentVariants": 74,
+    "localPaintStyles": 0,
+    "localTextStyles": 0,
+    "localEffectStyles": 0,
+    "localGridStyles": 0,
+    "localVariables": 0,
+    "localVariableCollections": 0
+  },
+  "variablesOrigin": {
+    "local": false,
+    "remote": true,
+    "probe": {
+      "boundOn": "1:1841",
+      "property": "paddingLeft",
+      "variable": "indents/S (inner)",
+      "remote": true,
+      "collectionId": "VariableCollectionId:24afd98ee98fe24550538609ea7c94aea303fd1f/2006:616"
+    },
+    "note": "Токены приходят из внешней опубликованной библиотеки Figma Variables. Локальных переменных/стилей в файле нет."
+  },
+  "stylesBoard": [
+    {
+      "name": "Indents",
+      "type": "TEXT"
+    },
+    {
+      "name": "Colors",
+      "type": "TEXT"
+    },
+    {
+      "name": "Typography",
+      "type": "TEXT"
+    },
+    {
+      "name": "typography",
+      "type": "FRAME",
+      "kids": [
+        "table"
+      ]
+    },
+    {
+      "name": "colors",
+      "type": "FRAME",
+      "kids": "11 × Ellipse (color swatches)"
+    },
+    {
+      "name": "indents",
+      "type": "COMPONENT_SET",
+      "variants": [
+        "size=-1",
+        "size=XXXS:2",
+        "size=XXS:4",
+        "size=XS: 8",
+        "size=S (inner): 14",
+        "size=M: 20",
+        "size=L: 24",
+        "size=XL: 30",
+        "size=XXL (out):90"
+      ]
+    }
+  ],
+  "componentSets": [
+    {
+      "id": "1:120",
+      "name": "bar",
+      "section": "ds-atoms",
+      "variants": 4
+    },
+    {
+      "id": "1:1727",
+      "name": "avatar",
+      "section": "ds-atoms",
+      "variants": 3
+    },
+    {
+      "id": "1:1734",
+      "name": "status",
+      "section": "ds-atoms",
+      "variants": 4
+    },
+    {
+      "id": "1:1747",
+      "name": "icons",
+      "section": "ds-atoms",
+      "variants": 5
+    },
+    {
+      "id": "1:1758",
+      "name": "switch",
+      "section": "ds-atoms",
+      "variants": 4
+    },
+    {
+      "id": "1:1767",
+      "name": "flag",
+      "section": "ds-atoms",
+      "variants": 2
+    },
+    {
+      "id": "1:1772",
+      "name": "tag",
+      "section": "ds-atoms",
+      "variants": 2
+    },
+    {
+      "id": "1:1778",
+      "name": "error",
+      "section": "ds-atoms",
+      "variants": 1
+    },
+    {
+      "id": "1:1782",
+      "name": "avatars",
+      "section": "ds-atoms",
+      "variants": 1
+    },
+    {
+      "id": "1:1787",
+      "name": "list",
+      "section": "ds-atoms",
+      "variants": 1
+    },
+    {
+      "id": "1:1794",
+      "name": "text_area",
+      "section": "ds-atoms",
+      "variants": 1
+    },
+    {
+      "id": "1:1799",
+      "name": "input",
+      "section": "ds-atoms",
+      "variants": 1
+    },
+    {
+      "id": "1:1804",
+      "name": "dropdown",
+      "section": "ds-atoms",
+      "variants": 4
+    },
+    {
+      "id": "1:1829",
+      "name": "graph",
+      "section": "ds-atoms",
+      "variants": 1
+    },
+    {
+      "id": "1:1833",
+      "name": "switch_group",
+      "section": "ds-atoms",
+      "variants": 1
+    },
+    {
+      "id": "1:1840",
+      "name": "button",
+      "section": "ds-atoms",
+      "variants": 5
+    },
+    {
+      "id": "1:1853",
+      "name": "profile",
+      "section": "ds-molecules",
+      "variants": 3
+    },
+    {
+      "id": "1:1872",
+      "name": "node",
+      "section": "ds-molecules",
+      "variants": 1
+    },
+    {
+      "id": "1:1884",
+      "name": "campaign_preview",
+      "section": "ds-molecules",
+      "variants": 1
+    },
+    {
+      "id": "1:1904",
+      "name": "project_preview",
+      "section": "ds-molecules",
+      "variants": 1
+    },
+    {
+      "id": "1:1912",
+      "name": "experience_preview",
+      "section": "ds-molecules",
+      "variants": 1
+    },
+    {
+      "id": "1:1920",
+      "name": "team",
+      "section": "ds-molecules",
+      "variants": 1
+    },
+    {
+      "id": "1:1936",
+      "name": "card_metric",
+      "section": "ds-molecules",
+      "variants": 1
+    },
+    {
+      "id": "1:1942",
+      "name": "card_metrica",
+      "section": "ds-molecules",
+      "variants": 1
+    },
+    {
+      "id": "1:1948",
+      "name": "attempt",
+      "section": "ds-molecules",
+      "variants": 2
+    },
+    {
+      "id": "1:1980",
+      "name": "notify",
+      "section": "ds-molecules",
+      "variants": 1
+    },
+    {
+      "id": "1:1985",
+      "name": "second_row",
+      "section": "ds-organisms",
+      "variants": 2
+    },
+    {
+      "id": "1:2001",
+      "name": "topmenu",
+      "section": "ds-organisms",
+      "variants": 3
+    },
+    {
+      "id": "1:2032",
+      "name": "header",
+      "section": "ds-organisms",
+      "variants": 1
+    },
+    {
+      "id": "1:3731",
+      "name": "task",
+      "section": "ds-organisms",
+      "variants": 2
+    },
+    {
+      "id": "1:3744",
+      "name": "card_top",
+      "section": "ds-organisms",
+      "variants": 2
+    },
+    {
+      "id": "1:3782",
+      "name": "menu_switch",
+      "section": "ds-organisms",
+      "variants": 2
+    },
+    {
+      "id": "1:4478",
+      "name": "indents",
+      "section": "ds-styles",
+      "variants": 9,
+      "isToken": true
+    }
+  ],
+  "variantPropertyNames": {
+    "note": "Имена variant-свойств в файле неоднородны: 'Property 1' (большинство), 'CTA?'+'type' (btn), 'switch'+'size' (switch), 'type' (notify/second-row/header), 'menu' (menu_switch), 'size' (indents). Нормализация variant-props — глубокий уровень компонентов, перенесено на этапы Atoms/Molecules/Organisms."
+  }
+}

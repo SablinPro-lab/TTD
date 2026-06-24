@@ -1,0 +1,43 @@
+.ds-input {
+  display: inline-flex;
+  flex-direction: column;
+  gap: var(--ds-indent-xs); /* Figma itemSpacing 8 */
+  font-family: var(--ds-font-family);
+}
+
+/* Figma «head line»: Akkurat 8px (caps), upper, 20%, цвет #000 */
+.ds-input__label {
+  font-family: var(--ds-font-family);
+  font-size: var(--ds-font-size-caps); /* 8px */
+  letter-spacing: var(--ds-letter-spacing-pixel); /* Figma 20% */
+  text-transform: uppercase;
+  color: var(--ds-color-text-primary); /* Figma #000 */
+}
+
+/* Figma поле: padding 8/14 (XS/S), radius 4, fill #eaeaea; текст — Pixform 10px upper 20% */
+.ds-input__field {
+  font-family: var(--ds-font-family-pixel); /* Figma Pixform */
+  font-size: var(--ds-font-size-control); /* Figma 10px (tokenGap) */
+  letter-spacing: var(--ds-letter-spacing-pixel); /* Figma 20% */
+  text-transform: uppercase;
+  color: var(--ds-color-text-primary);
+  background: var(--ds-color-control-secondary); /* #eaeaea */
+  border: none;
+  border-radius: var(--ds-radius-s); /* 4 */
+  padding: var(--ds-indent-xs) var(--ds-indent-s); /* 8/14 */
+  outline: none;
+  box-shadow: 0 0 0 0 transparent;
+  transition: background var(--ds-transition), box-shadow var(--ds-transition), opacity var(--ds-transition);
+}
+
+.ds-input__field::placeholder {
+  color: var(--ds-color-text-secondary);
+  opacity: 0.5;
+}
+
+.ds-input__field:hover:not(:disabled):not(:focus) { background: var(--ds-color-control-secondary-hover); }
+.ds-input__field:focus { box-shadow: 0 0 0 2px var(--ds-color-focus); }
+.ds-input__field:disabled { opacity: 0.45; cursor: not-allowed; }
+
+.ds-input--error .ds-input__field { box-shadow: 0 0 0 2px var(--ds-color-tech-red); }
+.ds-input--error .ds-input__field:focus { box-shadow: 0 0 0 2px var(--ds-color-tech-red); }

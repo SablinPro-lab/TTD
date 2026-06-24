@@ -1,0 +1,33 @@
+/* SwitchGroup — сегментный переключатель на ЖЁЛТОМ фоне (super-yellow);
+   активный пункт = белая пилюля (switch=on). Источник: Figma ds-atoms → switch_group (1:1833).
+   Контейнер: radius 8 (M), padding 4 (XXS), gap 2 (XXXS). Пункты = switch (radius 4, padding 14). */
+.ds-switch-group {
+  display: inline-flex;
+  gap: var(--ds-indent-xxxs); /* Figma itemSpacing 2 */
+  background: var(--ds-color-super-yellow); /* Figma #ffe900 */
+  border-radius: var(--ds-radius-m); /* Figma cornerRadius 8 */
+  padding: var(--ds-indent-xxs); /* Figma 4 */
+}
+
+.ds-switch-group__item {
+  font-family: var(--ds-font-family-pixel); /* Figma: switch-лейбл — Pixform */
+  font-size: var(--ds-font-size-control); /* Figma 10px (tokenGap) */
+  letter-spacing: var(--ds-letter-spacing-pixel); /* Figma 20% */
+  text-transform: uppercase;
+  color: var(--ds-color-text-primary); /* Figma #000 */
+  background: transparent;
+  border: none;
+  border-radius: var(--ds-radius-s); /* Figma пункт radius 4 */
+  padding: var(--ds-indent-s); /* Figma switch padding 14 */
+  cursor: pointer;
+  transition: background var(--ds-transition), box-shadow var(--ds-transition), transform var(--ds-transition);
+}
+
+.ds-switch-group__item:hover:not(.is-active) { background: rgba(255, 255, 255, 0.4); }
+.ds-switch-group__item:active { transform: translateY(1px); }
+.ds-switch-group__item:focus-visible { outline: var(--ds-focus-ring); outline-offset: 2px; }
+
+.ds-switch-group__item.is-active {
+  background: var(--ds-color-control-on-color); /* Figma белый switch=on */
+  color: var(--ds-color-text-primary);
+}

@@ -1,0 +1,73 @@
+{
+  "purpose": "Снимок токенов (Stage Styles) для синхронизации Styles через figma-sync. Источник — remote-библиотека Figma Variables; зеркало в src/styles/theme.css.",
+  "fileKey": "ct9b7yfSwULxIG3mIPlSg8",
+  "updatedAt": "2026-06-23",
+  "origin": "remote-library",
+  "tokens": {
+    "color": {
+      "black": "#000000",
+      "text-primary": "#000000",
+      "text-secondary": "#979797",
+      "text-on-color": "#ffffff",
+      "text-green": "#00867b",
+      "text-brown": "#d1a63b",
+      "control-secondary": "#eaeaea",
+      "control-on-color": "#ffffff",
+      "control-brown": "#d1a63b",
+      "bg-base": "#f2f2f2",
+      "lines": "#eaeaea",
+      "gray": "#cbcbcb",
+      "super-yellow": "#ffe900",
+      "card-white": "#ffffff",
+      "card-red": "#f5cfca",
+      "card-green": "#d4eee7",
+      "oncard-red": "#f7e0dd",
+      "oncard-green": "#d4eee7",
+      "oncard-yellow": "#fffd9e",
+      "bar-filled": "#b8c6c3",
+      "bar-empty": "#ffffff",
+      "tech-purple": "#9747ff",
+      "tech-green": "#00867b",
+      "tech-red": "#cc0000",
+      "tech-gray": "#cbcbcb",
+      "card-pink": "#fad5e7",
+      "card-lavender": "#ddd6ef",
+      "card-olive": "#e0e2a4",
+      "card-peach": "#f5dedb"
+    },
+    "fontFamily": {
+      "grotesk": "Akkurat LL Cyr TT",
+      "display": "Instrument Serif",
+      "pixel": "Pixform"
+    },
+    "fontSize": {
+      "caps": 8,
+      "text-gr": 11,
+      "M": 15,
+      "h3": 20,
+      "description": 30,
+      "h1": 84
+    },
+    "spacing": {
+      "neg-1": -1,
+      "neg-xs": -8,
+      "xxxs": 2,
+      "xxs": 4,
+      "xs": 8,
+      "s": 14,
+      "m": 20,
+      "l": 24,
+      "xl": 30,
+      "xxl": 90
+    },
+    "radius": {
+      "s": 4,
+      "m": 8,
+      "l": 12,
+      "over": 999
+    },
+    "size": {
+      "base-width": 830
+    }
+  }
+}

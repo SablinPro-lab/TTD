@@ -1,0 +1,45 @@
+/* Figma card_metric Default (1:1937): зелёная карточка #d4eee7, radius 12px,
+   padding 30px, gap 24px, фикс. размер 190×195. */
+.ds-card-metric {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-indent-l);
+  background: var(--ds-color-card-green);
+  border-radius: var(--ds-radius-l);
+  padding: var(--ds-indent-xl);
+  font-family: var(--ds-font-family);
+  width: 190px;
+  height: 195px;
+  box-sizing: border-box;
+}
+
+/* Figma: заголовок — Akkurat Regular 20px, ls -2% (node 1:1938) */
+.ds-card-metric__title { font-size: var(--ds-font-size-h3); letter-spacing: -0.02em; color: var(--ds-color-text-primary); }
+
+/* graph-block: график над подписью, gap 8px (Frame 1708) */
+.ds-card-metric__block { display: flex; flex-direction: column; gap: var(--ds-indent-xs); flex: 1; min-height: 0; }
+
+/* graph: столбцы снизу, gap 2px, MAX counter-align (instance graph 1:1940) */
+.ds-card-metric__graph {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--ds-indent-xxxs);
+  flex: 1;
+  min-height: 0;
+}
+/* Figma: столбцы — прямоугольники #f2f2f2 (bg-base), radius 4px (node I1:1940;1:1831) */
+.ds-card-metric__graph span {
+  flex: 1;
+  background: var(--ds-color-bg-base);
+  border-radius: var(--ds-radius-s);
+  min-height: 8px;
+}
+
+/* Figma: подпись-итог — Pixform 10px UPPER, ls 20%, чёрный (node 1:1941) */
+.ds-card-metric__caption {
+  font-family: var(--ds-font-family-pixel);
+  font-size: var(--ds-font-size-text-gr);
+  letter-spacing: var(--ds-letter-spacing-caps);
+  text-transform: uppercase;
+  color: var(--ds-color-text-primary);
+}

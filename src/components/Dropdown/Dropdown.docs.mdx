@@ -1,0 +1,38 @@
+import { useState } from 'react'
+import { Dropdown } from './Dropdown'
+
+# Dropdown
+
+**Назначение.** Выпадающий список — раскрывается **вниз** под контролом (кастомное меню, не нативный
+`select`): закрытие по Esc и клику вне, `aria-expanded` + `listbox/option`. `default` — белый,
+`onColor` — коричнево-золотой. Источник правды: Figma → ds-atoms → `dropdown` (node `1:1804`). **Статус:** stable.
+
+| prop      | значения             | по умолч.  | Figma                  |
+| --------- | -------------------- | ---------- | ---------------------- |
+| `label`   | `string`             | —          | «HEAD LINE»            |
+| `variant` | `default` · `onColor`| `default`  | `default` / `On color` |
+| `options` | `{label, value}[]`   | —          | —                      |
+| `value`   | `string`             | —          | `filled=on/off`        |
+| `onChange`| `(value) => void`    | —          | —                      |
+
+## Живые варианты (кликни — меню раскроется вниз)
+
+export const TEAMS = [
+  { label: 'Frontend-team', value: 'fe' },
+  { label: 'Backend-team', value: 'be' },
+  { label: 'Design-team', value: 'design' },
+  { label: 'QA-team', value: 'qa' },
+]
+
+export const Demo = () => {
+  const [a, setA] = useState('')
+  const [b, setB] = useState('fe')
+  return (
+    <div style={{ display: 'flex', gap: 24 }}>
+      <Dropdown label="Head line" options={TEAMS} value={a} onChange={setA} />
+      <Dropdown label="Head line" variant="onColor" options={TEAMS} value={b} onChange={setB} />
+    </div>
+  )
+}
+
+<Demo />

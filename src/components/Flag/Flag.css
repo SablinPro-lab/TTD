@@ -1,0 +1,40 @@
+/* Flag — закладка/bookmark (Figma flag 1:1767).
+   no  = контур, чёрный  (#000, --ds-color-text-primary);
+   yes = залитая, серая (#979797, --ds-color-text-secondary). */
+.ds-flag {
+  display: inline-flex;
+  padding: 0;
+  border: none;
+  background: none;
+  color: var(--ds-color-text-primary);
+  line-height: 0;
+  border-radius: var(--ds-radius-s);
+  transition: color var(--ds-transition), transform var(--ds-transition);
+}
+
+.ds-flag[type='button'] { cursor: pointer; }
+.ds-flag[type='button']:hover { transform: scale(1.12); }
+.ds-flag[type='button']:active { transform: scale(0.96); }
+.ds-flag[type='button']:focus-visible { outline: var(--ds-focus-ring); outline-offset: 2px; }
+
+.ds-flag svg { transition: fill var(--ds-transition), stroke var(--ds-transition); }
+
+/* off (Figma «no») — контур, чёрный */
+.ds-flag--off {
+  color: var(--ds-color-text-primary);
+}
+.ds-flag--off svg {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linejoin: round;
+}
+
+/* on (Figma «yes») — залитая, серая #979797 */
+.ds-flag--on {
+  color: var(--ds-color-text-secondary);
+}
+.ds-flag--on svg {
+  fill: currentColor;
+  stroke: none;
+}

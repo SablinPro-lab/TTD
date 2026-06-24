@@ -1,0 +1,50 @@
+/* Figma attempt Default (1:1949): белая карточка, radius 12px, padding 30px, gap 24px. */
+.ds-attempt {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-indent-l);
+  background: var(--ds-color-control-on-color);
+  border-radius: var(--ds-radius-l);
+  padding: var(--ds-indent-xl);
+  font-family: var(--ds-font-family);
+  min-width: 460px;
+}
+
+/* Figma: лейбл попытки — Pixform 10px UPPER, ls 20%, чёрный (node 1:1950) */
+.ds-attempt__label {
+  font-family: var(--ds-font-family-pixel);
+  font-size: var(--ds-font-size-text-gr);
+  letter-spacing: var(--ds-letter-spacing-caps);
+  text-transform: uppercase;
+  color: var(--ds-color-text-primary);
+}
+
+/* ряд: левый оффер | статус | правый оффер, SPACE_BETWEEN, выравнивание по ВЕРХУ (Figma Frame 1479 cnt=MIN) */
+.ds-attempt__row { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--ds-indent-xxl); }
+
+.ds-attempt__offer { display: flex; flex-direction: column; gap: var(--ds-indent-s); flex: 1; min-width: 0; }
+.ds-attempt__offer--left { order: 1; align-items: flex-start; text-align: left; }
+.ds-attempt__offer--right { order: 3; align-items: flex-end; text-align: right; }
+
+/* статус — по центру ряда (горизонтально), по вертикали на уровне сумм; центрируем на высоте суммы (~40px) */
+.ds-attempt__status { order: 2; flex: 0 0 auto; align-self: flex-start; display: flex; align-items: center; height: var(--ds-font-size-h2); }
+
+/* Figma: сумма — Instrument Serif 40px, ls -1% (node 1:1953). 40px-токена нет → override (tokenGap) */
+.ds-attempt__amount {
+  font-family: var(--ds-font-family-display);
+  font-size: var(--ds-font-size-h2);
+  letter-spacing: -0.01em;
+  line-height: 1;
+  color: var(--ds-color-text-primary);
+}
+
+/* перки — список, gap 8px (Frame 1715) */
+.ds-attempt__perks { display: flex; flex-direction: column; gap: var(--ds-indent-xs); }
+/* Figma: перк — Pixform 10px UPPER, ls 20%, #979797 (node 1:1955) */
+.ds-attempt__perk {
+  font-family: var(--ds-font-family-pixel);
+  font-size: var(--ds-font-size-text-gr);
+  letter-spacing: var(--ds-letter-spacing-caps);
+  text-transform: uppercase;
+  color: var(--ds-color-text-secondary);
+}

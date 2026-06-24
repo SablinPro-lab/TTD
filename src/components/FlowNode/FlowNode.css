@@ -1,0 +1,38 @@
+/* Figma node Default (1:1873): bg card-red #f5cfca, radius 12px, padding 14px,
+   gap 24px между body и точками; без тени. VERTICAL. */
+.ds-flownode {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  gap: var(--ds-indent-l);
+  background: var(--ds-color-card-red);
+  border-radius: var(--ds-radius-l);
+  padding: var(--ds-indent-s);
+  font-family: var(--ds-font-family);
+  min-width: 240px;
+}
+
+/* body: icon-row + text, gap 14px (Frame 1412) */
+.ds-flownode__body { display: flex; flex-direction: column; gap: var(--ds-indent-s); }
+
+/* icon-row: play + more, SPACE_BETWEEN (Frame 1413) */
+.ds-flownode__head { display: flex; justify-content: space-between; color: var(--ds-color-text-primary); }
+
+/* title + subtitle, gap 8px (Frame 1720) */
+.ds-flownode__text { display: flex; flex-direction: column; gap: var(--ds-indent-xs); }
+/* Figma: title — Akkurat Regular 11px (node 1:1879) */
+.ds-flownode__title { font-size: var(--ds-font-size-text-gr); color: var(--ds-color-text-primary); }
+/* Figma: subtitle — Pixform 10px UPPER, ls 20% (node 1:1880) */
+.ds-flownode__subtitle {
+  font-family: var(--ds-font-family-pixel);
+  font-size: var(--ds-font-size-text-gr);
+  letter-spacing: var(--ds-letter-spacing-caps);
+  text-transform: uppercase;
+  color: var(--ds-color-text-secondary);
+}
+
+/* dots: flex-row SPACE_BETWEEN (Frame 1411), две точки Ø10px */
+.ds-flownode__dots { display: flex; justify-content: space-between; }
+.ds-flownode__dot { width: 10px; height: 10px; border-radius: 50%; }
+.ds-flownode__dot--l { background: var(--ds-color-text-secondary); } /* #979797 */
+.ds-flownode__dot--r { background: var(--ds-color-black); }           /* #000000 */

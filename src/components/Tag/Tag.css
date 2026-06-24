@@ -1,0 +1,45 @@
+/* Tag — Figma 1:1772: чип h24, padding 8 (XS все), radius 4, gap 10, Pixform 10 caps.
+   control fill #eaeaea + иконка-крестик; static fill #f7e0dd. Тени в Figma нет. */
+.ds-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ds-indent-xs); /* Figma itemSpacing 10 ≈ XS(8) */
+  font-family: var(--ds-font-family-pixel); /* Figma Pixform */
+  font-size: var(--ds-font-size-control); /* Figma 10px (tokenGap) */
+  letter-spacing: var(--ds-letter-spacing-pixel); /* Figma 20% */
+  text-transform: uppercase;
+  color: var(--ds-color-text-primary); /* #000 */
+  border: none;
+  border-radius: var(--ds-radius-s); /* 4 */
+  padding: var(--ds-indent-xs); /* Figma 8 все стороны */
+  transition:
+    background var(--ds-transition),
+    box-shadow var(--ds-transition),
+    transform var(--ds-transition);
+}
+
+/* static: Figma fill #f7e0dd (oncard-red), без тени */
+.ds-tag--static {
+  background: var(--ds-color-oncard-red);
+}
+
+/* control: Figma fill #eaeaea (control-secondary), без тени */
+.ds-tag--control {
+  background: var(--ds-color-control-secondary);
+  cursor: pointer;
+}
+.ds-tag--control:hover { background: var(--ds-color-control-secondary-hover); }
+.ds-tag--control:active { transform: translateY(1px); }
+.ds-tag--control:focus-visible { outline: var(--ds-focus-ring); outline-offset: 2px; }
+
+.ds-tag__label { line-height: 1; }
+
+.ds-tag__icon {
+  flex: none;
+  width: 16px; /* Figma icon 16×16 */
+  height: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.4;
+  stroke-linecap: round;
+}

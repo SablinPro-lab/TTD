@@ -1,0 +1,32 @@
+.ds-task {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start; /* Figma counterAxis = MIN (флаг по верху) */
+  gap: var(--ds-indent-s); /* 14 */
+  padding: var(--ds-indent-s) 0; /* 14 верх/низ, 0 по бокам */
+  font-family: var(--ds-font-family);
+  border-bottom: 1px solid var(--ds-color-lines); /* #eaeaea */
+  min-width: 520px;
+}
+
+/* Frame 1474 — вертикальный блок контента, gap 10 (Figma) */
+.ds-task__body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--ds-indent-xs); /* 10 ≈ XS (token gap: XS=8) */
+  flex: 1;
+  min-width: 0;
+}
+
+/* Figma title: Akkurat Regular 20px, letter-spacing -2%, серый (Default) */
+.ds-task__title {
+  font-size: var(--ds-font-size-h3); /* 20px */
+  font-weight: var(--ds-font-weight-regular);
+  letter-spacing: -0.02em;
+  color: var(--ds-color-text-secondary); /* #979797 — Default */
+}
+
+.ds-task.is-flagged .ds-task__title { color: var(--ds-color-text-primary); } /* Variant2 — чёрный */
+
+.ds-task__action { display: flex; }

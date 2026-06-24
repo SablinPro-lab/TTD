@@ -1,0 +1,39 @@
+.ds-second-row {
+  display: flex;
+  align-items: center;
+  gap: var(--ds-indent-xxl); /* Figma gap 90 (Default) между Back и крошками */
+  padding: var(--ds-indent-s) var(--ds-indent-m); /* 14 / 20 по Figma */
+  font-family: var(--ds-font-family);
+  min-width: 560px;
+}
+
+/* вариант builider: Back слева, действия справа — SPACE_BETWEEN, gap 60 */
+.ds-second-row--builder {
+  justify-content: space-between;
+  gap: var(--ds-indent-xl);
+}
+
+/* лево: Back + крошки, внутренний gap 60 (Frame 1393) → XL≈60 (token gap) */
+.ds-second-row__lead {
+  display: flex;
+  align-items: center;
+  gap: var(--ds-indent-xl);
+}
+
+/* Figma Back (Default): белая заливка + зелёная рамка 1px #00867b (= text-green) */
+.ds-second-row__back {
+  background: var(--ds-color-control-on-color);
+  border: 1px solid var(--ds-color-text-green);
+}
+
+.ds-second-row__crumbs {
+  display: flex;
+  align-items: center;
+  gap: var(--ds-indent-xs); /* 8 */
+  font-size: var(--ds-font-size-text-gr); /* 11px */
+  color: var(--ds-color-text-primary); /* чёрный, НЕ secondary */
+}
+
+.ds-second-row__crumb { display: inline-flex; align-items: center; gap: var(--ds-indent-xs); }
+.ds-second-row__sep { color: var(--ds-color-text-primary); }
+.ds-second-row__actions { display: flex; gap: var(--ds-indent-xs); }

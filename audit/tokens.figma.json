@@ -1,0 +1,84 @@
+{
+  "capturedAt": "2026-06-23 19:40",
+  "source": "remote Figma variable library (resolved via get_variable_defs across ds-styles + ds-atoms/molecules/organisms)",
+  "note": "Значения — объединение по 4 секциям. Капитализированные font/family — канон (реально используются компонентами); строчные алиасы (Inter) — legacy. indents/XXL (out): на доске styles=60, в компонентах(remote)=90 — канон 90. | UPD 2026-06-23: на доске colors (1:4466) добавлены пастели pink/lavender/olive/peach.",
+  "fontFamily": {
+    "Antiqa": "Instrument Serif",
+    "Grotesk": "Akkurat LL Cyr TT",
+    "Pixel": "Pixform",
+    "_legacyAliases": {
+      "antiqa": "Inter",
+      "grotesk": "Inter",
+      "pixel": "Inter"
+    }
+  },
+  "fontSize": {
+    "h1": 84,
+    "description": 30,
+    "h3": 20,
+    "M": 15,
+    "text - gr": 11,
+    "caps": 8
+  },
+  "color": {
+    "black": "#000000",
+    "Text & icon/Primary": "#000000",
+    "Text & icon/Secondary": "#979797",
+    "Text & icon/On color": "#ffffff",
+    "Text & icon/Green": "#00867b",
+    "Text & icon/Brown": "#d1a63b",
+    "Controls/Secondary/default": "#eaeaea",
+    "Controls/On Color/White": "#ffffff",
+    "Controls/On Color/Brown": "#d1a63b",
+    "Background/Base": "#f2f2f2",
+    "Background/Cards/white": "#ffffff",
+    "Background/Cards/Red": "#f5cfca",
+    "Background/Cards/green": "#d4eee7",
+    "Background/On cads/Red": "#f7e0dd",
+    "Background/On cads/Green": "#d4eee7",
+    "Background/On cads/Yellow dark": "#fffd9e",
+    "lines": "#eaeaea",
+    "gray": "#cbcbcb",
+    "superYellow": "#ffe900",
+    "tech/purple": "#9747ff",
+    "tech/green": "#00867b",
+    "tech/red": "#cc0000",
+    "tech/gray": "#cbcbcb",
+    "Bar/On base filled": "#b8c6c3",
+    "Bar/On base emty": "#ffffff",
+    "Background/Cards/pink": "#fad5e7",
+    "Background/Cards/lavender": "#ddd6ef",
+    "Background/Cards/olive": "#e0e2a4",
+    "Background/Cards/peach": "#f5dedb"
+  },
+  "spacing": {
+    "-(XS)": -8,
+    "-1": -1,
+    "XXXS": 2,
+    "XXS": 4,
+    "XS": 8,
+    "S (inner)": 14,
+    "M": 20,
+    "L": 24,
+    "X": 30,
+    "XL": 30,
+    "XXL (out)": 90
+  },
+  "radius": {
+    "S": 4,
+    "M": 8,
+    "L": 12,
+    "Over": 999,
+    "_legacy": {
+      "radius/L": 4
+    }
+  },
+  "size": {
+    "base width": 830
+  },
+  "knownTypos": {
+    "Bar/On base emty": "→ empty (имя в библиотеке с опечаткой)",
+    "Background/On cads/*": "→ On cards (имя в библиотеке с опечаткой)",
+    "size/base with": "→ base width"
+  }
+}

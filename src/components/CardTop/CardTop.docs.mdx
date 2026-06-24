@@ -1,0 +1,38 @@
+import { useState } from 'react'
+import { CardTop } from './CardTop'
+
+# CardTop
+
+**Назначение.** Шапка-карточка профиля: акцентный блок с именем/ролью + пилюли-действия.
+Источник правды: Figma → ds-organisms → `card top` (node `1:3744`). **Статус:** stable.
+
+| prop          | значения             | по умолч.           |
+| ------------- | -------------------- | ------------------- |
+| `name`        | `string`             | —                   |
+| `role`        | `string`             | —                   |
+| `cornerLeft`  | `string`             | —                   |
+| `cornerRight` | `string`             | —                   |
+| `actions`     | `string[]`           | `[]`                |
+| `onAction`    | `(label) => void`    | —                   |
+| `accent`      | `string`             | `--ds-color-accent` |
+
+## Живой вариант (нажми пилюлю-действие)
+
+export const Demo = () => {
+  const [last, setLast] = useState('')
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+      <CardTop
+        name="Sarah Mitchell"
+        role="Senior software engineer"
+        cornerLeft="Teams"
+        cornerRight="Access"
+        actions={['Promote', 'Negotiate', 'Suspend', 'Fire']}
+        onAction={setLast}
+      />
+      <span style={{ fontSize: 13, opacity: 0.6 }}>последнее действие: {last || '—'}</span>
+    </div>
+  )
+}
+
+<Demo />

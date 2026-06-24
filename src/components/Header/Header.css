@@ -1,0 +1,30 @@
+.ds-header {
+  display: flex;
+  flex-direction: column;
+  font-family: var(--ds-font-family);
+  background: var(--ds-color-bg-base);
+  min-width: 720px;
+}
+
+/* Figma Frame 1382: VERTICAL, gap 8, padding 0/20 — бар + подписи этапов */
+.ds-header__pipeline {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-indent-xs); /* 8 */
+  padding: var(--ds-indent-xs) var(--ds-indent-m); /* 8 / 20 (по высоте ряда ~26px) */
+}
+
+.ds-header__stages {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--ds-indent-xs);
+}
+
+.ds-header__stage {
+  font-size: var(--ds-font-size-caps); /* 8px */
+  font-family: var(--ds-font-family-pixel); /* uppercase micro-label → Pixform */
+  letter-spacing: var(--ds-letter-spacing-caps);
+  text-transform: uppercase;
+  color: var(--ds-color-text-secondary);
+  white-space: nowrap;
+}

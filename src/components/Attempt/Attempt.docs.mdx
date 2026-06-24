@@ -1,0 +1,24 @@
+import { Attempt } from './Attempt'
+
+# Attempt
+
+**Назначение.** Сравнение офферов/попыток переговоров: суммы + перки + статус. Композирует Status.
+Источник правды: Figma → ds-molecules → `attemt` (node `1:1948`). Имя исправлено: **Attempt**.
+**Статус:** stable.
+
+| prop     | значения                                | по умолч. |
+| -------- | --------------------------------------- | --------- |
+| `offers` | `{label, amount, perks?, align?}[]`     | —         |
+| `status` | `{variant, label}` (по центру)          | —         |
+
+## Живой вариант
+
+<Attempt
+  status={{ variant: 'red', label: 'Failed' }}
+  offers={[
+    { label: 'First attempt', amount: '$8 750', perks: ['Lead role', 'Cookies', 'Free education'] },
+    { label: 'Counter offer', amount: '$12 750', perks: ['Lead role', 'Remote-work', 'Gym'], align: 'right' },
+    { label: 'Next attempt', amount: '$?', perks: ['Lead role', 'Cookies', 'Gym'] },
+    { label: 'Next attempt', amount: '$?', perks: ['Lead role', 'Cookies', 'Gym'], align: 'right' },
+  ]}
+/>

@@ -1,0 +1,40 @@
+/* Bar — точечный индикатор (dotted): пустой трек = белые точки, заполнение = яркие точки.
+   Источник: Figma ds-atoms → bar (1:120). Точка 5×5px (круг), зазор 2px → шаг 7px;
+   filled = #b8c6c3 (--ds-color-bar-filled), empty = #ffffff (--ds-color-bar-empty).
+   default = 1 ряд точек (высота 5px); big = 2 ряда (5+2+5 = 12px). */
+.ds-bar {
+  --ds-dot: 5px;          /* диаметр точки (Figma Rectangle 5×5, r=full) */
+  --ds-step: 7px;         /* шаг = точка 5 + зазор 2 (Figma itemSpacing=2) */
+  position: relative;
+  height: var(--ds-dot);
+  width: 100%;
+  min-width: 160px;
+  color: var(--ds-color-bar-empty); /* цвет пустых точек = #ffffff (Figma Bar/empty) */
+  background-image: radial-gradient(circle closest-side, currentColor 90%, transparent 92%);
+  background-size: var(--ds-step) var(--ds-dot);
+  background-position: left top;
+  background-repeat: repeat-x;
+  overflow: hidden;
+}
+
+/* big = два ряда точек: высота 12px (5 + 2 + 5), ряды повторяются по вертикали с шагом 7px */
+.ds-bar--big {
+  height: 12px;
+  background-size: var(--ds-step) var(--ds-step);
+  background-repeat: repeat;
+}
+
+.ds-bar__fill {
+  height: 100%;
+  color: var(--ds-color-bar-filled); /* цвет заполненных точек = #b8c6c3 (Figma Bar/filled) */
+  background-image: radial-gradient(circle closest-side, currentColor 90%, transparent 92%);
+  background-size: var(--ds-step) var(--ds-dot);
+  background-position: left top;
+  background-repeat: repeat-x;
+  transition: width var(--ds-transition);
+}
+
+.ds-bar--big .ds-bar__fill {
+  background-size: var(--ds-step) var(--ds-step);
+  background-repeat: repeat;
+}

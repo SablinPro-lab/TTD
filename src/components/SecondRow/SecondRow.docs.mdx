@@ -1,0 +1,20 @@
+import { SecondRow } from './SecondRow'
+import { Button } from '../Button'
+
+# SecondRow
+
+**Назначение.** Вторичный тулбар: Back + хлебные крошки + действия справа. Композирует Button.
+Источник правды: Figma → ds-organisms → `second-row` (node `1:1985`). **Статус:** stable.
+
+| prop          | значения      | по умолч. |
+| ------------- | ------------- | --------- |
+| `onBack`      | `() => void`  | —         |
+| `breadcrumbs` | `string[]`    | `[]`      |
+| `actions`     | `ReactNode`   | —         |
+
+## Живые варианты
+
+<div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+  <SecondRow onBack={() => {}} breadcrumbs={['Home', 'Something', 'Something']} />
+  <SecondRow onBack={() => {}} actions={<><Button variant="secondary">Save</Button><Button variant="cta">Deploy</Button></>} />
+</div>

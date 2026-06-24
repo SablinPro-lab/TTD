@@ -1,0 +1,33 @@
+/* Figma notify Default (1:1981): зелёная карточка #d4eee7, radius 12px,
+   padding 30px, gap 14px (текст + кнопка), без тени. */
+.ds-notify {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--ds-indent-s);
+  background: var(--ds-color-card-green);
+  color: var(--ds-color-text-green); /* #00867b */
+  border-radius: var(--ds-radius-l);
+  padding: var(--ds-indent-xl);
+}
+
+/* Figma: текст уведомления — Pixform 30px UPPER, ls -3%, зелёный; ширина 770 → перенос в 2 строки (node 1:1982) */
+.ds-notify__text {
+  font-family: var(--ds-font-family-pixel);
+  font-size: var(--ds-font-size-description);
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  color: var(--ds-color-text-green);
+  max-width: 770px;
+}
+
+/* dismiss/ссылка внутри текста наследует зелёный, подчёркивание из утилиты .underline */
+.ds-notify__text :where(a, button) {
+  color: inherit;
+  font: inherit;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}

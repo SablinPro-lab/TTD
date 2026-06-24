@@ -1,0 +1,140 @@
+/*
+ * Design tokens — зеркало remote-библиотеки Figma Variables («Тестовая дизайн-система»).
+ * Источник правды — библиотека переменных (НЕ локальные стили). Каталог: audit/tokens.figma.json,
+ * сверка: audit/tokens.diff.md. Правило: токен сначала в Figma, затем здесь; в компонентах — только var(--ds-*).
+ *
+ * Шрифты — проприетарные (Akkurat LL Cyr TT, Instrument Serif, Pixform); файлы не бандлятся,
+ * заданы с фолбэками (см. DECISIONS D22). Имена --ds-* не менялись с этапа миграции (используются
+ * 32 компонентами) — обновлены значения и добавлены недостающие токены (Stage Styles).
+ */
+
+:root {
+  /* ── Colors ── */
+  --ds-color-black: #000000;                /* Color/black */
+  --ds-color-white: #ffffff;
+  --ds-color-text-primary: #000000;         /* Text & icon/Primary */
+  --ds-color-text-secondary: #979797;       /* Text & icon/Secondary */
+  --ds-color-text-on-color: #ffffff;        /* Text & icon/On color */
+  --ds-color-text-green: #00867b;           /* Text & icon/Green */
+  --ds-color-text-brown: #d1a63b;           /* Text & icon/Brown */
+  --ds-color-control-secondary: #eaeaea;    /* Controls/Secondary/default */
+  --ds-color-control-on-color: #ffffff;     /* Controls/On Color/White */
+  --ds-color-control-brown: #d1a63b;        /* Controls/On Color/Brown */
+  --ds-color-bg-base: #f2f2f2;              /* Background/Base */
+  --ds-color-lines: #eaeaea;                /* lines */
+  --ds-color-gray: #cbcbcb;                 /* gray */
+  --ds-color-super-yellow: #ffe900;         /* superYellow */
+
+  /* card backgrounds (Background/Cards/*) */
+  --ds-color-card-white: #ffffff;
+  --ds-color-card-red: #f5cfca;
+  --ds-color-card-pink: #fad5e7;     /* доска colors (1:4466) */
+  --ds-color-card-lavender: #ddd6ef;
+  --ds-color-card-olive: #e0e2a4;
+  --ds-color-card-green: #d4eee7;
+  --ds-color-card-peach: #f5dedb;
+  /* on-card backgrounds (Background/On cards/* — в библиотеке имя с опечаткой «cads») */
+  --ds-color-oncard-red: #f7e0dd;
+  --ds-color-oncard-green: #d4eee7;
+  --ds-color-oncard-yellow: #fffd9e;
+
+  /* bar (Color/Bar/*) — «emty» = empty в библиотеке */
+  --ds-color-bar-filled: #b8c6c3;
+  --ds-color-bar-empty: #ffffff;
+
+  /* tech / status (Color/tech/*) */
+  --ds-color-tech-purple: #9747ff;
+  --ds-color-tech-green: #00867b;
+  --ds-color-tech-red: #cc0000;
+  --ds-color-tech-gray: #cbcbcb;
+
+  /* accent — теперь реальный токен Color/superYellow (ранее выдуман, см. DECISIONS D13→D22) */
+  --ds-color-accent: var(--ds-color-super-yellow);
+
+  /* ── Typography ── три семейства (font/family/*) ── */
+  --ds-font-family: 'Akkurat LL Cyr TT', 'Akkurat LL Cyrillic', 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; /* Grotesk — основной текст (оба имени Akkurat + Inter-фолбэк) */
+  --ds-font-family-display: 'Instrument Serif', Georgia, 'Times New Roman', serif;                          /* Antiqa — дисплейный сериф */
+  --ds-font-family-pixel: 'Pixform', 'Inter', system-ui, sans-serif;                                       /* Pixel (Pixform; иначе Inter) */
+
+  --ds-font-size-caps: 8px;          /* caps */
+  --ds-font-size-control: 10px;      /* Pixform — текст контролов/мелких лейблов (кнопки, инпуты, статусы, теги, мета); parity D42 */
+  --ds-font-size-text-gr: 11px;      /* text - gr */
+  --ds-font-size-m: 15px;            /* M */
+  --ds-font-size-h3: 20px;           /* h3 */
+  --ds-font-size-h2: 40px;           /* Instrument Serif mid — заголовки кампаний/сумм/секций (recurring instance size, parity D42) */
+  --ds-font-size-description: 30px;  /* description */
+  --ds-font-size-h1: 84px;           /* h1 */
+  --ds-font-weight-regular: 400;
+  --ds-font-weight-medium: 500;
+  --ds-letter-spacing-caps: 0.08em;  /* uppercase-лейблы с разрядкой */
+  --ds-letter-spacing-pixel: 0.2em;  /* Pixform 20% трекинг (Figma); parity D42 */
+
+  /* ── Spacing (indents) ── */
+  --ds-indent-neg-1: -1px;   /* indents/-1 */
+  --ds-indent-neg-xs: -8px;  /* indents/-(XS) */
+  --ds-indent-xxxs: 2px;     /* XXXS */
+  --ds-indent-xxs: 4px;      /* XXS */
+  --ds-indent-xs: 8px;       /* XS */
+  --ds-indent-s: 14px;       /* S (inner) */
+  --ds-indent-m: 20px;       /* M */
+  --ds-indent-l: 24px;       /* L */
+  --ds-indent-xl: 30px;      /* X / XL */
+  --ds-indent-xxl: 90px;     /* XXL (out) */
+
+  /* ── Radius (rounds) ── */
+  --ds-radius-s: 4px;        /* rounds/S */
+  --ds-radius-m: 8px;        /* rounds/M */
+  --ds-radius-l: 12px;       /* rounds/L */
+  --ds-radius-over: 999px;   /* rounds/Over — пилюля */
+
+  /* ── Size ── */
+  --ds-size-base-width: 830px; /* size/base width */
+
+  /* ── State / effect tokens (Stage States, D36) ── */
+  --ds-transition: 160ms cubic-bezier(0.4, 0, 0.2, 1); /* единый duration/easing */
+  --ds-color-focus: #9747ff;                            /* = tech-purple, фокус-кольцо */
+  --ds-focus-ring: 2px solid var(--ds-color-focus);
+  --ds-shadow-1: 0 1px 3px rgba(0, 0, 0, 0.12);
+  --ds-shadow-2: 0 2px 10px rgba(0, 0, 0, 0.12);
+  --ds-shadow-3: 0 10px 34px rgba(0, 0, 0, 0.12);
+  --ds-color-control-secondary-hover: #e0e0e0;          /* hover для серых поверхностей */
+  --ds-color-control-on-color-hover: #f4f4f4;
+  --ds-color-black-hover: #1f1f1f;                      /* hover для cta (чёрная) */
+}
+
+/*
+ * Тёмная тема (Stage Atoms/Preview, D31). Переопределяем ПОВЕРХНОСТНЫЕ/ТЕКСТОВЫЕ токены — компоненты
+ * на var(--ds-*) адаптируются автоматически. Бренд-акценты (tech-*, super-yellow, brown, card-*) сохраняем.
+ * Инверсия: «black» (emphasis) → светлый, «text-on-color» → тёмный, чтобы cta/graph/node корректно
+ * читались на тёмном фоне.
+ */
+.dark {
+  --ds-color-black: #f4f4f5;            /* emphasis inverts (cta/graph/node) */
+  --ds-color-text-primary: #f4f4f5;
+  --ds-color-text-secondary: #a1a1aa;
+  --ds-color-text-on-color: #0b0b0d;    /* текст на инвертированном emphasis */
+  --ds-color-control-secondary: #26262b;
+  --ds-color-control-on-color: #18181b; /* «белые» поверхности → тёмные карточки */
+  --ds-color-bg-base: #0b0b0d;
+  --ds-color-lines: #2a2a31;
+  --ds-color-card-white: #161619;
+  --ds-color-card-red: #3a2422;
+  --ds-color-card-pink: #34232c;
+  --ds-color-card-lavender: #26243a;
+  --ds-color-card-olive: #2e3018;
+  --ds-color-card-green: #16302b;
+  --ds-color-card-peach: #3a2a24;
+  --ds-color-oncard-red: #36231f;
+  --ds-color-oncard-green: #16302b;
+  --ds-color-oncard-yellow: #3a3413;
+  --ds-color-bar-empty: #26262b;
+  --ds-color-bar-filled: #5a6b67;
+  /* тени/hover в тёмной теме */
+  --ds-shadow-1: 0 1px 3px rgba(0, 0, 0, 0.5);
+  --ds-shadow-2: 0 2px 12px rgba(0, 0, 0, 0.55);
+  --ds-shadow-3: 0 10px 34px rgba(0, 0, 0, 0.6);
+  --ds-color-control-secondary-hover: #303039;
+  --ds-color-control-on-color-hover: #20202a;
+  --ds-color-black-hover: #e4e4e7;
+}
+

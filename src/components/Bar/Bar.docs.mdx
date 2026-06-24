@@ -1,0 +1,31 @@
+import { useState } from 'react'
+import { Bar } from './Bar'
+
+# Bar
+
+**Назначение.** Дашевый индикатор заполнения (прогресс). Источник правды:
+Figma → ds-atoms → `bar` (node `1:120`). **Статус:** stable.
+
+| prop    | значения           | по умолч. | Figma          |
+| ------- | ------------------ | --------- | -------------- |
+| `value` | `number` (0–100)   | `75`      | `length=75/20` |
+| `size`  | `default` · `big`  | `default` | `Default/big`  |
+
+## Живой вариант (двигай ползунок / переключай размер)
+
+export const Demo = () => {
+  const [value, setValue] = useState(75)
+  const [big, setBig] = useState(false)
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 16, maxWidth: 320 }}>
+      <Bar value={value} size={big ? 'big' : 'default'} />
+      <input type="range" min={0} max={100} value={value} onChange={(e) => setValue(Number(e.target.value))} />
+      <label style={{ fontSize: 13, opacity: 0.7 }}>
+        <input type="checkbox" checked={big} onChange={(e) => setBig(e.target.checked)} /> size = big
+      </label>
+      <span style={{ fontSize: 13, opacity: 0.6 }}>value: {value}</span>
+    </div>
+  )
+}
+
+<Demo />

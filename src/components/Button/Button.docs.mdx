@@ -1,0 +1,48 @@
+import { useState } from 'react'
+import { Button } from './Button'
+
+# Button
+
+**Назначение.** Базовая кнопка действия дизайн-системы. Используется для CTA, второстепенных
+действий и «нод»-кнопок в карточках.
+
+**Источник правды:** Figma «Тестовая дизайн-система» → ds-atoms → `btn` (node `1:1840`).
+
+**Статус:** stable.
+
+## Варианты (props)
+
+| prop       | значения                                  | по умолч.   | Figma                       |
+| ---------- | ----------------------------------------- | ----------- | --------------------------- |
+| `variant`  | `secondary` · `onColor` · `cta` · `node`  | `secondary` | `type=…` / `CTA?=yes` (cta) |
+| `size`     | `small` · `big`                           | `small`     | `size=…` (для `cta`)        |
+| `disabled` | `boolean`                                 | `false`     | —                           |
+
+…плюс нативные атрибуты `<button>` (`onClick`, `type`…).
+
+- **secondary** — серый фон, uppercase-текст. Нейтральное действие.
+- **onColor** — белая кнопка с тенью для размещения поверх контента/фото.
+- **cta** — чёрная акцентная кнопка. `size="big"` даёт крупный вид без uppercase.
+- **node** — кнопка-контейнер с выравниванием по левому краю (для нод/карточек).
+
+## Живые варианты (кликабельны — счётчик растёт)
+
+export const Demo = () => {
+  const [n, setN] = useState(0)
+  const inc = () => setN((v) => v + 1)
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+      <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap', alignItems: 'center' }}>
+        <Button variant="secondary" onClick={inc}>More info</Button>
+        <Button variant="onColor" onClick={inc}>More info</Button>
+        <Button variant="cta" size="small" onClick={inc}>More info</Button>
+        <Button variant="cta" size="big" onClick={inc}>More info</Button>
+        <Button variant="node" onClick={inc}>More info</Button>
+        <Button variant="secondary" disabled>Disabled</Button>
+      </div>
+      <span style={{ fontSize: 13, opacity: 0.6 }}>Кликов: {n}</span>
+    </div>
+  )
+}
+
+<Demo />

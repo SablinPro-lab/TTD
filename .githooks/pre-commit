@@ -1,0 +1,6 @@
+#!/bin/sh
+# Гейт: каждое изменение компонента обновляет доки (.docs.mdx) + release-notes.
+# Включить в свежем клоне: git config core.hooksPath .githooks
+# См. CONTRIBUTING.md.
+
+node scripts/check-docs.mjs || exit 1

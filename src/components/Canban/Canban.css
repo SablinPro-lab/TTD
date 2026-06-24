@@ -1,0 +1,91 @@
+/* Canban / Pipeline — Figma 1:2048. Серифный заголовок над белой карточкой с колонками. */
+.ds-canban {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-indent-l);
+  font-family: var(--ds-font-family);
+  width: 100%;
+  max-width: 100%;
+}
+
+/* Figma: «Pipeline» — Instrument Serif 84px, по центру (node I1:2048;357:35636) */
+.ds-canban__title {
+  font-family: var(--ds-font-family-display);
+  font-size: var(--ds-font-size-h1);
+  line-height: 0.9;
+  letter-spacing: -0.01em;
+  color: var(--ds-color-text-primary);
+  text-align: center;
+}
+
+/* белая карточка: radius 12, padding 30, колонки в ряд (Frame 1398/1400).
+   Колонки — натуральной figma-ширины (312px); если борд шире области, прокрутка ВНУТРИ карточки
+   (контент не сжимается), а не разламывание страницы. */
+.ds-canban__board {
+  display: flex;
+  align-items: flex-start;
+  background: var(--ds-color-control-on-color);
+  border-radius: var(--ds-radius-l);
+  padding: var(--ds-indent-xl);
+  box-sizing: border-box;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+/* колонка 312px, gap 20; разделители — тонкая линия между колонками */
+.ds-canban__col {
+  width: 312px;
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-indent-m);
+  padding: 0 var(--ds-indent-l);
+  box-sizing: border-box;
+}
+.ds-canban__col:first-child { padding-left: 0; }
+.ds-canban__col:last-child { padding-right: 0; }
+.ds-canban__col + .ds-canban__col { border-left: 1px solid var(--ds-color-lines); }
+
+/* шапка колонки: заголовок-сериф слева, счётчик-сериф (серый) справа (Frame 1399) */
+.ds-canban__col-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--ds-indent-xs);
+}
+.ds-canban__col-title {
+  font-family: var(--ds-font-family-display);
+  font-size: var(--ds-font-size-h2);
+  line-height: 1;
+  letter-spacing: -0.01em;
+  color: var(--ds-color-text-primary);
+}
+.ds-canban__col-count {
+  font-family: var(--ds-font-family-display);
+  font-size: var(--ds-font-size-h2);
+  line-height: 1;
+  color: var(--ds-color-gray);
+}
+
+/* список строк, gap 2 (Frame 1404) */
+.ds-canban__list { display: flex; flex-direction: column; gap: var(--ds-indent-xxxs); }
+
+/* строка-человек: серая пилюля, аватар · имя · роль */
+.ds-canban__row {
+  display: flex;
+  align-items: center;
+  gap: var(--ds-indent-s);
+  background: var(--ds-color-control-secondary);
+  border-radius: var(--ds-radius-m);
+  padding: var(--ds-indent-s);
+  box-sizing: border-box;
+}
+.ds-canban__row-text { display: flex; flex-direction: column; gap: var(--ds-indent-xxxs); }
+.ds-canban__row-name { font-size: var(--ds-font-size-m); color: var(--ds-color-text-primary); }
+.ds-canban__row-role {
+  font-family: var(--ds-font-family-pixel);
+  font-size: var(--ds-font-size-control);
+  letter-spacing: var(--ds-letter-spacing-pixel);
+  text-transform: uppercase;
+  color: var(--ds-color-text-secondary);
+}

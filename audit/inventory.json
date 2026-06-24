@@ -1,0 +1,422 @@
+{
+  "capturedAt": "2026-06-23 19:11",
+  "refreshedFor": "Prepare v2",
+  "file": {
+    "key": "ct9b7yfSwULxIG3mIPlSg8",
+    "displayName": "Тестовая дизайн-система"
+  },
+  "pages": [
+    {
+      "id": "0:1",
+      "name": "Page 1"
+    },
+    {
+      "id": "14:13378",
+      "name": "Release Notes"
+    }
+  ],
+  "sections": [
+    "ds-atoms",
+    "ds-molecules",
+    "ds-organisms",
+    "ds-screens",
+    "ds-styles"
+  ],
+  "counts": {
+    "componentSets": 33,
+    "componentVariants": 74,
+    "localPaintStyles": 0,
+    "localTextStyles": 0,
+    "localEffectStyles": 0,
+    "localGridStyles": 0,
+    "localVariables": 0,
+    "localVariableCollections": 0,
+    "reactComponents": 32
+  },
+  "variablesOrigin": {
+    "local": false,
+    "remote": true,
+    "probe": {
+      "boundOn": "1:1841",
+      "property": "paddingLeft",
+      "variable": "indents/S (inner)",
+      "remote": true,
+      "collectionId": "VariableCollectionId:24afd98ee98fe24550538609ea7c94aea303fd1f/2006:616"
+    },
+    "note": "Токены приходят из внешней опубликованной библиотеки Figma Variables. Локальных переменных/стилей в файле нет."
+  },
+  "stylesBoard": [
+    {
+      "name": "Indents",
+      "type": "TEXT"
+    },
+    {
+      "name": "Colors",
+      "type": "TEXT"
+    },
+    {
+      "name": "Typography",
+      "type": "TEXT"
+    },
+    {
+      "name": "typography",
+      "type": "FRAME",
+      "kids": [
+        "table"
+      ]
+    },
+    {
+      "name": "colors",
+      "type": "FRAME",
+      "kids": "11 × Ellipse (color swatches)"
+    },
+    {
+      "name": "indents",
+      "type": "COMPONENT_SET",
+      "variants": [
+        "size=-1",
+        "size=XXXS:2",
+        "size=XXS:4",
+        "size=XS: 8",
+        "size=S (inner): 14",
+        "size=M: 20",
+        "size=L: 24",
+        "size=XL: 30",
+        "size=XXL (out):90"
+      ]
+    }
+  ],
+  "components": [
+    {
+      "figmaId": "1:120",
+      "figmaName": "bar",
+      "section": "ds-atoms",
+      "variants": 4,
+      "isToken": false,
+      "reactComponent": "Bar",
+      "hasReact": true
+    },
+    {
+      "figmaId": "1:1727",
+      "figmaName": "avatar",
+      "section": "ds-atoms",
+      "variants": 3,
+      "isToken": false,
+      "reactComponent": "Avatar",
+      "hasReact": true
+    },
+    {
+      "figmaId": "1:1734",
+      "figmaName": "status",
+      "section": "ds-atoms",
+      "variants": 4,
+      "isToken": false,
+      "reactComponent": "Status",
+      "hasReact": true
+    },
+    {
+      "figmaId": "1:1747",
+      "figmaName": "icons",
+      "section": "ds-atoms",
+      "variants": 5,
+      "isToken": false,
+      "reactComponent": "Icon",
+      "hasReact": true
+    },
+    {
+      "figmaId": "1:1758",
+      "figmaName": "switch",
+      "section": "ds-atoms",
+      "variants": 4,
+      "isToken": false,
+      "reactComponent": "Switch",
+      "hasReact": true
+    },
+    {
+      "figmaId": "1:1767",
+      "figmaName": "flag",
+      "section": "ds-atoms",
+      "variants": 2,
+      "isToken": false,
+      "reactComponent": "Flag",
+      "hasReact": true
+    },
+    {
+      "figmaId": "1:1772",
+      "figmaName": "tag",
+      "section": "ds-atoms",
+      "variants": 2,
+      "isToken": false,
+      "reactComponent": "Tag",
+      "hasReact": true
+    },
+    {
+      "figmaId": "1:1778",
+      "figmaName": "error",
+      "section": "ds-atoms",
+      "variants": 1,
+      "isToken": false,
+      "reactComponent": "ErrorBanner",
+      "hasReact": true
+    },
+    {
+      "figmaId": "1:1782",
+      "figmaName": "avatars",
+      "section": "ds-atoms",
+      "variants": 1,
+      "isToken": false,
+      "reactComponent": "AvatarGroup",
+      "hasReact": true
+    },
+    {
+      "figmaId": "1:1787",
+      "figmaName": "list",
+      "section": "ds-atoms",
+      "variants": 1,
+      "isToken": false,
+      "reactComponent": "ListItem",
+      "hasReact": true
+    },
+    {
+      "figmaId": "1:1794",
+      "figmaName": "text_area",
+      "section": "ds-atoms",
+      "variants": 1,
+      "isToken": false,
+      "reactComponent": "TextArea",
+      "hasReact": true
+    },
+    {
+      "figmaId": "1:1799",
+      "figmaName": "input",
+      "section": "ds-atoms",
+      "variants": 1,
+      "isToken": false,
+      "reactComponent": "Input",
+      "hasReact": true
+    },
+    {
+      "figmaId": "1:1804",
+      "figmaName": "dropdown",
+      "section": "ds-atoms",
+      "variants": 4,
+      "isToken": false,
+      "reactComponent": "Dropdown",
+      "hasReact": true
+    },
+    {
+      "figmaId": "1:1829",
+      "figmaName": "graph",
+      "section": "ds-atoms",
+      "variants": 1,
+      "isToken": false,
+      "reactComponent": "Graph",
+      "hasReact": true
+    },
+    {
+      "figmaId": "1:1833",
+      "figmaName": "switch_group",
+      "section": "ds-atoms",
+      "variants": 1,
+      "isToken": false,
+      "reactComponent": "SwitchGroup",
+      "hasReact": true
+    },
+    {
+      "figmaId": "1:1840",
+      "figmaName": "button",
+      "section": "ds-atoms",
+      "variants": 5,
+      "isToken": false,
+      "reactComponent": "Button",
+      "hasReact": true
+    },
+    {
+      "figmaId": "1:1853",
+      "figmaName": "profile",
+      "section": "ds-molecules",
+      "variants": 3,
+      "isToken": false,
+      "reactComponent": "Profile",
+      "hasReact": true
+    },
+    {
+      "figmaId": "1:1872",
+      "figmaName": "node",
+      "section": "ds-molecules",
+      "variants": 1,
+      "isToken": false,
+      "reactComponent": "FlowNode",
+      "hasReact": true
+    },
+    {
+      "figmaId": "1:1884",
+      "figmaName": "campaign_preview",
+      "section": "ds-molecules",
+      "variants": 1,
+      "isToken": false,
+      "reactComponent": "CampaignPreview",
+      "hasReact": true
+    },
+    {
+      "figmaId": "1:1904",
+      "figmaName": "project_preview",
+      "section": "ds-molecules",
+      "variants": 1,
+      "isToken": false,
+      "reactComponent": "ProjectPreview",
+      "hasReact": true
+    },
+    {
+      "figmaId": "1:1912",
+      "figmaName": "experience_preview",
+      "section": "ds-molecules",
+      "variants": 1,
+      "isToken": false,
+      "reactComponent": "ExperiencePreview",
+      "hasReact": true
+    },
+    {
+      "figmaId": "1:1920",
+      "figmaName": "team",
+      "section": "ds-molecules",
+      "variants": 1,
+      "isToken": false,
+      "reactComponent": "Team",
+      "hasReact": true
+    },
+    {
+      "figmaId": "1:1936",
+      "figmaName": "card_metric",
+      "section": "ds-molecules",
+      "variants": 1,
+      "isToken": false,
+      "reactComponent": "CardMetric",
+      "hasReact": true
+    },
+    {
+      "figmaId": "1:1942",
+      "figmaName": "card_metrica",
+      "section": "ds-molecules",
+      "variants": 1,
+      "isToken": false,
+      "reactComponent": "CardMetrica",
+      "hasReact": true
+    },
+    {
+      "figmaId": "1:1948",
+      "figmaName": "attempt",
+      "section": "ds-molecules",
+      "variants": 2,
+      "isToken": false,
+      "reactComponent": "Attempt",
+      "hasReact": true
+    },
+    {
+      "figmaId": "1:1980",
+      "figmaName": "notify",
+      "section": "ds-molecules",
+      "variants": 1,
+      "isToken": false,
+      "reactComponent": "Notify",
+      "hasReact": true
+    },
+    {
+      "figmaId": "1:1985",
+      "figmaName": "second_row",
+      "section": "ds-organisms",
+      "variants": 2,
+      "isToken": false,
+      "reactComponent": "SecondRow",
+      "hasReact": true
+    },
+    {
+      "figmaId": "1:2001",
+      "figmaName": "topmenu",
+      "section": "ds-organisms",
+      "variants": 3,
+      "isToken": false,
+      "reactComponent": "TopMenu",
+      "hasReact": true
+    },
+    {
+      "figmaId": "1:2032",
+      "figmaName": "header",
+      "section": "ds-organisms",
+      "variants": 1,
+      "isToken": false,
+      "reactComponent": "Header",
+      "hasReact": true
+    },
+    {
+      "figmaId": "1:3731",
+      "figmaName": "task",
+      "section": "ds-organisms",
+      "variants": 2,
+      "isToken": false,
+      "reactComponent": "Task",
+      "hasReact": true
+    },
+    {
+      "figmaId": "1:3744",
+      "figmaName": "card_top",
+      "section": "ds-organisms",
+      "variants": 2,
+      "isToken": false,
+      "reactComponent": "CardTop",
+      "hasReact": true
+    },
+    {
+      "figmaId": "1:3782",
+      "figmaName": "menu_switch",
+      "section": "ds-organisms",
+      "variants": 2,
+      "isToken": false,
+      "reactComponent": "MenuSwitch",
+      "hasReact": true
+    },
+    {
+      "figmaId": "1:4478",
+      "figmaName": "indents",
+      "section": "ds-styles",
+      "variants": 9,
+      "isToken": true,
+      "reactComponent": null,
+      "hasReact": false
+    }
+  ],
+  "reactComponents": [
+    "Attempt",
+    "Avatar",
+    "AvatarGroup",
+    "Bar",
+    "Button",
+    "CampaignPreview",
+    "CardMetric",
+    "CardMetrica",
+    "CardTop",
+    "Dropdown",
+    "ErrorBanner",
+    "ExperiencePreview",
+    "Flag",
+    "FlowNode",
+    "Graph",
+    "Header",
+    "Icon",
+    "Input",
+    "ListItem",
+    "MenuSwitch",
+    "Notify",
+    "Profile",
+    "ProjectPreview",
+    "SecondRow",
+    "Status",
+    "Switch",
+    "SwitchGroup",
+    "Tag",
+    "Task",
+    "Team",
+    "TextArea",
+    "TopMenu"
+  ]
+}

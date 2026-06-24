@@ -1,0 +1,29 @@
+import { useState } from 'react'
+import { Flag } from './Flag'
+
+# Flag
+
+**Назначение.** Закладка/флажок: контурная (`off`) или залитая (`on`). Источник правды:
+Figma → ds-atoms → `flag` (node `1:1767`). **Статус:** stable.
+
+| prop      | значения             | по умолч. | Figma          |
+| --------- | -------------------- | --------- | -------------- |
+| `active`  | `boolean`            | `false`   | `yes/no`       |
+| `size`    | `number`             | `24`      | —              |
+| `onClick` | `() => void`         | —         | делает кликабельной |
+
+## Живой вариант (кликни флажок — переключится)
+
+export const Demo = () => {
+  const [a, setA] = useState(false)
+  const [b, setB] = useState(true)
+  return (
+    <div style={{ display: 'flex', gap: 16, alignItems: 'center' }}>
+      <Flag active={a} onClick={() => setA(!a)} />
+      <Flag active={b} onClick={() => setB(!b)} />
+      <span style={{ fontSize: 13, opacity: 0.6 }}>{a ? 'on' : 'off'} · {b ? 'on' : 'off'}</span>
+    </div>
+  )
+}
+
+<Demo />

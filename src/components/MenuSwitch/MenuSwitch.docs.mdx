@@ -1,0 +1,30 @@
+import { useState } from 'react'
+import { MenuSwitch } from './MenuSwitch'
+
+# MenuSwitch
+
+**Назначение.** Пункт-переключатель меню; активный — белая пилюля.
+Источник правды: Figma → ds-organisms → `menu_switch` (node `1:3782`). **Статус:** stable.
+
+| prop      | значения     | по умолч. |
+| --------- | ------------ | --------- |
+| `label`   | `string`     | —         |
+| `active`  | `boolean`    | `false`   |
+| `onClick` | `() => void` | —         |
+
+## Живой вариант (кликни — выбор переключается)
+
+export const ITEMS = ['All teams', 'All templates', 'Archive']
+
+export const Demo = () => {
+  const [active, setActive] = useState('All teams')
+  return (
+    <div style={{ display: 'flex', gap: 8, background: 'var(--ds-color-control-secondary)', padding: 8, borderRadius: 4 }}>
+      {ITEMS.map((it) => (
+        <MenuSwitch key={it} label={it} active={active === it} onClick={() => setActive(it)} />
+      ))}
+    </div>
+  )
+}
+
+<Demo />

@@ -1,0 +1,40 @@
+import { Input } from './Input'
+
+# Input
+
+**Назначение.** Текстовое поле ввода с uppercase-заголовком над ним. Используется в формах
+и карточках. Лейбл связан с полем через `htmlFor`/`id` (доступность).
+
+**Источник правды:** Figma «Тестовая дизайн-система» → ds-atoms → `input` (node `1:1799`).
+
+**Статус:** stable.
+
+## Варианты (props)
+
+| prop                     | значения  | по умолч. | Figma       |
+| ------------------------ | --------- | --------- | ----------- |
+| `label`                  | `string`  | —         | «HEAD LINE» |
+| `value` / `defaultValue` | `string`  | —         | текст в поле |
+| `placeholder`            | `string`  | —         | —           |
+| `disabled`               | `boolean` | `false`   | —           |
+
+…плюс нативные атрибуты `<input>` (`onChange`, `type`, `name`…).
+
+Поле имеет заполненный серый фон (`Color/Controls/Secondary/default`) и скругление `rounds/S`.
+
+## Пример
+
+```tsx
+import { Input } from '@/components/Input'
+
+<Input label="Head line" value={name} onChange={(e) => setName(e.target.value)} />
+```
+
+## Живые варианты
+
+<div style={{ display: 'flex', gap: 24, flexWrap: 'wrap', alignItems: 'flex-end' }}>
+  <Input label="Head line" defaultValue="Michael Lee" />
+  <Input label="Head line" placeholder="Michael Lee" />
+  <Input defaultValue="Без лейбла" />
+  <Input label="Disabled" defaultValue="Michael Lee" disabled />
+</div>

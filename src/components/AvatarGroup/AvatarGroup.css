@@ -1,0 +1,25 @@
+/* AvatarGroup — стопка перекрывающихся аватаров (Figma: HORIZONTAL, align CENTER,
+   itemSpacing -8px, аватары 30px image-circle, БЕЗ кольца). */
+.ds-avatars {
+  display: inline-flex;
+  align-items: center;
+}
+
+.ds-avatars__item {
+  display: inline-flex;
+  border-radius: 50%;
+}
+
+.ds-avatars__item + .ds-avatars__item {
+  margin-left: calc(-1 * var(--ds-avatars-overlap, 10px));
+}
+
+.ds-avatars__more {
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--ds-color-control-secondary);
+  color: var(--ds-color-text-secondary);
+  font-family: var(--ds-font-family);
+  font-weight: var(--ds-font-weight-medium);
+}

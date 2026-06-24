@@ -1,0 +1,37 @@
+import { useState } from 'react'
+import { Switch } from './Switch'
+
+# Switch
+
+**Назначение.** Переключатель-чип с подписью (toggle). Применяется для бинарного выбора —
+например, включения команды/фильтра. Семантически — `role="switch"` с `aria-checked`.
+
+**Источник правды:** Figma «Тестовая дизайн-система» → ds-atoms → `switch` (node `1:1758`).
+
+**Статус:** stable.
+
+## Варианты (props)
+
+| prop       | значения            | по умолч. | Figma            |
+| ---------- | ------------------- | --------- | ---------------- |
+| `checked`  | `boolean`           | —         | `switch=on/off`  |
+| `size`     | `small` · `big`     | `big`     | `size=big/small` |
+| `label`    | `string`            | —         | текст в макете   |
+| `onChange` | `(checked) => void` | —         | —                |
+| `disabled` | `boolean`           | `false`   | —                |
+
+## Живые состояния (кликни — переключается)
+
+export const Demo = () => {
+  const [big, setBig] = useState(true)
+  const [small, setSmall] = useState(false)
+  return (
+    <div style={{ display: 'flex', gap: 16, alignItems: 'center', flexWrap: 'wrap' }}>
+      <Switch label="Team" size="big" checked={big} onChange={setBig} />
+      <Switch label="Team" size="small" checked={small} onChange={setSmall} />
+      <span style={{ fontSize: 13, opacity: 0.6 }}>big: {String(big)} · small: {String(small)}</span>
+    </div>
+  )
+}
+
+<Demo />

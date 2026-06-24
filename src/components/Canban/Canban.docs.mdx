@@ -1,0 +1,36 @@
+import { Canban } from './Canban'
+
+# Canban
+
+**Назначение.** Пайплайн-борд: серифный заголовок + белая карточка с колонками-стадиями,
+в каждой — счётчик и список людей (аватар · имя · роль).
+Источник правды: Figma → ds-organisms → `canban` (node `1:2048`). **Статус:** stable.
+
+| prop      | значения                                        | по умолч.    |
+| --------- | ----------------------------------------------- | ------------ |
+| `title`   | `string`                                        | `'Pipeline'` |
+| `columns` | `{ title; count?; items: { name; role }[] }[]`  | —            |
+
+Колонки — натуральной figma-ширины (312px); если борд шире области, прокручивается
+горизонтально ВНУТРИ карточки (контент не сжимается).
+
+## Живой вариант
+
+export const Demo = () => (
+  <Canban
+    title="Pipeline"
+    columns={[
+      { title: 'Applied', count: 4, items: [
+        { name: 'Michael Thompson', role: 'Product manager' },
+        { name: 'Emily Carter', role: 'UX designer' },
+      ] },
+      { title: 'Screening', count: 2, items: [
+        { name: 'Emily Davis', role: 'UX designer' },
+        { name: 'David Garcia', role: 'Data analyst' },
+      ] },
+      { title: 'Offer', count: 1, items: [{ name: 'Sophia Martinez', role: 'UX designer' }] },
+    ]}
+  />
+)
+
+<Demo />

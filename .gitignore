@@ -1,0 +1,14 @@
+node_modules
+dist
+dist-ssr
+*.local
+*.tsbuildinfo
+.DS_Store
+
+# Скриншоты этого проекта (референсы Figma + verification) — локальные, не в репозиторий
+.screenshots
+
+# Живой снимок Figma, который figma-sync выгружает через MCP перед диффом
+.figma-live.json
+
+*.log

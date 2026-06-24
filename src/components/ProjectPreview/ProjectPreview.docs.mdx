@@ -1,0 +1,18 @@
+import { ProjectPreview } from './ProjectPreview'
+
+# ProjectPreview
+
+**Назначение.** Карточка проекта: описание + теги стека. Композирует Tag.
+Источник правды: Figma → ds-molecules → `project_preview` (node `1:1904`). **Статус:** stable.
+
+| prop          | значения    | по умолч. |
+| ------------- | ----------- | --------- |
+| `description` | `string`    | —         |
+| `tags`        | `string[]`  | `[]`      |
+
+## Живой вариант
+
+<ProjectPreview
+  description="Full-stack e-commerce solution with React frontend and Node.js backend"
+  tags={['React', 'Node.js', 'MongoDB', 'WebSocket']}
+/>

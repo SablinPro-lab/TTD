@@ -1,0 +1,25 @@
+.ds-menu-switch {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--ds-font-family);
+  font-size: var(--ds-font-size-text-gr); /* 11px */
+  font-weight: var(--ds-font-weight-regular);
+  color: var(--ds-color-text-primary);
+  background: transparent;
+  border: 1px solid transparent; /* Figma: рамка появляется только в active (menu=on) */
+  border-radius: var(--ds-radius-s); /* 4px */
+  padding: var(--ds-indent-xs); /* 10px≈XS — равные отступы по Figma (10/10) */
+  cursor: pointer;
+  white-space: nowrap;
+  transition: border-color var(--ds-transition), background var(--ds-transition), box-shadow var(--ds-transition), transform var(--ds-transition);
+}
+
+.ds-menu-switch:hover:not(.is-active) { border-color: var(--ds-color-gray); }
+.ds-menu-switch:active { transform: translateY(1px); }
+.ds-menu-switch:focus-visible { outline: var(--ds-focus-ring); outline-offset: 2px; }
+
+/* active = menu=on: видимая белая рамка 1px, прозрачная заливка (Figma stroke #ffffff visible) */
+.ds-menu-switch.is-active {
+  border-color: var(--ds-color-white);
+}

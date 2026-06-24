@@ -1,0 +1,18 @@
+import { FlowNode } from './FlowNode'
+
+# FlowNode
+
+**Назначение.** Карточка-нода автоматизации: play + заголовок + точки-коннекторы.
+Источник правды: Figma → ds-molecules → `node` (node `1:1872`). **Статус:** stable.
+
+> Назван `FlowNode`, чтобы не пересекаться с DOM-типом `Node` (см. DECISIONS.md D12).
+
+| prop         | значения  | по умолч. |
+| ------------ | --------- | --------- |
+| `title`      | `string`  | —         |
+| `subtitle`   | `string`  | —         |
+| `connectors` | `boolean` | `true`    |
+
+## Живой вариант
+
+<FlowNode title="Start Trigger" subtitle="New application received" />

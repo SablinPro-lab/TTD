@@ -1,0 +1,22 @@
+import { useState } from 'react'
+import { SwitchGroup } from './SwitchGroup'
+
+# SwitchGroup
+
+**Назначение.** Сегментный переключатель — группа из switch на белой плашке (single-select).
+Источник правды: Figma → ds-atoms → `switch group` (node `1:1833`). **Статус:** stable.
+
+| prop       | значения            | по умолч. |
+| ---------- | ------------------- | --------- |
+| `options`  | `string[]`          | —         |
+| `value`    | `string`            | —         |
+| `onChange` | `(value) => void`   | —         |
+
+## Живой вариант
+
+export const Demo = () => {
+  const [v, setV] = useState('Team 1')
+  return <SwitchGroup options={['Team 1', 'Team 2', 'Team 3']} value={v} onChange={setV} />
+}
+
+<Demo />

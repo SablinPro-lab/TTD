@@ -1,0 +1,40 @@
+import { useState } from 'react'
+import { Profile } from './Profile'
+
+# Profile
+
+**Назначение.** Строка/карточка профиля: аватар + имя + роль. Композирует Avatar, Status, Bar.
+Источник правды: Figma → ds-molecules → `profile` (node `1:1853`). **Статус:** stable.
+
+| prop      | значения                              | по умолч. |
+| --------- | ------------------------------------- | --------- |
+| `name`    | `string`                              | —         |
+| `role`    | `string`                              | —         |
+| `variant` | `long` · `short` · `short-outlined`   | `short`   |
+| `status`  | `{variant, label}` (для long)         | —         |
+| `progress`| `number` (для long)                   | —         |
+
+## Живой вариант (выбери вариант)
+
+export const VARIANTS = ['long', 'short', 'short-outlined']
+
+export const Demo = () => {
+  const [v, setV] = useState('long')
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+      <div style={{ display: 'flex', gap: 8 }}>
+        {VARIANTS.map((x) => (
+          <button key={x} onClick={() => setV(x)}
+            style={{ padding: '4px 10px', borderRadius: 4, border: '1px solid var(--ds-color-lines)',
+              background: v === x ? 'var(--ds-color-control-secondary)' : 'transparent', cursor: 'pointer', fontSize: 12 }}>
+            {x}
+          </button>
+        ))}
+      </div>
+      <Profile variant={v} name="Sarah Johnson" role="Senior developer"
+        status={{ variant: 'green', label: 'On track' }} progress={70} />
+    </div>
+  )
+}
+
+<Demo />

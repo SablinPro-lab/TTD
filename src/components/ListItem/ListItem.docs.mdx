@@ -1,0 +1,32 @@
+import { useState } from 'react'
+import { ListItem } from './ListItem'
+import { Button } from '../Button'
+
+# ListItem
+
+**Назначение.** Строка списка: заголовок + мета-колонки (uppercase) + действие справа.
+Источник правды: Figma → ds-atoms → `list` (node `1:1787`). **Статус:** stable.
+
+| prop     | значения     | по умолч. |
+| -------- | ------------ | --------- |
+| `title`  | `ReactNode`  | —         |
+| `meta`   | `string[]`   | `[]`      |
+| `action` | `ReactNode`  | —         |
+
+## Живой вариант (кнопка действия работает)
+
+export const Demo = () => {
+  const [edits, setEdits] = useState(0)
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+      <ListItem
+        title="Sarah Johnson"
+        meta={['Document', 'Created by Alan', '24.09.2025']}
+        action={<Button variant="onColor" onClick={() => setEdits((n) => n + 1)}>Edit</Button>}
+      />
+      <span style={{ fontSize: 13, opacity: 0.6 }}>нажатий «Edit»: {edits}</span>
+    </div>
+  )
+}
+
+<Demo />

@@ -1,0 +1,36 @@
+import { useState } from 'react'
+import { TopMenu } from './TopMenu'
+import { Button } from '../Button'
+
+# TopMenu
+
+**Назначение.** Верхнее меню: логотип + действие + табы + пользовательское меню. Композирует MenuSwitch.
+Источник правды: Figma → ds-organisms → `topmenu` (node `1:2001`). **Статус:** stable.
+
+| prop          | значения              | по умолч.       |
+| ------------- | --------------------- | --------------- |
+| `logo`        | `ReactNode`           | `Hired & Wired` |
+| `action`      | `ReactNode`           | —               |
+| `tabs`        | `{label, value}[]`    | `[]`            |
+| `value`       | `string`              | —               |
+| `userMenu`    | `ReactNode`           | —               |
+
+## Живой вариант (табы переключаются)
+
+export const Demo = () => {
+  const [tab, setTab] = useState('teams')
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+      <TopMenu
+        action={<Button variant="cta">Generate report</Button>}
+        tabs={[{ label: 'All teams', value: 'teams' }, { label: 'All templates', value: 'tpl' }]}
+        value={tab}
+        onTabChange={setTab}
+        userMenu="Profile · Log out"
+      />
+      <span style={{ fontSize: 13, opacity: 0.6 }}>активный таб: {tab}</span>
+    </div>
+  )
+}
+
+<Demo />

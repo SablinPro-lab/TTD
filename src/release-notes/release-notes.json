@@ -1,0 +1,542 @@
+[
+  {
+    "date": "2026-06-24",
+    "component": "Canban",
+    "type": "fixed",
+    "change": "Борд скроллится горизонтально внутри карточки (заголовок Pipeline центрирован, страница не разъезжается); колонки в натуральную ширину."
+  },
+  {
+    "date": "2026-06-24",
+    "component": "CardTop",
+    "type": "changed",
+    "change": "Фон — золотисто-янтарный #ffb700 с текстурой + высокая карточка 480 (space-between), как в Figma (было ярко-жёлтое и короткое)."
+  },
+  {
+    "date": "2026-06-24",
+    "component": "Attempt",
+    "type": "fixed",
+    "change": "Статус FAILED поднят на уровень $-сумм (был ниже, на уровне перков): ряд выровнен по верху как в Figma."
+  },
+  {
+    "date": "2026-06-24",
+    "component": "Canban",
+    "type": "added",
+    "change": "Новый организм — Pipeline-борд (node 1:2048): серифный заголовок + 4 колонки-стадии со строками-людьми. Раньше отсутствовал в React."
+  },
+  {
+    "date": "2026-06-24",
+    "component": "CampaignPreview",
+    "type": "changed",
+    "change": "5 метрик как в Figma (142/89/282/31/4), числа Instrument Serif 84px."
+  },
+  {
+    "date": "2026-06-24",
+    "component": "Notify",
+    "type": "changed",
+    "change": "Длинный Pixform-30 текст (2 строки) + белая pill «More info» (проп action)."
+  },
+  {
+    "date": "2026-06-24",
+    "component": "CardMetrica",
+    "type": "fixed",
+    "change": "Заголовок переносится внутри узкой карточки 181px (overflow-wrap) — больше не «съезжает»."
+  },
+  {
+    "date": "2026-06-24",
+    "component": "Attempt",
+    "type": "changed",
+    "change": "Офферы/перки идентичны Figma (Free education/Remote-work и т.д.)."
+  },
+  {
+    "date": "2026-06-24",
+    "component": "CardTop",
+    "type": "changed",
+    "change": "Радиальная текстура жёлтого фона ближе к макету."
+  },
+  {
+    "date": "2026-06-24",
+    "component": "Preview",
+    "type": "changed",
+    "change": "Убрано адаптивное сжатие — компоненты в натуральную figma-ширину (по требованию «как в фигма»)."
+  },
+  {
+    "date": "2026-06-24",
+    "component": "DesignSystem",
+    "type": "changed",
+    "change": "Pixel-parity всех 32 компонентов с Figma (0 ❌). audit/parity/*.md + INDEX. Системно: контролы Pixform 10px, кнопки pill, тени только на hover, карточки radius12/padding30, сериф 84/40px."
+  },
+  {
+    "date": "2026-06-24",
+    "component": "Tokens",
+    "type": "added",
+    "change": "--ds-font-size-control(10px), --ds-font-size-h2(40px, Instrument Serif mid), --ds-letter-spacing-pixel(0.2em). Хардкоды заменены на токены в 13 CSS."
+  },
+  {
+    "date": "2026-06-24",
+    "component": "Header",
+    "type": "added",
+    "change": "Точечный Bar над рядом стадий (проп progress) — был в Figma, отсутствовал в React."
+  },
+  {
+    "date": "2026-06-24",
+    "component": "CardTop",
+    "type": "changed",
+    "change": "Серифное имя 84px по центру, gold-роль, белые круглые pill-действия, добавлены ряды тегов (опц. tags/tagsRight/onTag)."
+  },
+  {
+    "date": "2026-06-24",
+    "component": "Preview",
+    "type": "added",
+    "change": "Левый sidebar-навигатор: разделы + 32 пункта, scroll-spy, collapse, поиск, hover/focus/active; мобильный drawer с бургером (Esc, оверлей, a11y). Светлая/тёмная/адаптив."
+  },
+  {
+    "date": "2026-06-24",
+    "component": "Status",
+    "type": "changed",
+    "change": "Шрифт лейбла → Pixform (как в Figma 1:1734), а не Akkurat."
+  },
+  {
+    "date": "2026-06-24",
+    "component": "Profile",
+    "type": "changed",
+    "change": "Имя — Akkurat Regular 20px; роль — Pixform UPPER; в long точечный бар тянется до правого края. Совпадает с Figma 1:1853."
+  },
+  {
+    "date": "2026-06-24",
+    "component": "Team",
+    "type": "changed",
+    "change": "Все мета-лейблы (PRODUCTIVITY/PEOPLE/value/+N MORE/highlight) → Pixform; имя — Regular. Совпадает с Figma 1:1920."
+  },
+  {
+    "date": "2026-06-24",
+    "component": "Dropdown",
+    "type": "fixed",
+    "change": "Меню больше не обрезается: демо-область превью overflow:visible; сжатие широких компонентов вынесено в @media≤640px (на десктопе — натуральная ширина)."
+  },
+  {
+    "date": "2026-06-24",
+    "component": "Preview",
+    "type": "changed",
+    "change": "Сверка атомы/молекулы/организмы с Figma; правило шрифта 10px→Pixform / 8px→Akkurat; отступы подтверждены на токен-шкале (90/24/24/20, симметрично)."
+  },
+  {
+    "date": "2026-06-24",
+    "component": "Preview",
+    "type": "changed",
+    "change": "Выравнивание: каталог — единая колонка, карточки full-width равной ширины, последовательно. Широкие демо скроллятся внутри карточки (overflow-x-auto). Адаптив: mobile без горизонтального переполнения, desktop ровно."
+  },
+  {
+    "date": "2026-06-24",
+    "component": "Bar",
+    "type": "fixed",
+    "change": "Цвет заполнения приведён к Figma — bar-filled #b8c6c3 (Bar/On base filled) вместо чёрного."
+  },
+  {
+    "date": "2026-06-24",
+    "component": "Molecules",
+    "type": "fixed",
+    "change": "Сверка с Figma: Profile short=персик(#f7e0dd)/outlined=серый, CardMetric=зелёная карточка+мини-график, Team+бар продуктивности, ProjectPreview-теги жёлтые(#fffd9e). Приведены к общему знаменателю (radius/тени/паддинги-токены)."
+  },
+  {
+    "date": "2026-06-24",
+    "component": "Preview",
+    "type": "changed",
+    "change": "Indents-блок переделан крупнее/аккуратнее (читаемые подписи + бары 24px)."
+  },
+  {
+    "date": "2026-06-24",
+    "component": "Bar",
+    "type": "fixed",
+    "change": "Точная сверка с Figma (1:120): бар переделан со штрихов на ТОЧКИ (radial-gradient dots) — заполнение тёмными точками, пустое бледными."
+  },
+  {
+    "date": "2026-06-24",
+    "component": "SwitchGroup",
+    "type": "fixed",
+    "change": "Сверка с Figma (1:1833): контейнер на super-yellow фоне, активный пункт — белая пилюля; остальные — чёрный текст на жёлтом."
+  },
+  {
+    "date": "2026-06-24",
+    "component": "Avatar",
+    "type": "fixed",
+    "change": "Сверка с Figma (1:1727): вместо инициалов — силуэт (человек; для dog — лапа) на сером круге с кольцом."
+  },
+  {
+    "date": "2026-06-24",
+    "component": "All components",
+    "type": "changed",
+    "change": "Stage States: добавлены состояния hover/focus-visible(кольцо tech-purple)/active/disabled + transitions (160ms) на все интерактивные (Button/Switch/SwitchGroup/Dropdown/Tag/Flag/Input/TextArea/MenuSwitch/CardTop). Тени вынесены в токены --ds-shadow-* (dark-aware)."
+  },
+  {
+    "date": "2026-06-24",
+    "component": "Button",
+    "type": "changed",
+    "change": "Добавлен проп loading (спиннер + aria-busy + блокировка)."
+  },
+  {
+    "date": "2026-06-24",
+    "component": "Input/TextArea",
+    "type": "changed",
+    "change": "Добавлен проп error (обводка tech-red + aria-invalid)."
+  },
+  {
+    "date": "2026-06-23",
+    "component": "Tokens",
+    "type": "added",
+    "change": "Figma-доска colors обновилась: добавлены пастели card-pink #fad5e7, card-lavender #ddd6ef, card-olive #e0e2a4, card-peach #f5dedb (light+dark). Заведены в theme.css, Tailwind и превью (Colors). Grotesk-алиас Akkurat LL Cyrillic добавлен в стек."
+  },
+  {
+    "date": "2026-06-23",
+    "component": "Preview",
+    "type": "changed",
+    "change": "Секция Styles — вертикальная лента (Typography→Colors→Spacing→Radius) во всю ширину; крупные свотчи (96px) и радиус-боксы (96px), чёткие подписи размеров. Премиальнее и лаконичнее."
+  },
+  {
+    "date": "2026-06-23",
+    "component": "App",
+    "type": "removed",
+    "change": "Удалены страницы Docs/LiveApp(Макет)/ReleaseNotes/Screens/Home. Приложение = единственная страница Preview. Данные доков/release-notes сохранены на диске (figma-sync/check-docs)."
+  },
+  {
+    "date": "2026-06-23",
+    "component": "Preview",
+    "type": "changed",
+    "change": "Премиальный вид: тема light/dark (переключатель+анти-FOUC), sticky-шапка с поиском, sticky section-nav со scroll-spy, карточки с copy-code, все 32 компонента с рабочим интерактивом (toast/состояния), адаптив, a11y. Tailwind на токенах --ds-*."
+  },
+  {
+    "date": "2026-06-23",
+    "component": "Tokens",
+    "type": "changed",
+    "change": "Stage Styles: полное покрытие токенов Figma↔theme.css↔Tailwind (54/54, без битых ссылок). В Tailwind добавлены fontWeight (regular/medium) и негативные отступы; аудит — audit/tokens.coverage.md."
+  },
+  {
+    "date": "2026-06-23",
+    "component": "Preview",
+    "type": "added",
+    "change": "В каталог /preview (секция Styles) добавлена шкала отступов (indents): XXXS 2 … XXL 90 px — бары из токенов. Foundations: секция использования Tailwind-токенов."
+  },
+  {
+    "date": "2026-06-23",
+    "component": "Tailwind",
+    "type": "added",
+    "change": "Подключён Tailwind v3 (config ESM, theme.extend на токены --ds-*, preflight off) — основа под маппинг токенов на этапе Styles."
+  },
+  {
+    "date": "2026-06-23",
+    "component": "Preview",
+    "type": "added",
+    "change": "Страница /preview («Превью») — живой каталог всех компонентов по уровням (Styles/Atoms/Molecules/Organisms), хром на Tailwind."
+  },
+  {
+    "date": "2026-06-23",
+    "component": "Docs",
+    "type": "changed",
+    "change": "«Живые варианты» в доках сделаны интерактивными (useState): тогглы (Switch/Flag/MenuSwitch/Task/Notify/табы TopMenu), пикеры/слайдеры/счётчики (Status/Icon/Avatar/AvatarGroup/Bar/Graph/Profile/Button/Tag/ListItem/ErrorBanner)."
+  },
+  {
+    "date": "2026-06-23",
+    "component": "CardTop",
+    "type": "changed",
+    "change": "Добавлен колбэк onAction(label) — пилюли-действия кликабельны (для живого демо)."
+  },
+  {
+    "date": "2026-06-23",
+    "component": "Dropdown",
+    "type": "changed",
+    "change": "Кастомное меню вместо нативного select — раскрывается вниз под контролом, закрытие по Esc/клику вне, aria listbox, поворот шеврона."
+  },
+  {
+    "date": "2026-06-23",
+    "component": "LiveApp",
+    "type": "added",
+    "change": "Живой адаптивный макет /live (Макет) — responsive-дашборд целиком из компонентов ДС (auto-fit сетки, схлопывание колонок, мобильная раскладка)."
+  },
+  {
+    "date": "2026-06-23",
+    "component": "Layout",
+    "type": "fixed",
+    "change": "Глобальная шапка навигации адаптивна (flex-wrap + media ≤640px) — устранён горизонтальный оверфлоу на мобайле."
+  },
+  {
+    "date": "2026-06-23",
+    "component": "Display typography",
+    "type": "changed",
+    "change": "Stage Molecules/Organisms: дисплейные значения и заголовки переведены на сериф (Instrument Serif) — CampaignPreview, CardMetrica, Attempt, TopMenu-логотип, CardTop-имя, заголовки экранов."
+  },
+  {
+    "date": "2026-06-23",
+    "component": "FlowNode",
+    "type": "changed",
+    "change": "Stage Molecules: фон ноды — oncard-red (#f7e0dd)."
+  },
+  {
+    "date": "2026-06-23",
+    "component": "Notify",
+    "type": "changed",
+    "change": "Stage Molecules: success-стиль — card-green фон + tech-green текст + pixel-шрифт."
+  },
+  {
+    "date": "2026-06-23",
+    "component": "CardTop",
+    "type": "changed",
+    "change": "Stage Organisms: имя→сериф, пилюли-действия→brown (#d1a63b) с белым текстом."
+  },
+  {
+    "date": "2026-06-23",
+    "component": "Dropdown",
+    "type": "changed",
+    "change": "Stage Atoms: вариант onColor — коричнево-золотой (Controls/On Color/Brown #d1a63b) вместо чёрного, по Figma."
+  },
+  {
+    "date": "2026-06-23",
+    "component": "Button",
+    "type": "changed",
+    "change": "Stage Atoms: big CTA — дисплейный сериф (Instrument Serif); node — фон oncard-red (#f7e0dd), по Figma."
+  },
+  {
+    "date": "2026-06-23",
+    "component": "ErrorBanner",
+    "type": "changed",
+    "change": "Stage Atoms: фон плашки — oncard-red (#f7e0dd) вместо белого, по Figma."
+  },
+  {
+    "date": "2026-06-23",
+    "component": "Tokens",
+    "type": "changed",
+    "change": "Stage Styles: theme.css приведён к remote-библиотеке — fonts (Akkurat/Instrument Serif/Pixform вместо Inter), bg-base #f2f2f2, text-secondary #979797, tech-green #00867b, rounds (Over=999/L=12/M=8), indents XXL=90; добавлены палитра карточек, superYellow, lines, brown, h1=84, base-width=830."
+  },
+  {
+    "date": "2026-06-23",
+    "component": "Foundations",
+    "type": "added",
+    "change": "Страница Foundations·Tokens в доках (/docs/foundations) + снимок токенов .figma-tokens.json для синка Styles."
+  },
+  {
+    "date": "2026-06-23",
+    "component": "Screen: All teams",
+    "type": "added",
+    "change": "Экран «All teams» собран из компонентов ДС (Header + CardMetric + Team). Источник: Figma design → All_teams (1:4010)."
+  },
+  {
+    "date": "2026-06-23",
+    "component": "Screen: Hiring campaign",
+    "type": "added",
+    "change": "Экран «Hiring campaign» собран из компонентов ДС (Header + CardTop + Task + CampaignPreview + CardMetrica + Profile). Источник: Figma design → Hiring_campaign (1:4144)."
+  },
+  {
+    "date": "2026-06-23",
+    "component": "Screen: Candidate",
+    "type": "added",
+    "change": "Экран «Candidate» собран из компонентов ДС (Header + CardTop + Tag + ExperiencePreview + Profile). Источник: Figma design → Candidate (1:3874)."
+  },
+  {
+    "date": "2026-06-23",
+    "component": "Screen: Negotiate",
+    "type": "added",
+    "change": "Экран «Negotiate» собран из компонентов ДС (Header + CardTop + Attempt + Input). Источник: Figma design → Negotiate (1:3926)."
+  },
+  {
+    "date": "2026-06-23",
+    "component": "Screen: Success",
+    "type": "added",
+    "change": "Экран «Success» собран из компонентов ДС (Header + финальный экран). Источник: Figma design → Success (1:4177)."
+  },
+  {
+    "date": "2026-06-23",
+    "component": "SecondRow",
+    "type": "added",
+    "change": "Добавлен компонент SecondRow — Вторичный тулбар (back/крошки/действия). Источник: Figma ds-organisms → second-row (1:1985)."
+  },
+  {
+    "date": "2026-06-23",
+    "component": "TopMenu",
+    "type": "added",
+    "change": "Добавлен компонент TopMenu — Верхнее меню. Источник: Figma ds-organisms → topmenu (1:2001)."
+  },
+  {
+    "date": "2026-06-23",
+    "component": "Header",
+    "type": "added",
+    "change": "Добавлен компонент Header — Шапка страницы (top+second+пайплайн). Источник: Figma ds-organisms → header (1:2032)."
+  },
+  {
+    "date": "2026-06-23",
+    "component": "Task",
+    "type": "added",
+    "change": "Добавлен компонент Task — Карточка задачи. Источник: Figma ds-organisms → task (1:3731)."
+  },
+  {
+    "date": "2026-06-23",
+    "component": "CardTop",
+    "type": "added",
+    "change": "Добавлен компонент CardTop — Шапка-карточка профиля. Источник: Figma ds-organisms → card top (1:3744)."
+  },
+  {
+    "date": "2026-06-23",
+    "component": "MenuSwitch",
+    "type": "added",
+    "change": "Добавлен компонент MenuSwitch — Пункт-переключатель меню. Источник: Figma ds-organisms → menu_switch (1:3782)."
+  },
+  {
+    "date": "2026-06-23",
+    "component": "Profile",
+    "type": "added",
+    "change": "Добавлен компонент Profile — Профиль (long/short/short-outlined). Источник: Figma ds-molecules → profile (1:1853)."
+  },
+  {
+    "date": "2026-06-23",
+    "component": "FlowNode",
+    "type": "added",
+    "change": "Добавлен компонент FlowNode — Нода автоматизации. Источник: Figma ds-molecules → node (1:1872)."
+  },
+  {
+    "date": "2026-06-23",
+    "component": "CampaignPreview",
+    "type": "added",
+    "change": "Добавлен компонент CampaignPreview — Карточка кампании с метриками. Источник: Figma ds-molecules → campaign_preview (1:1884)."
+  },
+  {
+    "date": "2026-06-23",
+    "component": "ProjectPreview",
+    "type": "added",
+    "change": "Добавлен компонент ProjectPreview — Карточка проекта с тегами. Источник: Figma ds-molecules → project_preview (1:1904)."
+  },
+  {
+    "date": "2026-06-23",
+    "component": "ExperiencePreview",
+    "type": "added",
+    "change": "Добавлен компонент ExperiencePreview — Блок опыта работы. Источник: Figma ds-molecules → experience_preview (1:1912)."
+  },
+  {
+    "date": "2026-06-23",
+    "component": "Team",
+    "type": "added",
+    "change": "Добавлен компонент Team — Карточка команды. Источник: Figma ds-molecules → team (1:1920)."
+  },
+  {
+    "date": "2026-06-23",
+    "component": "CardMetric",
+    "type": "added",
+    "change": "Добавлен компонент CardMetric — Карточка-метрика (заголовок + итог). Источник: Figma ds-molecules → card metric (1:1936)."
+  },
+  {
+    "date": "2026-06-23",
+    "component": "CardMetrica",
+    "type": "added",
+    "change": "Добавлен компонент CardMetrica — Карточка с крупным числом. Источник: Figma ds-molecules → Cards metrica (1:1942)."
+  },
+  {
+    "date": "2026-06-23",
+    "component": "Attempt",
+    "type": "added",
+    "change": "Добавлен компонент Attempt — Сравнение офферов (имя исправлено: Attempt). Источник: Figma ds-molecules → attemt (1:1948)."
+  },
+  {
+    "date": "2026-06-23",
+    "component": "Notify",
+    "type": "added",
+    "change": "Добавлен компонент Notify — Контейнер уведомления. Источник: Figma ds-molecules → notify (1:1980)."
+  },
+  {
+    "date": "2026-06-23",
+    "component": "Bar",
+    "type": "added",
+    "change": "Добавлен компонент Bar — Дашевый прогресс-бар (value, размеры default/big). Источник: Figma ds-atoms → bar (1:120)."
+  },
+  {
+    "date": "2026-06-23",
+    "component": "Avatar",
+    "type": "added",
+    "change": "Добавлен компонент Avatar — Круглый аватар (картинка/инициалы). Источник: Figma ds-atoms → avatar (1:1727)."
+  },
+  {
+    "date": "2026-06-23",
+    "component": "Status",
+    "type": "added",
+    "change": "Добавлен компонент Status — Индикатор состояния (точка + подпись). Источник: Figma ds-atoms → status (1:1734)."
+  },
+  {
+    "date": "2026-06-23",
+    "component": "Icon",
+    "type": "added",
+    "change": "Добавлен компонент Icon — Набор значков (play/user/more/arrow-down/close). Источник: Figma ds-atoms → icons (1:1747)."
+  },
+  {
+    "date": "2026-06-23",
+    "component": "Flag",
+    "type": "added",
+    "change": "Добавлен компонент Flag — Закладка/флажок (on/off). Источник: Figma ds-atoms → flag (1:1767)."
+  },
+  {
+    "date": "2026-06-23",
+    "component": "Tag",
+    "type": "added",
+    "change": "Добавлен компонент Tag — Чип-метка (control/static). Источник: Figma ds-atoms → tag (1:1772)."
+  },
+  {
+    "date": "2026-06-23",
+    "component": "ErrorBanner",
+    "type": "added",
+    "change": "Добавлен компонент ErrorBanner — Строка ошибки (role=alert). Источник: Figma ds-atoms → error (1:1778)."
+  },
+  {
+    "date": "2026-06-23",
+    "component": "AvatarGroup",
+    "type": "added",
+    "change": "Добавлен компонент AvatarGroup — Стопка аватаров (+N). Источник: Figma ds-atoms → avatars (1:1782)."
+  },
+  {
+    "date": "2026-06-23",
+    "component": "ListItem",
+    "type": "added",
+    "change": "Добавлен компонент ListItem — Строка списка (заголовок + мета + действие). Источник: Figma ds-atoms → list (1:1787)."
+  },
+  {
+    "date": "2026-06-23",
+    "component": "TextArea",
+    "type": "added",
+    "change": "Добавлен компонент TextArea — Многострочное поле ввода. Источник: Figma ds-atoms → text_area (1:1794)."
+  },
+  {
+    "date": "2026-06-23",
+    "component": "Dropdown",
+    "type": "added",
+    "change": "Добавлен компонент Dropdown — Выпадающий список (default/On color). Источник: Figma ds-atoms → dropdown (1:1804)."
+  },
+  {
+    "date": "2026-06-23",
+    "component": "Graph",
+    "type": "added",
+    "change": "Добавлен компонент Graph — Блочный график (beta). Источник: Figma ds-atoms → graph (1:1829)."
+  },
+  {
+    "date": "2026-06-23",
+    "component": "SwitchGroup",
+    "type": "added",
+    "change": "Добавлен компонент SwitchGroup — Сегментный переключатель. Источник: Figma ds-atoms → switch group (1:1833)."
+  },
+  {
+    "date": "2026-06-23",
+    "component": "Button",
+    "type": "added",
+    "change": "Добавлен компонент Button (варианты secondary/onColor/cta/node, размеры small/big). Источник: Figma ds-atoms → btn (1:1840)."
+  },
+  {
+    "date": "2026-06-23",
+    "component": "Switch",
+    "type": "added",
+    "change": "Добавлен компонент Switch (состояния on/off, размеры small/big, подпись). Источник: Figma ds-atoms → switch (1:1758)."
+  },
+  {
+    "date": "2026-06-23",
+    "component": "Input",
+    "type": "added",
+    "change": "Добавлен компонент Input (uppercase-лейбл + заполненное поле). Источник: Figma ds-atoms → input (1:1799)."
+  },
+  {
+    "date": "2026-06-23",
+    "component": "Tokens",
+    "type": "added",
+    "change": "Заведены design-токены (цвета, типографика Inter, отступы, радиусы) из Figma styles (1:4405) → src/styles/theme.css."
+  }
+]

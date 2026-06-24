@@ -1,0 +1,36 @@
+/* Figma experience_preview Default (1:1913): VERTICAL gap 30px,
+   padding 14px по вертикали, верхняя линия #eaeaea. */
+.ds-exp {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-indent-xl);
+  font-family: var(--ds-font-family);
+  border-top: 1px solid var(--ds-color-lines);
+  padding: var(--ds-indent-s) 0;
+  min-width: 420px;
+}
+
+/* Figma: период — Pixform 10px UPPER, ls 20% (node 1:1914) */
+.ds-exp__period {
+  font-family: var(--ds-font-family-pixel);
+  font-size: var(--ds-font-size-text-gr);
+  letter-spacing: var(--ds-letter-spacing-caps);
+  text-transform: uppercase;
+  color: var(--ds-color-text-primary);
+}
+
+/* role + sub: gap 14px (Frame 1711) */
+.ds-exp__main { display: flex; flex-direction: column; gap: var(--ds-indent-s); }
+/* Figma: должность — Akkurat Regular 20px, ls -2% (node 1:1916) */
+.ds-exp__role {
+  font-size: var(--ds-font-size-h3);
+  letter-spacing: -0.02em;
+  color: var(--ds-color-text-primary);
+}
+
+/* company + desc: gap 8px (Frame 1726) */
+.ds-exp__sub { display: flex; flex-direction: column; gap: var(--ds-indent-xs); }
+/* Figma: компания — Akkurat 11px, чёрный (node 1:1918) */
+.ds-exp__company { font-size: var(--ds-font-size-text-gr); color: var(--ds-color-text-primary); }
+/* Figma: описание — Akkurat 11px, чёрный (node 1:1919) */
+.ds-exp__desc { margin: 0; font-size: var(--ds-font-size-text-gr); line-height: 1.4; color: var(--ds-color-text-primary); }

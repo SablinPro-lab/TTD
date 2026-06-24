@@ -1,0 +1,26 @@
+import { Team } from './Team'
+
+# Team
+
+**Назначение.** Карточка команды: название, метрики, хайлайт недели, аватары. Композирует AvatarGroup.
+Источник правды: Figma → ds-molecules → `team` (node `1:1920`). **Статус:** stable.
+
+| prop           | значения          | по умолч. |
+| -------------- | ----------------- | --------- |
+| `name`         | `string`          | —         |
+| `peopleCount`  | `number`          | —         |
+| `productivity` | `string`          | —         |
+| `highlight`    | `string`          | —         |
+| `members`      | `{name?, src?}[]` | `[]`      |
+| `extra`        | `number` (+N)     | —         |
+
+## Живой вариант
+
+<Team
+  name="Engineering Team"
+  peopleCount={24}
+  productivity="89%"
+  highlight="Petya was drinking too much tea this week"
+  members={[{ name: 'Katya' }, { name: 'Dog' }, { name: 'Petya' }]}
+  extra={21}
+/>

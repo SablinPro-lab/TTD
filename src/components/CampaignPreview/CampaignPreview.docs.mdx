@@ -1,0 +1,29 @@
+import { CampaignPreview } from './CampaignPreview'
+import { Button } from '../Button'
+
+# CampaignPreview
+
+**Назначение.** Карточка кампании: заголовок + статус + ряд крупных метрик. Композирует Status, Button.
+Источник правды: Figma → ds-molecules → `campaign_preview` (node `1:1884`). **Статус:** stable.
+
+| prop      | значения                  | по умолч. |
+| --------- | ------------------------- | --------- |
+| `title`   | `string`                  | —         |
+| `status`  | `{variant, label}`        | —         |
+| `metrics` | `{value, label}[]`        | —         |
+| `action`  | `ReactNode`               | —         |
+
+## Живой вариант
+
+<CampaignPreview
+  title="Senior DevOps"
+  status={{ variant: 'green', label: 'On track' }}
+  action={<Button variant="secondary">More info</Button>}
+  metrics={[
+    { value: 142, label: 'Applied' },
+    { value: 89, label: 'Rejected' },
+    { value: 28, label: 'In progress' },
+    { value: 31, label: 'Final round' },
+    { value: 4, label: 'Offers sent' },
+  ]}
+/>

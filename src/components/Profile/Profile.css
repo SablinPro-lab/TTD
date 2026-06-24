@@ -1,0 +1,57 @@
+.ds-profile {
+  display: flex;
+  align-items: center;
+  gap: var(--ds-indent-s);
+  font-family: var(--ds-font-family);
+  border-radius: var(--ds-radius-s); /* Figma rounds/S = 4px */
+}
+
+/* Figma: имя+роль — вертикальный блок, gap 8px (node 1:1857) */
+.ds-profile__text { display: flex; flex-direction: column; gap: var(--ds-indent-xs); }
+/* Figma: имя — Akkurat Regular 20px, letter-spacing -2% (node 1:1858) */
+.ds-profile__name {
+  font-size: var(--ds-font-size-h3);
+  font-weight: var(--ds-font-weight-regular);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  color: var(--ds-color-text-primary);
+}
+/* Figma: роль — Pixform 10px UPPER, ls 20% (node 1:1859); не 8px caps Akkurat */
+.ds-profile__role {
+  font-family: var(--ds-font-family-pixel);
+  font-size: var(--ds-font-size-text-gr);
+  letter-spacing: var(--ds-letter-spacing-caps);
+  text-transform: uppercase;
+  color: var(--ds-color-text-secondary);
+}
+
+.ds-profile__aside {
+  display: flex;
+  align-items: center;
+  gap: var(--ds-indent-m);
+  margin-left: auto;
+  flex: 1;
+  justify-content: flex-end;
+}
+/* long: точечный бар тянется до правого края (как в Figma) */
+.ds-profile--long .ds-profile__aside .ds-bar { flex: 1; min-width: 0; }
+
+/* long: padding 14px по вертикали, без горизонтали; нижняя линия #eaeaea (node 1:1854) */
+.ds-profile--long {
+  padding: var(--ds-indent-s) 0;
+  border-bottom: 1px solid var(--ds-color-control-secondary);
+  min-width: 460px;
+}
+
+/* short / short-outlined: padding 14px со всех сторон, gap 14px, radius 4px (node 1:1862/1:1867) */
+.ds-profile--short {
+  padding: var(--ds-indent-s);
+  background: var(--ds-color-oncard-red); /* персиковый #f7e0dd */
+  display: inline-flex;
+}
+
+.ds-profile--short-outlined {
+  padding: var(--ds-indent-s);
+  background: var(--ds-color-control-secondary); /* #eaeaea */
+  display: inline-flex;
+}

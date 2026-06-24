@@ -1,0 +1,26 @@
+import { Header } from './Header'
+import { Button } from '../Button'
+
+# Header
+
+**Назначение.** Шапка страницы: верхнее меню + вторичный тулбар + ряд этапов пайплайна.
+Композирует TopMenu, SecondRow. Источник правды: Figma → ds-organisms → `header` (node `1:2032`).
+**Статус:** stable.
+
+| prop          | значения              | по умолч. |
+| ------------- | --------------------- | --------- |
+| `tabs`        | `{label, value}[]`    | —         |
+| `breadcrumbs` | `string[]`            | —         |
+| `stages`      | `string[]`            | `[]`      |
+| `action` / `userMenu` | `ReactNode`   | —         |
+
+## Живой вариант
+
+<Header
+  action={<Button variant="cta">Generate report</Button>}
+  tabs={[{ label: 'All teams', value: 'teams' }, { label: 'All templates', value: 'tpl' }]}
+  value="teams"
+  userMenu="Profile · Log out"
+  breadcrumbs={['Home', 'Something', 'Something']}
+  stages={['Applied', 'Interviewed', 'Onboarding', 'Half-term', 'Common', 'Leads team', 'Mentore', 'C-level', 'Fired']}
+/>

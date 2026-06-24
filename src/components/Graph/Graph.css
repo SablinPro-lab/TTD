@@ -1,0 +1,15 @@
+/* Graph — блочный график (Figma graph 1:1829).
+   HORIZONTAL, выровнен по низу (counterAxis MAX), gap 2px (indent-xxxs),
+   столбцы r=4 (radius-s), цвет #979797 (text-secondary, НЕ чёрный). */
+.ds-graph {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: var(--ds-indent-xxxs);
+}
+
+.ds-graph__bar {
+  width: 70px; /* Figma 70.5px */
+  background: var(--ds-color-text-secondary);
+  border-radius: var(--ds-radius-s);
+  min-height: 8px;
+}

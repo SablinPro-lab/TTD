@@ -1,0 +1,160 @@
+.ds-card-top {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--ds-indent-xl); /* 30 */
+  padding: var(--ds-indent-xl); /* 30 */
+  font-family: var(--ds-font-family);
+  border-radius: var(--ds-radius-l); /* 12 */
+  /* Figma фон = image-fill: золотисто-жёлтая текстура #ffb700 с мягкими пятнами.
+     Image не бандлим → аппроксимация: золотая база + светлые/янтарные радиальные круги. */
+  background:
+    radial-gradient(circle at 12% 22%, rgba(255, 255, 255, 0.55), transparent 22%),
+    radial-gradient(circle at 72% 14%, rgba(255, 238, 160, 0.70), transparent 24%),
+    radial-gradient(circle at 90% 52%, rgba(255, 255, 255, 0.40), transparent 26%),
+    radial-gradient(circle at 28% 74%, rgba(255, 226, 96, 0.55), transparent 28%),
+    radial-gradient(circle at 58% 96%, rgba(209, 166, 59, 0.30), transparent 30%),
+    radial-gradient(circle at 46% 40%, rgba(255, 209, 64, 0.45), transparent 34%),
+    #ffb700;
+  box-shadow: var(--ds-shadow-2);
+  overflow: hidden;
+  /* Figma 830×480 — высокая воздушная карточка; SPACE_BETWEEN распределяет углы/имя/теги */
+  min-width: 600px;
+  min-height: 480px;
+}
+
+/* углы: TEAMS / ACCESS — Pixform 10px UPPER, ls 20%, brown #d1a63b */
+.ds-card-top__corners {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--ds-font-family-pixel);
+  font-size: var(--ds-font-size-text-gr); /* 11px ≈ 10px (token gap) */
+  letter-spacing: var(--ds-letter-spacing-caps);
+  text-transform: uppercase;
+  color: var(--ds-color-text-brown); /* #d1a63b */
+}
+
+/* hero: имя + роль + действия, по центру (Figma Frame 1698 align CENTER, gap 30) */
+.ds-card-top__hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--ds-indent-xl); /* 30 между блоком имени и кнопками */
+}
+
+/* Figma: Instrument Serif 84px, lh 90%, ls -1%, чёрный, центр */
+.ds-card-top__name {
+  font-family: var(--ds-font-family-display);
+  font-size: var(--ds-font-size-h1); /* 84px */
+  line-height: 0.9;
+  letter-spacing: -0.01em;
+  color: var(--ds-color-text-primary);
+  text-align: center;
+}
+
+/* Figma: Pixform 30px UPPER, ls -3%, gold #d1a63b, центр */
+.ds-card-top__role {
+  font-family: var(--ds-font-family-pixel);
+  font-size: var(--ds-font-size-description); /* 30px */
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  color: var(--ds-color-text-brown);
+  text-align: center;
+  margin-top: calc(-1 * var(--ds-indent-m)); /* имя+роль внутри одного блока (Figma gap 30 — внешний) */
+}
+
+/* пилюли-действия: белые, radius 999, Pixform 10px UPPER, чёрный, gap 2 */
+.ds-card-top__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--ds-indent-xxxs); /* 2 */
+}
+
+.ds-card-top__pill {
+  font-family: var(--ds-font-family-pixel);
+  font-size: var(--ds-font-size-text-gr); /* 11px ≈ 10px (token gap) */
+  letter-spacing: var(--ds-letter-spacing-caps);
+  text-transform: uppercase;
+  background: var(--ds-color-control-on-color); /* белый */
+  color: var(--ds-color-text-primary);
+  border: none;
+  border-radius: var(--ds-radius-over); /* 999 */
+  padding: var(--ds-indent-xs) var(--ds-indent-s); /* 8 / 14 */
+  cursor: pointer;
+  transition: box-shadow var(--ds-transition), transform var(--ds-transition), opacity var(--ds-transition);
+}
+.ds-card-top__pill:hover { box-shadow: var(--ds-shadow-1); transform: translateY(-1px); }
+.ds-card-top__pill:active { transform: translateY(0); box-shadow: none; }
+.ds-card-top__pill:focus-visible { outline: var(--ds-focus-ring); outline-offset: 2px; }
+
+/* нижние ряды тегов: лево / право — SPACE_BETWEEN (Figma Frame 1699) */
+.ds-card-top__tags {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--ds-indent-xl);
+  flex-wrap: wrap;
+}
+
+.ds-card-top__tags-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: var(--ds-indent-xxxs); /* 2 */
+}
+.ds-card-top__tags-group--right { justify-content: flex-end; }
+
+.ds-card-top__tag-wrap { display: flex; flex-direction: column; gap: var(--ds-indent-xs); }
+
+/* gold-микроподпись над тегом (Figma dropdown «head line»): Akkurat 8px UPPER ls20% brown */
+.ds-card-top__tag-headline {
+  font-size: var(--ds-font-size-caps); /* 8px */
+  letter-spacing: var(--ds-letter-spacing-caps);
+  text-transform: uppercase;
+  color: var(--ds-color-text-brown);
+}
+
+/* тег-пилюля: brown #d1a63b, radius 4, Pixform 10px UPPER белый + иконка */
+.ds-card-top__tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--ds-indent-xs);
+  background: var(--ds-color-control-brown); /* #d1a63b */
+  color: var(--ds-color-text-on-color); /* белый */
+  border: none;
+  border-radius: var(--ds-radius-s); /* 4 */
+  padding: var(--ds-indent-xs) var(--ds-indent-s); /* 8 / 14 */
+  cursor: pointer;
+  transition: opacity var(--ds-transition), transform var(--ds-transition);
+}
+.ds-card-top__tag:hover { opacity: 0.92; }
+.ds-card-top__tag:active { transform: translateY(1px); }
+.ds-card-top__tag:focus-visible { outline: var(--ds-focus-ring); outline-offset: 2px; }
+
+.ds-card-top__tag-label {
+  font-family: var(--ds-font-family-pixel);
+  font-size: var(--ds-font-size-text-gr); /* 11px ≈ 10px (token gap) */
+  letter-spacing: var(--ds-letter-spacing-caps);
+  text-transform: uppercase;
+}
+
+.ds-card-top__tag-icon { color: var(--ds-color-text-on-color); flex-shrink: 0; }
+
+/* «Add» — круглая brown-пилюля, Pixform 10px UPPER белый */
+.ds-card-top__add {
+  font-family: var(--ds-font-family-pixel);
+  font-size: var(--ds-font-size-text-gr);
+  letter-spacing: var(--ds-letter-spacing-caps);
+  text-transform: uppercase;
+  background: var(--ds-color-control-brown);
+  color: var(--ds-color-text-on-color);
+  border: none;
+  border-radius: var(--ds-radius-over); /* 999 */
+  padding: var(--ds-indent-xs) var(--ds-indent-s);
+  cursor: pointer;
+  transition: opacity var(--ds-transition), transform var(--ds-transition);
+}
+.ds-card-top__add:hover { opacity: 0.92; }
+.ds-card-top__add:active { transform: translateY(1px); }
+.ds-card-top__add:focus-visible { outline: var(--ds-focus-ring); outline-offset: 2px; }

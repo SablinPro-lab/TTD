@@ -1,0 +1,30 @@
+/* Avatar — круглая картинка (Figma: Ellipse 30px, image-fill, БЕЗ кольца/обводки).
+   Силуэт на сером фоне — graceful-fallback только когда src отсутствует. */
+.ds-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--ds-radius-over);
+  overflow: hidden;
+  background: var(--ds-color-control-secondary);
+  color: var(--ds-color-text-secondary);
+  flex: none;
+}
+
+/* когда есть картинка — фон не нужен (Figma: чистый image-fill без обводки) */
+.ds-avatar:has(.ds-avatar__img) {
+  background: none;
+}
+
+.ds-avatar__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ds-avatar__glyph {
+  width: 64%;
+  height: 64%;
+  fill: currentColor;
+  opacity: 0.55;
+}

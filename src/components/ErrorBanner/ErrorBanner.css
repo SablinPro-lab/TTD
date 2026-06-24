@@ -1,0 +1,21 @@
+/* ErrorBanner — строка ошибки (Figma error 1:1778).
+   bg #f7e0dd (oncard-red), r=4 (radius-s), padding 8px (indent-xs), gap 14px (indent-s),
+   align top (flex-start), текст Akkurat Regular 8px (caps), letter-spacing 20%, UPPER, #cc0000 (tech-red).
+   Тени в Figma НЕТ. */
+.ds-error {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: var(--ds-indent-s);
+  background: var(--ds-color-oncard-red);
+  border-radius: var(--ds-radius-s);
+  padding: var(--ds-indent-xs);
+  font-family: var(--ds-font-family);
+  font-size: var(--ds-font-size-caps);
+  font-weight: var(--ds-font-weight-regular);
+  letter-spacing: var(--ds-letter-spacing-pixel); /* Figma 20% — нет точного токена (caps=0.08em); tokenGap */
+  text-transform: uppercase;
+  color: var(--ds-color-tech-red);
+}
+
+.ds-error__label { font-weight: var(--ds-font-weight-regular); }
+.ds-error__msg { font-weight: var(--ds-font-weight-regular); }

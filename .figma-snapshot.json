@@ -1,0 +1,360 @@
+{
+  "fileKey": "ct9b7yfSwULxIG3mIPlSg8",
+  "fileName": "Тестовая дизайн-система",
+  "updatedAt": "2026-06-23",
+  "components": {
+    "1:1840": {
+      "nodeId": "1:1840",
+      "figmaName": "button",
+      "reactComponent": "Button",
+      "docPath": "src/components/Button/Button.docs.mdx",
+      "description": "Базовая кнопка действия. Варианты: secondary, onColor, cta, node. Размеры: small, big. React: &lt;Button&gt;.",
+      "variants": [
+        "CTA?=no, type=secondary",
+        "CTA?=no, type=On color",
+        "CTA?=yes, type=small",
+        "CTA?=yes, type=big",
+        "CTA?=no, type=node"
+      ]
+    },
+    "1:1758": {
+      "nodeId": "1:1758",
+      "figmaName": "switch",
+      "reactComponent": "Switch",
+      "docPath": "src/components/Switch/Switch.docs.mdx",
+      "description": "Переключатель-чип с подписью (toggle, role=switch). Состояния on/off, размеры small/big. React: &lt;Switch&gt;.",
+      "variants": [
+        "switch=on, size=big",
+        "switch=off, size=big",
+        "switch=off, size=small",
+        "switch=on, size=small"
+      ]
+    },
+    "1:1799": {
+      "nodeId": "1:1799",
+      "figmaName": "input",
+      "reactComponent": "Input",
+      "docPath": "src/components/Input/Input.docs.mdx",
+      "description": "Текстовое поле с uppercase-заголовком над ним. React: &lt;Input&gt;.",
+      "variants": [
+        "Property 1=Default"
+      ]
+    },
+    "1:120": {
+      "nodeId": "1:120",
+      "figmaName": "bar",
+      "reactComponent": "Bar",
+      "docPath": "src/components/Bar/Bar.docs.mdx",
+      "description": "Дашевый индикатор заполнения (прогресс). value 0–100, размеры default/big. React: &lt;Bar&gt;.",
+      "variants": [
+        "Property 1=Default, length=75%",
+        "Property 1=Default, length=20%",
+        "Property 1=big, length=75%",
+        "Property 1=big, length=20%"
+      ]
+    },
+    "1:1727": {
+      "nodeId": "1:1727",
+      "figmaName": "avatar",
+      "reactComponent": "Avatar",
+      "docPath": "src/components/Avatar/Avatar.docs.mdx",
+      "description": "Круглый аватар: картинка или инициалы на сером фоне. React: &lt;Avatar&gt;.",
+      "variants": [
+        "Property 1=katya",
+        "Property 1=dog",
+        "Property 1=petya"
+      ]
+    },
+    "1:1734": {
+      "nodeId": "1:1734",
+      "figmaName": "status",
+      "reactComponent": "Status",
+      "docPath": "src/components/Status/Status.docs.mdx",
+      "description": "Индикатор состояния: цветная точка + uppercase-подпись (purple/green/red/stopped). React: &lt;Status&gt;.",
+      "variants": [
+        "Property 1=purple",
+        "Property 1=green",
+        "Property 1=red",
+        "Property 1=stopped"
+      ]
+    },
+    "1:1747": {
+      "nodeId": "1:1747",
+      "figmaName": "icons",
+      "reactComponent": "Icon",
+      "docPath": "src/components/Icon/Icon.docs.mdx",
+      "description": "Однотонные значки: play, user, more, arrow-down, close. React: &lt;Icon name&gt;.",
+      "variants": [
+        "Property 1=play",
+        "Property 1=user",
+        "Property 1=more",
+        "Property 1=arrow-down",
+        "Property 1=close"
+      ]
+    },
+    "1:1767": {
+      "nodeId": "1:1767",
+      "figmaName": "flag",
+      "reactComponent": "Flag",
+      "docPath": "src/components/Flag/Flag.docs.mdx",
+      "description": "Закладка/флажок: контурная (off) или залитая (on). React: &lt;Flag&gt;.",
+      "variants": [
+        "Property 1=no",
+        "Property 1=yes"
+      ]
+    },
+    "1:1772": {
+      "nodeId": "1:1772",
+      "figmaName": "tag",
+      "reactComponent": "Tag",
+      "docPath": "src/components/Tag/Tag.docs.mdx",
+      "description": "Компактный чип с uppercase-текстом: control (интерактивный) / static. React: &lt;Tag&gt;.",
+      "variants": [
+        "Property 1=control",
+        "Property 1=static"
+      ]
+    },
+    "1:1778": {
+      "nodeId": "1:1778",
+      "figmaName": "error",
+      "reactComponent": "ErrorBanner",
+      "docPath": "src/components/ErrorBanner/ErrorBanner.docs.mdx",
+      "description": "Строка ошибки: красный текст на белой плашке (role=alert). React: &lt;ErrorBanner&gt;.",
+      "variants": [
+        "Property 1=Default"
+      ]
+    },
+    "1:1782": {
+      "nodeId": "1:1782",
+      "figmaName": "avatars",
+      "reactComponent": "AvatarGroup",
+      "docPath": "src/components/AvatarGroup/AvatarGroup.docs.mdx",
+      "description": "Стопка перекрывающихся аватаров со сворачиванием в +N. React: &lt;AvatarGroup&gt;.",
+      "variants": [
+        "Property 1=Default"
+      ]
+    },
+    "1:1787": {
+      "nodeId": "1:1787",
+      "figmaName": "list",
+      "reactComponent": "ListItem",
+      "docPath": "src/components/ListItem/ListItem.docs.mdx",
+      "description": "Строка списка: заголовок + мета-колонки + действие справа. React: &lt;ListItem&gt;.",
+      "variants": [
+        "Property 1=Default"
+      ]
+    },
+    "1:1794": {
+      "nodeId": "1:1794",
+      "figmaName": "text_area",
+      "reactComponent": "TextArea",
+      "docPath": "src/components/TextArea/TextArea.docs.mdx",
+      "description": "Многострочное поле ввода с uppercase-заголовком. React: &lt;TextArea&gt;.",
+      "variants": [
+        "Property 1=Default"
+      ]
+    },
+    "1:1804": {
+      "nodeId": "1:1804",
+      "figmaName": "dropdown",
+      "reactComponent": "Dropdown",
+      "docPath": "src/components/Dropdown/Dropdown.docs.mdx",
+      "description": "Выпадающий список (select) со стилями ДС: default / On color. React: &lt;Dropdown&gt;.",
+      "variants": [
+        "Property 1=On color, filled=on",
+        "Property 1=On color, filled=off",
+        "Property 1=default, filled=on",
+        "Property 1=default, filled=off"
+      ]
+    },
+    "1:1829": {
+      "nodeId": "1:1829",
+      "figmaName": "graph",
+      "reactComponent": "Graph",
+      "docPath": "src/components/Graph/Graph.docs.mdx",
+      "description": "Простой блочный график — скруглённые чёрные столбцы. React: &lt;Graph&gt;.",
+      "variants": [
+        "Property 1=Default"
+      ]
+    },
+    "1:1833": {
+      "nodeId": "1:1833",
+      "figmaName": "switch_group",
+      "reactComponent": "SwitchGroup",
+      "docPath": "src/components/SwitchGroup/SwitchGroup.docs.mdx",
+      "description": "Сегментный переключатель — группа switch на белой плашке. React: &lt;SwitchGroup&gt;.",
+      "variants": [
+        "Property 1=Default"
+      ]
+    },
+    "1:1853": {
+      "nodeId": "1:1853",
+      "figmaName": "profile",
+      "reactComponent": "Profile",
+      "docPath": "src/components/Profile/Profile.docs.mdx",
+      "description": "Строка/карточка профиля: аватар + имя + роль (long/short/short-outlined). React: &lt;Profile&gt;.",
+      "variants": [
+        "Property 1=long",
+        "Property 1=short",
+        "Property 1=short-outlined"
+      ]
+    },
+    "1:1872": {
+      "nodeId": "1:1872",
+      "figmaName": "node",
+      "reactComponent": "FlowNode",
+      "docPath": "src/components/FlowNode/FlowNode.docs.mdx",
+      "description": "Карточка-нода автоматизации: play + заголовок + точки-коннекторы. React: &lt;FlowNode&gt;.",
+      "variants": [
+        "Property 1=Default"
+      ]
+    },
+    "1:1884": {
+      "nodeId": "1:1884",
+      "figmaName": "campaign_preview",
+      "reactComponent": "CampaignPreview",
+      "docPath": "src/components/CampaignPreview/CampaignPreview.docs.mdx",
+      "description": "Карточка кампании: заголовок + статус + ряд крупных метрик. React: &lt;CampaignPreview&gt;.",
+      "variants": [
+        "Property 1=Default"
+      ]
+    },
+    "1:1904": {
+      "nodeId": "1:1904",
+      "figmaName": "project_preview",
+      "reactComponent": "ProjectPreview",
+      "docPath": "src/components/ProjectPreview/ProjectPreview.docs.mdx",
+      "description": "Карточка проекта: описание + теги стека. React: &lt;ProjectPreview&gt;.",
+      "variants": [
+        "Property 1=Default"
+      ]
+    },
+    "1:1912": {
+      "nodeId": "1:1912",
+      "figmaName": "experience_preview",
+      "reactComponent": "ExperiencePreview",
+      "docPath": "src/components/ExperiencePreview/ExperiencePreview.docs.mdx",
+      "description": "Блок опыта: период + должность + компания + описание. React: &lt;ExperiencePreview&gt;.",
+      "variants": [
+        "Property 1=Default"
+      ]
+    },
+    "1:1920": {
+      "nodeId": "1:1920",
+      "figmaName": "team",
+      "reactComponent": "Team",
+      "docPath": "src/components/Team/Team.docs.mdx",
+      "description": "Карточка команды: метрики, хайлайт недели, аватары участников. React: &lt;Team&gt;.",
+      "variants": [
+        "Property 1=Default"
+      ]
+    },
+    "1:1936": {
+      "nodeId": "1:1936",
+      "figmaName": "card_metric",
+      "reactComponent": "CardMetric",
+      "docPath": "src/components/CardMetric/CardMetric.docs.mdx",
+      "description": "Компактная карточка: заголовок + подпись-итог внизу. React: &lt;CardMetric&gt;.",
+      "variants": [
+        "Property 1=Default"
+      ]
+    },
+    "1:1942": {
+      "nodeId": "1:1942",
+      "figmaName": "card_metrica",
+      "reactComponent": "CardMetrica",
+      "docPath": "src/components/CardMetrica/CardMetrica.docs.mdx",
+      "description": "Карточка: заголовок + крупное числовое значение. React: &lt;CardMetrica&gt;.",
+      "variants": [
+        "Property 1=Default"
+      ]
+    },
+    "1:1948": {
+      "nodeId": "1:1948",
+      "figmaName": "attempt",
+      "reactComponent": "Attempt",
+      "docPath": "src/components/Attempt/Attempt.docs.mdx",
+      "description": "Сравнение офферов/попыток переговоров: суммы + перки + статус. React: &lt;Attempt&gt;.",
+      "variants": [
+        "Property 1=Default",
+        "Property 1=Variant2"
+      ]
+    },
+    "1:1980": {
+      "nodeId": "1:1980",
+      "figmaName": "notify",
+      "reactComponent": "Notify",
+      "docPath": "src/components/Notify/Notify.docs.mdx",
+      "description": "Контейнер уведомления — белая плашка с тенью (role=status). React: &lt;Notify&gt;.",
+      "variants": [
+        "Property 1=Default"
+      ]
+    },
+    "1:1985": {
+      "nodeId": "1:1985",
+      "figmaName": "second_row",
+      "reactComponent": "SecondRow",
+      "docPath": "src/components/SecondRow/SecondRow.docs.mdx",
+      "description": "Вторичный тулбар: Back + хлебные крошки + действия справа. React: &lt;SecondRow&gt;.",
+      "variants": [
+        "type=Default",
+        "type=builider"
+      ]
+    },
+    "1:2001": {
+      "nodeId": "1:2001",
+      "figmaName": "topmenu",
+      "reactComponent": "TopMenu",
+      "docPath": "src/components/TopMenu/TopMenu.docs.mdx",
+      "description": "Верхнее меню: логотип + действие + табы + пользовательское меню. React: &lt;TopMenu&gt;.",
+      "variants": [
+        "Property 1=all",
+        "Property 1=templates",
+        "Property 1=off"
+      ]
+    },
+    "1:2032": {
+      "nodeId": "1:2032",
+      "figmaName": "header",
+      "reactComponent": "Header",
+      "docPath": "src/components/Header/Header.docs.mdx",
+      "description": "Шапка страницы: верхнее меню + вторичный тулбар + ряд этапов пайплайна. React: &lt;Header&gt;.",
+      "variants": [
+        "type=default"
+      ]
+    },
+    "1:3731": {
+      "nodeId": "1:3731",
+      "figmaName": "task",
+      "reactComponent": "Task",
+      "docPath": "src/components/Task/Task.docs.mdx",
+      "description": "Карточка задачи: флаг + заголовок + ошибка + действие. React: &lt;Task&gt;.",
+      "variants": [
+        "Property 1=Default",
+        "Property 1=Variant2"
+      ]
+    },
+    "1:3744": {
+      "nodeId": "1:3744",
+      "figmaName": "card_top",
+      "reactComponent": "CardTop",
+      "docPath": "src/components/CardTop/CardTop.docs.mdx",
+      "description": "Шапка-карточка профиля: акцентный блок с именем/ролью + пилюли-действия. React: &lt;CardTop&gt;.",
+      "variants": [
+        "Property 1=Default",
+        "Property 1=Variant2"
+      ]
+    },
+    "1:3782": {
+      "nodeId": "1:3782",
+      "figmaName": "menu_switch",
+      "reactComponent": "MenuSwitch",
+      "docPath": "src/components/MenuSwitch/MenuSwitch.docs.mdx",
+      "description": "Пункт-переключатель меню (активный = белая пилюля). React: &lt;MenuSwitch&gt;.",
+      "variants": [
+        "menu=on",
+        "menu=off"
+      ]
+    }
+  }
+}

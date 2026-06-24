@@ -1,0 +1,38 @@
+import { useState } from 'react'
+import { Icon } from './Icon'
+
+# Icon
+
+**Назначение.** Однотонные значки (наследуют `currentColor`). Источник правды:
+Figma → ds-atoms → `icons` (node `1:1747`). **Статус:** stable.
+
+| prop   | значения                                          | по умолч. |
+| ------ | ------------------------------------------------- | --------- |
+| `name` | `play` · `user` · `more` · `arrow-down` · `close` | —         |
+| `size` | `number`                                          | `24`      |
+
+## Живой вариант (выбери значок и размер)
+
+export const NAMES = ['play', 'user', 'more', 'arrow-down', 'close']
+
+export const Demo = () => {
+  const [name, setName] = useState('play')
+  const [size, setSize] = useState(32)
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+      <div style={{ display: 'flex', gap: 16, alignItems: 'center' }}>
+        {NAMES.map((n) => (
+          <button key={n} onClick={() => setName(n)} title={n}
+            style={{ padding: 8, borderRadius: 4, border: '1px solid var(--ds-color-lines)',
+              background: name === n ? 'var(--ds-color-control-secondary)' : 'transparent', cursor: 'pointer', lineHeight: 0 }}>
+            <Icon name={n} size={20} />
+          </button>
+        ))}
+      </div>
+      <input type="range" min={16} max={64} value={size} onChange={(e) => setSize(Number(e.target.value))} style={{ maxWidth: 240 }} />
+      <div style={{ height: 72, display: 'flex', alignItems: 'center' }}><Icon name={name} size={size} /></div>
+    </div>
+  )
+}
+
+<Demo />

@@ -1,0 +1,45 @@
+/* Figma card_metrica Default (1:1943): белая карточка, radius 12px,
+   padding 30px, gap 90px между заголовком и блоком значения, фикс. ширина 181. */
+.ds-card-metrica {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--ds-indent-xxl);
+  background: var(--ds-color-control-on-color);
+  border-radius: var(--ds-radius-l);
+  padding: var(--ds-indent-xl);
+  font-family: var(--ds-font-family);
+  width: 181px;
+  box-sizing: border-box;
+}
+
+/* Figma: заголовок — Instrument Serif 40px, ls -1% (node 1:1944). 40px-токена нет → override (tokenGap) */
+.ds-card-metrica__title {
+  font-family: var(--ds-font-family-display);
+  font-size: var(--ds-font-size-h2);
+  letter-spacing: -0.01em;
+  line-height: 1;
+  color: var(--ds-color-text-primary);
+  /* Figma: длинный заголовок переносится по символам внутри узкой карточки (Applicati/ons) */
+  align-self: stretch;
+  overflow-wrap: anywhere;
+}
+
+/* value-block: значение над подписью, gap 8px (Frame 1710) */
+.ds-card-metrica__block { display: flex; flex-direction: column; gap: var(--ds-indent-xs); }
+/* Figma: значение — Instrument Serif 84px, lh 90%, ls -1% (node 1:1946) */
+.ds-card-metrica__value {
+  font-family: var(--ds-font-family-display);
+  font-size: var(--ds-font-size-h1);
+  line-height: 0.9;
+  letter-spacing: -0.01em;
+  color: var(--ds-color-text-primary);
+}
+/* Figma: подпись — Pixform 10px UPPER, ls 20% (node 1:1947) */
+.ds-card-metrica__caption {
+  font-family: var(--ds-font-family-pixel);
+  font-size: var(--ds-font-size-text-gr);
+  letter-spacing: var(--ds-letter-spacing-caps);
+  text-transform: uppercase;
+  color: var(--ds-color-text-primary);
+}

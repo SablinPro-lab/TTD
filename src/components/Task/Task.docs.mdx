@@ -1,0 +1,38 @@
+import { useState } from 'react'
+import { Task } from './Task'
+import { Button } from '../Button'
+
+# Task
+
+**Назначение.** Карточка задачи: флаг + заголовок + ошибка + действие. Композирует Flag, ErrorBanner.
+Источник правды: Figma → ds-organisms → `task` (node `1:3731`). **Статус:** stable.
+
+| prop      | значения    | по умолч. |
+| --------- | ----------- | --------- |
+| `title`   | `string`    | —         |
+| `flagged` | `boolean`   | `false`   |
+| `error`   | `string`    | —         |
+| `action`  | `ReactNode` | —         |
+
+## Живой вариант (переключай флаг и ошибку)
+
+export const Demo = () => {
+  const [flagged, setFlagged] = useState(true)
+  const [err, setErr] = useState(true)
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+      <Task
+        title="Define role requirements and job description"
+        flagged={flagged}
+        error={err ? 'Some field need your attention' : undefined}
+        action={<Button variant="secondary">Job description</Button>}
+      />
+      <div style={{ display: 'flex', gap: 12, fontSize: 13 }}>
+        <label><input type="checkbox" checked={flagged} onChange={(e) => setFlagged(e.target.checked)} /> flagged</label>
+        <label><input type="checkbox" checked={err} onChange={(e) => setErr(e.target.checked)} /> error</label>
+      </div>
+    </div>
+  )
+}
+
+<Demo />

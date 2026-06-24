@@ -1,0 +1,101 @@
+.ds-button {
+  font-family: var(--ds-font-family-pixel); /* Figma: Pixform (pixel) для caps-кнопок */
+  font-weight: var(--ds-font-weight-regular);
+  border: none;
+  border-radius: var(--ds-radius-over); /* Figma: cornerRadius 999 (пилюля) */
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--ds-indent-xs); /* Figma itemSpacing 10 ≈ XS(8) */
+  text-align: center;
+  transition:
+    background var(--ds-transition),
+    color var(--ds-transition),
+    box-shadow var(--ds-transition),
+    transform var(--ds-transition),
+    opacity var(--ds-transition);
+}
+
+.ds-button:focus-visible { outline: var(--ds-focus-ring); outline-offset: 2px; }
+.ds-button:active:not(:disabled) { transform: translateY(1px); }
+.ds-button:disabled { opacity: 0.45; cursor: not-allowed; transform: none; box-shadow: none; }
+.ds-button.is-loading { cursor: progress; }
+
+/* — sizes — */
+/* small: Figma padding 8/14 (XS/S), Pixform 10px, caps, letter-spacing 20% */
+.ds-button--small {
+  font-size: var(--ds-font-size-control); /* Figma 10px; нет точного токена (caps=8, text-gr=11) → tokenGap */
+  letter-spacing: var(--ds-letter-spacing-pixel); /* Figma 20% */
+  text-transform: uppercase;
+  padding: var(--ds-indent-xs) var(--ds-indent-s);
+}
+
+/* big: Figma только для CTA — Instrument Serif 40px, padding 14/14/20/14 */
+.ds-button--big {
+  font-family: var(--ds-font-family-display);
+  font-size: var(--ds-font-size-description); /* Figma 40px; ближайший токен description=30px → tokenGap */
+  font-weight: var(--ds-font-weight-regular);
+  letter-spacing: -0.01em; /* Figma -1% */
+  text-transform: none;
+  padding: var(--ds-indent-s) var(--ds-indent-s) var(--ds-indent-m) var(--ds-indent-s);
+}
+
+/* — variants + hover/active — */
+.ds-button--secondary {
+  background: var(--ds-color-control-secondary); /* Figma #eaeaea */
+  color: var(--ds-color-text-primary);
+}
+.ds-button--secondary:hover:not(:disabled) { background: var(--ds-color-control-secondary-hover); }
+
+.ds-button--onColor {
+  background: var(--ds-color-control-on-color); /* Figma #ffffff, без тени */
+  color: var(--ds-color-text-primary);
+}
+.ds-button--onColor:hover:not(:disabled) { background: var(--ds-color-control-on-color-hover); box-shadow: var(--ds-shadow-1); }
+
+.ds-button--cta {
+  background: var(--ds-color-black); /* Figma #000000 */
+  color: var(--ds-color-text-on-color); /* Figma #f2f2f2 ≈ on-color/base */
+}
+.ds-button--cta:hover:not(:disabled) { background: var(--ds-color-black-hover); box-shadow: var(--ds-shadow-2); transform: translateY(-1px); }
+
+/* node: Figma вертикальная карточка #f7e0dd, radius 4, padding 14, gap 8 (XS),
+   две строки: title (Akkurat 11) + subtitle (Pixform 10, caps). */
+.ds-button--node {
+  background: var(--ds-color-oncard-red); /* Figma #f7e0dd */
+  color: var(--ds-color-text-primary);
+  border-radius: var(--ds-radius-s); /* Figma 4 */
+  flex-direction: column;
+  gap: var(--ds-indent-xs); /* Figma itemSpacing 8 */
+  align-items: flex-start;
+  text-align: left;
+  font-family: var(--ds-font-family); /* title — Akkurat */
+  font-size: var(--ds-font-size-text-gr); /* 11px */
+  letter-spacing: 0;
+  text-transform: none;
+  padding: var(--ds-indent-s); /* Figma 14 все стороны */
+}
+.ds-button--node:hover:not(:disabled) { box-shadow: var(--ds-shadow-1); transform: translateY(-1px); }
+
+.ds-button__sublabel {
+  font-family: var(--ds-font-family-pixel); /* Figma: subtitle — Pixform 10 */
+  font-size: var(--ds-font-size-control);
+  letter-spacing: var(--ds-letter-spacing-pixel);
+  text-transform: uppercase;
+}
+
+/* — loading spinner — */
+.ds-button__spinner {
+  width: 1em;
+  height: 1em;
+  border-radius: var(--ds-radius-over);
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  opacity: 0.7;
+  animation: ds-spin 0.6s linear infinite;
+}
+
+@keyframes ds-spin {
+  to { transform: rotate(360deg); }
+}

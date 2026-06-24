@@ -1,0 +1,62 @@
+.ds-switch {
+  font-family: var(--ds-font-family);
+  border: none;
+  border-radius: var(--ds-radius-s); /* Figma cornerRadius 4 */
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    background var(--ds-transition),
+    box-shadow var(--ds-transition),
+    transform var(--ds-transition),
+    opacity var(--ds-transition);
+}
+
+.ds-switch:focus-visible { outline: var(--ds-focus-ring); outline-offset: 2px; }
+.ds-switch:active:not(:disabled) { transform: translateY(1px); }
+.ds-switch:disabled { opacity: 0.45; cursor: not-allowed; transform: none; }
+
+.ds-switch__label {
+  letter-spacing: var(--ds-letter-spacing-pixel); /* Figma 20% */
+  text-transform: uppercase;
+  color: var(--ds-color-text-primary);
+}
+
+/* — sizes — */
+/* big: Figma padding 14 все стороны; лейбл — Pixform 10px */
+.ds-switch--big { padding: var(--ds-indent-s); }
+.ds-switch--big .ds-switch__label {
+  font-family: var(--ds-font-family-pixel); /* Figma Pixform */
+  font-size: var(--ds-font-size-control); /* Figma 10px (tokenGap) */
+}
+
+/* small: Figma padding 8/14; лейбл — Akkurat 8px (caps) */
+.ds-switch--small { padding: var(--ds-indent-xs) var(--ds-indent-s); }
+.ds-switch--small .ds-switch__label {
+  font-family: var(--ds-font-family); /* Figma Akkurat */
+  font-size: var(--ds-font-size-caps); /* 8px */
+}
+
+/* — states: on (selected) / off — */
+/* big on: белая плашка (#fff), без тени (Figma) */
+.ds-switch--big.ds-switch--on {
+  background: var(--ds-color-control-on-color);
+}
+.ds-switch--big.ds-switch--on:hover:not(:disabled) { box-shadow: var(--ds-shadow-1); }
+/* big off: прозрачная */
+.ds-switch--big.ds-switch--off {
+  background: transparent;
+  box-shadow: none;
+}
+.ds-switch--big.ds-switch--off:hover:not(:disabled) { background: var(--ds-color-control-secondary); }
+
+/* small on/off: серая плашка #eaeaea; off — текст secondary */
+.ds-switch--small.ds-switch--on,
+.ds-switch--small.ds-switch--off {
+  background: var(--ds-color-control-secondary); /* Figma #eaeaea */
+  box-shadow: none;
+}
+.ds-switch--small.ds-switch--on .ds-switch__label { color: var(--ds-color-text-primary); } /* Figma #000 */
+.ds-switch--small.ds-switch--off .ds-switch__label { color: var(--ds-color-text-secondary); } /* Figma #979797 */
+.ds-switch--small:hover:not(:disabled) { background: var(--ds-color-control-secondary-hover); }

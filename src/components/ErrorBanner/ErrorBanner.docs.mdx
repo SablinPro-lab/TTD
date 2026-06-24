@@ -1,0 +1,30 @@
+import { useState } from 'react'
+import { ErrorBanner } from './ErrorBanner'
+import { Button } from '../Button'
+
+# ErrorBanner
+
+**Назначение.** Строка ошибки: красный текст на розовой плашке (`role="alert"`).
+Источник правды: Figma → ds-atoms → `error` (node `1:1778`). **Статус:** stable.
+
+| prop       | значения    | по умолч.  |
+| ---------- | ----------- | ---------- |
+| `label`    | `string`    | `Error!`   |
+| `children` | `ReactNode` | —          |
+
+## Живой вариант (печатай текст / скрывай)
+
+export const Demo = () => {
+  const [msg, setMsg] = useState('Add more money for salary')
+  const [shown, setShown] = useState(true)
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 12, alignItems: 'flex-start' }}>
+      {shown ? <ErrorBanner>{msg || '…'}</ErrorBanner> : <span style={{ fontSize: 13, opacity: 0.6 }}>скрыто</span>}
+      <input value={msg} onChange={(e) => setMsg(e.target.value)} placeholder="текст ошибки"
+        style={{ padding: '8px 12px', borderRadius: 4, border: '1px solid var(--ds-color-lines)', minWidth: 280 }} />
+      <Button variant="secondary" onClick={() => setShown((s) => !s)}>{shown ? 'Скрыть' : 'Показать'}</Button>
+    </div>
+  )
+}
+
+<Demo />

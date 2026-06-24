@@ -1,0 +1,215 @@
+{
+  "capturedAt": "2026-06-23 19:11",
+  "fileKey": "ct9b7yfSwULxIG3mIPlSg8",
+  "purpose": "Stage Prepare rollback — имена и описания компонент-сетов и страниц ДО изменений",
+  "pages": [
+    {
+      "id": "0:1",
+      "name": "Page 1"
+    },
+    {
+      "id": "14:13378",
+      "name": "Release Notes"
+    }
+  ],
+  "componentSets": [
+    {
+      "id": "1:120",
+      "name": "bar",
+      "section": "ds-atoms",
+      "description": "Дашевый индикатор заполнения (прогресс). value 0–100, размеры default/big. React: &lt;Bar&gt;."
+    },
+    {
+      "id": "1:1727",
+      "name": "avatar",
+      "section": "ds-atoms",
+      "description": "Круглый аватар: картинка или инициалы на сером фоне. React: &lt;Avatar&gt;."
+    },
+    {
+      "id": "1:1734",
+      "name": "status",
+      "section": "ds-atoms",
+      "description": "Индикатор состояния: цветная точка + uppercase-подпись (purple/green/red/stopped). React: &lt;Status&gt;."
+    },
+    {
+      "id": "1:1747",
+      "name": "icons",
+      "section": "ds-atoms",
+      "description": "Однотонные значки: play, user, more, arrow-down, close. React: &lt;Icon name&gt;."
+    },
+    {
+      "id": "1:1758",
+      "name": "switch",
+      "section": "ds-atoms",
+      "description": "Переключатель-чип с подписью (toggle, role=switch). Состояния on/off, размеры small/big. React: &lt;Switch&gt;."
+    },
+    {
+      "id": "1:1767",
+      "name": "flag",
+      "section": "ds-atoms",
+      "description": "Закладка/флажок: контурная (off) или залитая (on). React: &lt;Flag&gt;."
+    },
+    {
+      "id": "1:1772",
+      "name": "tag",
+      "section": "ds-atoms",
+      "description": "Компактный чип с uppercase-текстом: control (интерактивный) / static. React: &lt;Tag&gt;."
+    },
+    {
+      "id": "1:1778",
+      "name": "error",
+      "section": "ds-atoms",
+      "description": "Строка ошибки: красный текст на белой плашке (role=alert). React: &lt;ErrorBanner&gt;."
+    },
+    {
+      "id": "1:1782",
+      "name": "avatars",
+      "section": "ds-atoms",
+      "description": "Стопка перекрывающихся аватаров со сворачиванием в +N. React: &lt;AvatarGroup&gt;."
+    },
+    {
+      "id": "1:1787",
+      "name": "list",
+      "section": "ds-atoms",
+      "description": "Строка списка: заголовок + мета-колонки + действие справа. React: &lt;ListItem&gt;."
+    },
+    {
+      "id": "1:1794",
+      "name": "text_area",
+      "section": "ds-atoms",
+      "description": "Многострочное поле ввода с uppercase-заголовком. React: &lt;TextArea&gt;."
+    },
+    {
+      "id": "1:1799",
+      "name": "input",
+      "section": "ds-atoms",
+      "description": "Текстовое поле с uppercase-заголовком над ним. React: &lt;Input&gt;."
+    },
+    {
+      "id": "1:1804",
+      "name": "dropdown",
+      "section": "ds-atoms",
+      "description": "Выпадающий список (select) со стилями ДС: default / On color. React: &lt;Dropdown&gt;."
+    },
+    {
+      "id": "1:1829",
+      "name": "graph",
+      "section": "ds-atoms",
+      "description": "Простой блочный график — скруглённые чёрные столбцы. React: &lt;Graph&gt;."
+    },
+    {
+      "id": "1:1833",
+      "name": "switch_group",
+      "section": "ds-atoms",
+      "description": "Сегментный переключатель — группа switch на белой плашке. React: &lt;SwitchGroup&gt;."
+    },
+    {
+      "id": "1:1840",
+      "name": "button",
+      "section": "ds-atoms",
+      "description": "Базовая кнопка действия. Варианты: secondary, onColor, cta, node. Размеры: small, big. React: &lt;Button&gt;."
+    },
+    {
+      "id": "1:1853",
+      "name": "profile",
+      "section": "ds-molecules",
+      "description": "Строка/карточка профиля: аватар + имя + роль (long/short/short-outlined). React: &lt;Profile&gt;."
+    },
+    {
+      "id": "1:1872",
+      "name": "node",
+      "section": "ds-molecules",
+      "description": "Карточка-нода автоматизации: play + заголовок + точки-коннекторы. React: &lt;FlowNode&gt;."
+    },
+    {
+      "id": "1:1884",
+      "name": "campaign_preview",
+      "section": "ds-molecules",
+      "description": "Карточка кампании: заголовок + статус + ряд крупных метрик. React: &lt;CampaignPreview&gt;."
+    },
+    {
+      "id": "1:1904",
+      "name": "project_preview",
+      "section": "ds-molecules",
+      "description": "Карточка проекта: описание + теги стека. React: &lt;ProjectPreview&gt;."
+    },
+    {
+      "id": "1:1912",
+      "name": "experience_preview",
+      "section": "ds-molecules",
+      "description": "Блок опыта: период + должность + компания + описание. React: &lt;ExperiencePreview&gt;."
+    },
+    {
+      "id": "1:1920",
+      "name": "team",
+      "section": "ds-molecules",
+      "description": "Карточка команды: метрики, хайлайт недели, аватары участников. React: &lt;Team&gt;."
+    },
+    {
+      "id": "1:1936",
+      "name": "card_metric",
+      "section": "ds-molecules",
+      "description": "Компактная карточка: заголовок + подпись-итог внизу. React: &lt;CardMetric&gt;."
+    },
+    {
+      "id": "1:1942",
+      "name": "card_metrica",
+      "section": "ds-molecules",
+      "description": "Карточка: заголовок + крупное числовое значение. React: &lt;CardMetrica&gt;."
+    },
+    {
+      "id": "1:1948",
+      "name": "attempt",
+      "section": "ds-molecules",
+      "description": "Сравнение офферов/попыток переговоров: суммы + перки + статус. React: &lt;Attempt&gt;."
+    },
+    {
+      "id": "1:1980",
+      "name": "notify",
+      "section": "ds-molecules",
+      "description": "Контейнер уведомления — белая плашка с тенью (role=status). React: &lt;Notify&gt;."
+    },
+    {
+      "id": "1:1985",
+      "name": "second_row",
+      "section": "ds-organisms",
+      "description": "Вторичный тулбар: Back + хлебные крошки + действия справа. React: &lt;SecondRow&gt;."
+    },
+    {
+      "id": "1:2001",
+      "name": "topmenu",
+      "section": "ds-organisms",
+      "description": "Верхнее меню: логотип + действие + табы + пользовательское меню. React: &lt;TopMenu&gt;."
+    },
+    {
+      "id": "1:2032",
+      "name": "header",
+      "section": "ds-organisms",
+      "description": "Шапка страницы: верхнее меню + вторичный тулбар + ряд этапов пайплайна. React: &lt;Header&gt;."
+    },
+    {
+      "id": "1:3731",
+      "name": "task",
+      "section": "ds-organisms",
+      "description": "Карточка задачи: флаг + заголовок + ошибка + действие. React: &lt;Task&gt;."
+    },
+    {
+      "id": "1:3744",
+      "name": "card_top",
+      "section": "ds-organisms",
+      "description": "Шапка-карточка профиля: акцентный блок с именем/ролью + пилюли-действия. React: &lt;CardTop&gt;."
+    },
+    {
+      "id": "1:3782",
+      "name": "menu_switch",
+      "section": "ds-organisms",
+      "description": "Пункт-переключатель меню (активный = белая пилюля). React: &lt;MenuSwitch&gt;."
+    },
+    {
+      "id": "1:4478",
+      "name": "indents",
+      "section": "ds-styles",
+      "description": ""
+    }
+  ]
+}
