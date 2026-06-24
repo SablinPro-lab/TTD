@@ -430,3 +430,6 @@ Bar tone=green (насыщ.+бледный, палитра), бары стран
 
 ## [Шапки 4013/4093 + Team-сетка + капсула метрик + Hiring campaign 4144] — 2026-06-24
 Шапки совпадают (glass-hero + pipeline). Profile-long → ровная сетка (статус 150/бар flex). CardMetric → капсула progress-pill. Новая страница HiringCampaign (CardTop+Task×6+CardMetrica×3+CampaignPreview+Canban), роут + navbar Pages. Сверено DOM+скрин. D48.
+
+## [CardMetric=graph 1936 + bar mask + Pipeline full-width + фон 4013] — 2026-06-24
+CardMetric: капсула→Graph (Figma 1:1936). Bar: mask (space) — без обрезки, ровные ряды, палитра. Canban: колонки flex:1 full-width (organism) + full-bleed на странице. Hero-фон 4013 на месте. Отступы 4095 сверены. Graph.height опционален. Сверено DOM+скрин. D49.

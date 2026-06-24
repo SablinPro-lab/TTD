@@ -16,22 +16,12 @@
 /* Figma: заголовок — Akkurat Regular 20px, ls -2% (node 1:1938) */
 .ds-card-metric__title { font-size: var(--ds-font-size-h3); letter-spacing: -0.02em; color: var(--ds-color-text-primary); }
 
-/* блок: капсульный индикатор + подпись прижаты к низу карточки (заголовок — сверху) */
-.ds-card-metric__block { display: flex; flex-direction: column; justify-content: flex-end; gap: var(--ds-indent-s); flex: 1; min-height: 0; }
+/* блок: график над подписью, gap 8px (Figma Frame 1708) */
+.ds-card-metric__block { display: flex; flex-direction: column; gap: var(--ds-indent-xs); flex: 1; min-height: 0; }
 
-/* капсульный индикатор (progress-pill): трек — белый, заполнение — чёрное (палитра). */
-.ds-card-metric__pill {
-  height: var(--ds-indent-m); /* 20px */
-  border-radius: var(--ds-radius-over);
-  background: var(--ds-color-control-on-color);
-  overflow: hidden;
-}
-.ds-card-metric__pill-fill {
-  height: 100%;
-  border-radius: var(--ds-radius-over);
-  background: var(--ds-color-text-primary);
-  transition: width var(--ds-transition);
-}
+/* graph = компонент Graph (Figma `graph` instance): на всю ширину карточки, столбцы — bg-base #f2f2f2 */
+.ds-card-metric .ds-graph { display: flex; width: 100%; flex: 1; min-height: 0; height: auto; }
+.ds-card-metric .ds-graph__bar { flex: 1; width: auto; background: var(--ds-color-bg-base); }
 
 /* Figma: подпись-итог — Pixform 10px UPPER, ls 20%, чёрный (node 1:1941) */
 .ds-card-metric__caption {

@@ -1,6 +1,44 @@
 [
   {
     "date": "2026-06-24",
+    "component": "CardMetric",
+    "type": "fixed",
+    "change": "Убрана «изобретённая» капсула — возврат к Figma 1:1936 точь-в-точь: используется компонент Graph (граф из баров, bg-base). Зеркальный нейм."
+  },
+  {
+    "date": "2026-06-24",
+    "component": "Bar",
+    "type": "fixed",
+    "change": "Переписан на mask (mask-repeat: space) — точки всегда целые, ничего не обрезается по краям; big = 2 ровные строки. Цвета из палитры (tone)."
+  },
+  {
+    "date": "2026-06-24",
+    "component": "Canban",
+    "type": "changed",
+    "change": "Pipeline — full-width: колонки flex:1 заполняют ширину (без фикс-312/скролла/обрезки). Исправлено на уровне организма."
+  },
+  {
+    "date": "2026-06-24",
+    "component": "Graph",
+    "type": "changed",
+    "change": "height опционален (CSS/flex по умолчанию) — Graph тянется в контейнере (для CardMetric)."
+  },
+  {
+    "date": "2026-06-24",
+    "page": "All teams",
+    "component": "AllTeams",
+    "type": "changed",
+    "change": "Метрики — график (Graph) вместо капсулы; цвета карточек из палитры; hero-фон (стекло) на месте (1:4013)."
+  },
+  {
+    "date": "2026-06-24",
+    "page": "Hiring campaign",
+    "component": "HiringCampaign",
+    "type": "changed",
+    "change": "Pipeline вынесен full-bleed (во всю ширину страницы, как в Figma)."
+  },
+  {
+    "date": "2026-06-24",
     "page": "Hiring campaign",
     "component": "HiringCampaign",
     "type": "added",

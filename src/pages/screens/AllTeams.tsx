@@ -8,13 +8,13 @@ import {
 } from '../../components'
 import { PageFrame } from './PageFrame'
 
-// Figma 1:4010: фоны метрик из палитры — card-red / card-pink / card-lavender / card-olive.
-// Индикатор — капсула (progress-pill).
+// Figma 1:4010 / 1:1936: фоны метрик из палитры — card-red / card-pink / card-lavender / card-olive.
+// Индикатор — блочный график (компонент Graph), 2 столбца bg-base.
 const METRICS = [
-  { title: 'Health', caption: 'Overall: Good', color: 'red' as const, progress: 84 },
-  { title: 'Productivity', caption: '+12% This Month', color: 'pink' as const, progress: 72 },
-  { title: 'Distribution', caption: '8 Teams Active', color: 'lavender' as const, progress: 58 },
-  { title: 'Hiring', caption: '15 Open Position', color: 'olive' as const, progress: 46 },
+  { title: 'Health', caption: 'Overall: Good', color: 'red' as const, values: [100, 59] },
+  { title: 'Productivity', caption: '+12% This Month', color: 'pink' as const, values: [100, 72] },
+  { title: 'Distribution', caption: '8 Teams Active', color: 'lavender' as const, values: [100, 48] },
+  { title: 'Hiring', caption: '15 Open Position', color: 'olive' as const, values: [100, 40] },
 ]
 
 // Figma 1:4010: 6 идентичных карточек «Engineering Team» (клоны).
@@ -52,7 +52,7 @@ export function AllTeams() {
         {/* 4-up метрик: карточки тянутся на равные доли (Figma flex-1), переопределяя их фикс-ширину */}
         <div className="grid grid-cols-4 gap-ds-xxs [&>.ds-card-metric]:h-full [&>.ds-card-metric]:w-full">
           {METRICS.map((m) => (
-            <CardMetric key={m.title} title={m.title} caption={m.caption} color={m.color} progress={m.progress} />
+            <CardMetric key={m.title} title={m.title} caption={m.caption} color={m.color} values={m.values} />
           ))}
         </div>
 

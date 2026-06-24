@@ -76,8 +76,13 @@ export function HiringCampaign() {
           ]}
         />
 
-        {/* Pipeline — Canban-борд */}
-        <Canban title="Pipeline" columns={PIPELINE} />
+      </div>
+
+      {/* Pipeline — full-width борд во всю ширину страницы (Figma: canban на уровне страницы) */}
+      <div className="mt-ds-xxl w-screen ml-[calc(50%-50vw)]">
+        <div className="mx-auto max-w-[1280px] px-ds-xl">
+          <Canban title="Pipeline" columns={PIPELINE} />
+        </div>
       </div>
     </PageFrame>
   )

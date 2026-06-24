@@ -5,6 +5,7 @@
   display: inline-flex;
   align-items: flex-end;
   gap: var(--ds-indent-xxxs);
+  height: 96px; /* дефолт, если height не передан пропом */
 }
 
 .ds-graph__bar {

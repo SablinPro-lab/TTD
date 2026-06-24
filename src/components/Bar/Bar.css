@@ -1,45 +1,35 @@
-/* Bar — точечный индикатор (dotted): пустой трек = белые точки, заполнение = яркие точки.
-   Источник: Figma ds-atoms → bar (1:120). Точка 5×5px (круг), зазор 2px → шаг 7px;
-   filled = #b8c6c3 (--ds-color-bar-filled), empty = #ffffff (--ds-color-bar-empty).
-   default = 1 ряд точек (высота 5px); big = 2 ряда (5+2+5 = 12px). */
+/* Bar — точечный индикатор (dotted). Цвет даёт linear-gradient (заполнение до --ds-bar-pct, затем хвост),
+   а dot-маска (radial-gradient, mask-repeat: space) раскраивает его на ТОЧКИ. `space` гарантирует только
+   целые точки и распределяет остаток — ничего не режется по краям контейнера.
+   Точка 5px (r=2.5) в ячейке-шаге 7px. default = 1 строка (h5); big = 2 строки (h14 = 2×7).
+   Цвета строго из палитры: default filled=#b8c6c3/track=#fff; green filled=#00867b/track=#d4eee7. */
 .ds-bar {
-  --ds-dot: 5px;          /* диаметр точки (Figma Rectangle 5×5, r=full) */
-  --ds-step: 7px;         /* шаг = точка 5 + зазор 2 (Figma itemSpacing=2) */
-  position: relative;
-  height: var(--ds-dot);
+  --ds-step: 7px;     /* шаг = точка 5 + зазор 2 (Figma itemSpacing 2) */
+  --ds-dot-h: 5px;    /* высота строки (одна точка) */
+  --ds-bar-fill: var(--ds-color-bar-filled); /* заполнение */
+  --ds-bar-track: var(--ds-color-bar-empty); /* хвост */
+  height: var(--ds-dot-h);
   width: 100%;
   min-width: 160px;
-  color: var(--ds-color-bar-empty); /* цвет пустых точек = #ffffff (Figma Bar/empty) */
-  background-image: radial-gradient(circle closest-side, currentColor 90%, transparent 92%);
-  background-size: var(--ds-step) var(--ds-dot);
-  background-position: left top;
-  background-repeat: repeat-x;
-  overflow: hidden;
+  background: linear-gradient(
+    to right,
+    var(--ds-bar-fill) 0 var(--ds-bar-pct, 0%),
+    var(--ds-bar-track) var(--ds-bar-pct, 0%) 100%
+  );
+  -webkit-mask: radial-gradient(circle 2.5px at center, #000 92%, transparent 94%) 0 0 / var(--ds-step) var(--ds-dot-h) space;
+  mask: radial-gradient(circle 2.5px at center, #000 92%, transparent 94%) 0 0 / var(--ds-step) var(--ds-dot-h) space;
+  transition: background var(--ds-transition);
 }
 
-/* big = два ряда точек: высота 12px (5 + 2 + 5), ряды повторяются по вертикали с шагом 7px */
+/* big = две строки точек: h14 = 2 ячейки по 7px, маска по обеим осям space (ровно 2 ряда, без обрезки) */
 .ds-bar--big {
-  height: 12px;
-  background-size: var(--ds-step) var(--ds-step);
-  background-repeat: repeat;
+  height: 14px;
+  -webkit-mask: radial-gradient(circle 2.5px at center, #000 92%, transparent 94%) 0 0 / var(--ds-step) var(--ds-step) space;
+  mask: radial-gradient(circle 2.5px at center, #000 92%, transparent 94%) 0 0 / var(--ds-step) var(--ds-step) space;
 }
 
-.ds-bar__fill {
-  height: 100%;
-  color: var(--ds-color-bar-filled); /* цвет заполненных точек = #b8c6c3 (Figma Bar/filled) */
-  background-image: radial-gradient(circle closest-side, currentColor 90%, transparent 92%);
-  background-size: var(--ds-step) var(--ds-dot);
-  background-position: left top;
-  background-repeat: repeat-x;
-  transition: width var(--ds-transition);
+/* tone=green — productivity/progress на страницах (Figma team bar #00867b / #d4eee7) */
+.ds-bar--tone-green {
+  --ds-bar-fill: var(--ds-color-tech-green);
+  --ds-bar-track: var(--ds-color-card-green);
 }
-
-.ds-bar--big .ds-bar__fill {
-  background-size: var(--ds-step) var(--ds-step);
-  background-repeat: repeat;
-}
-
-/* tone=green (Figma team/productivity/progress bar): хвост — бледный card-green #d4eee7,
-   заполнение — насыщенный tech-green #00867b. Строго из палитры. */
-.ds-bar--tone-green { color: var(--ds-color-card-green); }
-.ds-bar--tone-green .ds-bar__fill { color: var(--ds-color-tech-green); }
