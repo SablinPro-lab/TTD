@@ -178,14 +178,9 @@ const AttemptDemo: FC = () => <Attempt status={{ variant: 'red', label: 'Failed'
     { label: 'First attempt', amount: '$8 750', perks: ['Lead role', 'Cookies', 'Free education'] },
     { label: 'Counter offer', amount: '$12 750', perks: ['Lead role', 'Remote-work', 'Gym'], align: 'right' },
   ]} />
-const NotifyDemo: FC = () => {
-  const t = useToast()
-  return (
-    <Notify action={<Button variant="onColor" onClick={() => t('More info')}>More info</Button>}>
-      Sarah finalized the UX flows, Anya trained three junior engineers, and the team enjoyed a ski trip.
-    </Notify>
-  )
-}
+const NotifyDemo: FC = () => (
+  <Notify>Sarah finalized the UX flows, Anya trained three junior engineers, and the team enjoyed a ski trip.</Notify>
+)
 
 /* ───────────── Organisms ───────────── */
 
@@ -228,7 +223,8 @@ const CardTopDemo: FC = () => {
   const t = useToast()
   return <CardTop name="Sarah Mitchell" role="Senior software engineer" cornerLeft="Teams" cornerRight="Access"
     actions={['Promote', 'Negotiate', 'Suspend', 'Fire']} onAction={(a) => t(a)}
-    tags={['Frontend-team', 'Innovation Lab']} tagsRight={['Level 4 (code red)']} onTag={(x) => t(x)} />
+    tags={['Frontend-team', 'Innovation Lab', 'Lead Developer', 'Member']}
+    tagsRight={['Level 4 (code red)']} onTag={(x) => t(x)} />
 }
 const CanbanDemo: FC = () => (
   <Canban title="Pipeline" columns={[

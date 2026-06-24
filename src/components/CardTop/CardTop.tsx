@@ -1,3 +1,4 @@
+import cardTopBg from '../../assets/cardtop-bg.jpg'
 import './CardTop.css'
 
 export interface CardTopTag {
@@ -63,7 +64,13 @@ export function CardTop({
   )
 
   return (
-    <div className="ds-card-top" style={accent ? { background: accent } : undefined}>
+    <div className="ds-card-top">
+      {/* Figma фон (node 1:3745): фото + чёрный mix-blend:color + жёлтый mix-blend:hard-light */}
+      <div className="ds-card-top__bg" aria-hidden="true">
+        <img className="ds-card-top__bg-img" src={cardTopBg} alt="" />
+        <span className="ds-card-top__bg-color" />
+        <span className="ds-card-top__bg-tint" style={accent ? { background: accent } : undefined} />
+      </div>
       {(cornerLeft || cornerRight) && (
         <div className="ds-card-top__corners">
           <span>{cornerLeft}</span>

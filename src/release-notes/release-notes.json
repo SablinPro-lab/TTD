@@ -1,6 +1,18 @@
 [
   {
     "date": "2026-06-24",
+    "component": "CardTop",
+    "type": "changed",
+    "change": "Фон как в Figma: фото (cardtop-bg.jpg) + mix-blend color/hard-light жёлтый → жёлто-тонированное фото с кругами. Высота 480, 4 тега слева (2×2) + Add."
+  },
+  {
+    "date": "2026-06-24",
+    "component": "Notify",
+    "type": "changed",
+    "change": "Убрана кнопка из демо (в Figma Default её нет — по фидбэку)."
+  },
+  {
+    "date": "2026-06-24",
     "component": "Canban",
     "type": "fixed",
     "change": "Борд скроллится горизонтально внутри карточки (заголовок Pipeline центрирован, страница не разъезжается); колонки в натуральную ширину."
