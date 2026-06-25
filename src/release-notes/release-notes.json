@@ -1,5 +1,11 @@
 [
   {
+    "date": "2026-06-25",
+    "component": "Deploy",
+    "type": "added",
+    "change": "vercel.json — SPA-rewrite (все пути → index.html), чтобы deep-links /pages/* отдавали приложение, а не 404. Прод-деплой проекта my-ttd обновлён до актуального кода (был устаревший — проект не подключён к Git, пуши не авто-деплоились)."
+  },
+  {
     "date": "2026-06-24",
     "page": "Hiring campaign",
     "component": "HiringCampaign",
