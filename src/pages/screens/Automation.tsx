@@ -1,17 +1,18 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Header, Button, Input, SwitchGroup, TextArea, FlowCanvas } from '../../components'
-import type { FlowCanvasNode } from '../../components'
+import type { FlowCanvasNode, FlowCanvasHandle, FlowNodeColor } from '../../components'
 
 // Figma 1:4230 «Automation» — библиотека узлов (цвета/тексты из узлов 1:4240–4246).
-const NODE_LIBRARY: { title: string; sub: string; bg: string }[] = [
-  { title: 'Start Trigger', sub: 'Initialize workflow', bg: 'oncard-red' },
-  { title: 'Application Review', sub: 'Screen candidates', bg: 'oncard-red' },
-  { title: 'Interview', sub: 'Schedule interviews', bg: 'oncard-red' },
-  { title: 'Email Notification', sub: 'Send automated emails', bg: 'card-olive' },
-  { title: 'Conditional Logic', sub: 'Branch workflow paths', bg: 'card-olive' },
-  { title: 'Training Module', sub: 'Assign learning paths', bg: 'card-pink' },
-  { title: 'Progress Tracker', sub: 'Monitor development', bg: 'card-lavender' },
+// bg — цвет кнопки библиотеки (токен); color — цвет ноды на канве (FlowNode) при добавлении.
+const NODE_LIBRARY: { title: string; sub: string; bg: string; color: FlowNodeColor }[] = [
+  { title: 'Start Trigger', sub: 'Initialize workflow', bg: 'oncard-red', color: 'red' },
+  { title: 'Application Review', sub: 'Screen candidates', bg: 'oncard-red', color: 'red' },
+  { title: 'Interview', sub: 'Schedule interviews', bg: 'oncard-red', color: 'red' },
+  { title: 'Email Notification', sub: 'Send automated emails', bg: 'card-olive', color: 'olive' },
+  { title: 'Conditional Logic', sub: 'Branch workflow paths', bg: 'card-olive', color: 'olive' },
+  { title: 'Training Module', sub: 'Assign learning paths', bg: 'card-pink', color: 'pink' },
+  { title: 'Progress Tracker', sub: 'Monitor development', bg: 'card-lavender', color: 'lavender' },
 ]
 const TEMPLATES = ['Hiring funnel', 'Onboarding flow', 'Development plan']
 
@@ -32,6 +33,7 @@ export function Automation() {
   const [tab, setTab] = useState('teams')
   const [props, setProps] = useState('Parametrs')
   const [nodeName, setNodeName] = useState('Welcome letter')
+  const canvasRef = useRef<FlowCanvasHandle>(null)
   const goBack = () => (window.history.length > 1 ? navigate(-1) : navigate('/'))
 
   return (
@@ -69,6 +71,8 @@ export function Automation() {
                 <button
                   key={n.title}
                   type="button"
+                  title="Добавить на доску"
+                  onClick={() => canvasRef.current?.addNode({ title: n.title, subtitle: n.sub, color: n.color })}
                   className="flex flex-col gap-ds-xs rounded-s p-ds-s text-left transition-[box-shadow,transform] hover:shadow-[0_1px_3px_rgba(0,0,0,0.12)] active:translate-y-px"
                   style={{ background: `var(--ds-color-${n.bg})` }}
                 >
@@ -98,6 +102,7 @@ export function Automation() {
         {/* CENTER — канва: drag-and-drop ноды + соединение нитками */}
         <main className="min-w-0 flex-1 self-stretch">
           <FlowCanvas
+            ref={canvasRef}
             nodes={NODES}
             edges={EDGES}
             onSelect={(id) => {

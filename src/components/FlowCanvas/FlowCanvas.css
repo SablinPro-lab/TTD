@@ -9,7 +9,8 @@
   touch-action: none; /* перетаскивание не конфликтует со скроллом на тач-устройствах */
 }
 
-/* слой ниток — поверх фона, под нодами; не перехватывает указатель (порты под ним получают hover) */
+/* слой ниток — ПОВЕРХ карточек (верхний z-index), не перехватывает указатель
+   (порты/ноды под ним остаются интерактивными) */
 .ds-flow-canvas__wires {
   position: absolute;
   inset: 0;
@@ -17,6 +18,7 @@
   height: 100%;
   overflow: visible;
   pointer-events: none;
+  z-index: 10;
 }
 .ds-flow-canvas__wire {
   fill: none;
@@ -50,6 +52,35 @@
 .ds-flow-canvas__node.is-selected .ds-flownode {
   outline: 2px solid var(--ds-color-tech-green);
   outline-offset: 2px;
+}
+
+/* удалить ноду — × в правом-верхнем углу, видна при наведении на ноду */
+.ds-flow-canvas__remove {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  width: 20px;
+  height: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 50%;
+  background: var(--ds-color-black);
+  color: var(--ds-color-text-on-color);
+  font-size: 14px;
+  line-height: 1;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity var(--ds-transition), transform var(--ds-transition);
+  z-index: 6;
+}
+.ds-flow-canvas__node:hover .ds-flow-canvas__remove,
+.ds-flow-canvas__remove:focus-visible {
+  opacity: 1;
+}
+.ds-flow-canvas__remove:hover {
+  transform: scale(1.1);
 }
 
 /* порт-хэндлы — поверх точек FlowNode (центры 19/261 по X, 96 по Y); хит-зона 16px */

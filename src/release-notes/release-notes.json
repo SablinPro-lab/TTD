@@ -2,6 +2,19 @@
   {
     "date": "2026-07-01",
     "component": "FlowCanvas",
+    "type": "changed",
+    "change": "Нитки рисуются ПОВЕРХ карточек (верхний SVG-слой, z-index, pointer-events:none — ноды/порты остаются интерактивными). Ноды можно ДОБАВЛЯТЬ на доску (imperative addNode — клик по элементу библиотеки) и УДАЛЯТЬ (кнопка × на ноде, при наведении; нитки удаляемой ноды убираются вместе с ней)."
+  },
+  {
+    "date": "2026-07-01",
+    "page": "Automation",
+    "component": "Automation",
+    "type": "changed",
+    "change": "Клик по узлу в «Node library» добавляет его на канву (через ref FlowCanvas). Удаление узла — × на карточке."
+  },
+  {
+    "date": "2026-07-01",
+    "component": "FlowCanvas",
     "type": "added",
     "change": "Новый организм FlowCanvas — канва автоматизаций: ноды (FlowNode) перетаскиваются мышью/тачем, порты соединяются «нитками» (drag от выходного порта к входному; SVG-кривые Безье). Оптимизация: pointer-события на window + троттлинг requestAnimationFrame, позиционирование через transform. Источник: Figma canvas 1:4253 / node 1:4254."
   },
