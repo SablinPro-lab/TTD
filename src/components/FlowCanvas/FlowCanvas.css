@@ -1,0 +1,72 @@
+/* FlowCanvas — область канвы (Figma Frame 1401): ноды на фоне страницы + SVG-нитки.
+   Перетаскивание/соединение — pointer-события; ноды позиционируются через transform. */
+.ds-flow-canvas {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 700px;
+  overflow: hidden;
+  touch-action: none; /* перетаскивание не конфликтует со скроллом на тач-устройствах */
+}
+
+/* слой ниток — поверх фона, под нодами; не перехватывает указатель (порты под ним получают hover) */
+.ds-flow-canvas__wires {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+.ds-flow-canvas__wire {
+  fill: none;
+  stroke: var(--ds-color-black);
+  stroke-width: 1.5;
+}
+.ds-flow-canvas__wire--live {
+  stroke-dasharray: 4 4;
+  opacity: 0.6;
+}
+
+/* нода — абсолютно позиционируется transform'ом; ширина 280 (Figma node 1:4254) */
+.ds-flow-canvas__node {
+  position: absolute;
+  top: 0;
+  left: 0;
+  cursor: grab;
+  user-select: none;
+  touch-action: none;
+}
+.ds-flow-canvas__node.is-dragging {
+  cursor: grabbing;
+  z-index: 5;
+}
+/* нода на канве: ширина 280, радиус 8 (Figma node 1:4254 — rounds/M) */
+.ds-flow-canvas .ds-flownode {
+  width: 280px;
+  box-sizing: border-box;
+  border-radius: var(--ds-radius-m);
+}
+.ds-flow-canvas__node.is-selected .ds-flownode {
+  outline: 2px solid var(--ds-color-tech-green);
+  outline-offset: 2px;
+}
+
+/* порт-хэндлы — поверх точек FlowNode (центры 19/261 по X, 96 по Y); хит-зона 16px */
+.ds-flow-canvas__port {
+  position: absolute;
+  top: 88px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+}
+.ds-flow-canvas__port--in {
+  left: 11px;
+}
+.ds-flow-canvas__port--out {
+  left: 253px;
+  cursor: crosshair;
+}
+.ds-flow-canvas__port--out:hover {
+  background: rgba(0, 0, 0, 0.08);
+}

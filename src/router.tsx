@@ -1,7 +1,7 @@
 import { createBrowserRouter, Navigate, Outlet, ScrollRestoration } from 'react-router-dom'
 import { Preview } from './pages/Preview'
 import { ReleaseNotes } from './pages/ReleaseNotes'
-import { AllTeams, AllTeamsOne, Candidate, HiringCampaign } from './pages/screens'
+import { AllTeams, AllTeamsOne, Automation, Candidate, HiringCampaign } from './pages/screens'
 
 /**
  * Root layout: <ScrollRestoration /> сбрасывает скролл НАВЕРХ при переходе на новую страницу
@@ -27,6 +27,7 @@ export const router = createBrowserRouter([
       { path: '/pages/all-teams-one', element: <AllTeamsOne /> },
       { path: '/pages/candidate', element: <Candidate /> },
       { path: '/pages/hiring-campaign', element: <HiringCampaign /> },
+      { path: '/pages/automation', element: <Automation /> },
       { path: '*', element: <Navigate to="/" replace /> },
     ],
   },

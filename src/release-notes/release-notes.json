@@ -1,6 +1,31 @@
 [
   {
     "date": "2026-07-01",
+    "component": "FlowCanvas",
+    "type": "added",
+    "change": "Новый организм FlowCanvas — канва автоматизаций: ноды (FlowNode) перетаскиваются мышью/тачем, порты соединяются «нитками» (drag от выходного порта к входному; SVG-кривые Безье). Оптимизация: pointer-события на window + троттлинг requestAnimationFrame, позиционирование через transform. Источник: Figma canvas 1:4253 / node 1:4254."
+  },
+  {
+    "date": "2026-07-01",
+    "component": "FlowNode",
+    "type": "changed",
+    "change": "Добавлен проп color (red/pink/lavender/olive/peach/green) — разноцветные ноды из палитры (для канвы Automation)."
+  },
+  {
+    "date": "2026-07-01",
+    "component": "Header",
+    "type": "changed",
+    "change": "Добавлен проп secondRowActions — действия справа во вторичном ряду (builder-вариант SecondRow: Back слева + Save/Deploy справа)."
+  },
+  {
+    "date": "2026-07-01",
+    "page": "Automation",
+    "component": "Automation",
+    "type": "added",
+    "change": "Новая страница «Automation» (Figma 1:4230) — node-graph редактор: библиотека узлов (слева) · канва FlowCanvas с drag-and-drop и соединением нитками (центр) · Node Properties (справа). Роут /pages/automation, в навигации Pages. Собрана из существующих компонентов (FlowNode/Input/TextArea/SwitchGroup/Button/Header)."
+  },
+  {
+    "date": "2026-07-01",
     "component": "CardTop",
     "type": "fixed",
     "change": "Кнопки-дропдауны в шапке (Teams/Access) не реагировали на клик. Теперь это реальные дропдауны (компонент Dropdown, onColor) — раскрываются по клику (меню вверх, внутри карточки), выбор меняет метку, закрытие по Esc/клику-вне. Пилюли-действия (Promote/Negotiate/…) переключают активную по клику."

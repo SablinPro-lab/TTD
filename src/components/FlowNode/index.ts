@@ -1,2 +1,2 @@
 export { FlowNode, default } from './FlowNode'
-export type { FlowNodeProps } from './FlowNode'
+export type { FlowNodeProps, FlowNodeColor } from './FlowNode'

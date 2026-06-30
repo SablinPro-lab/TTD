@@ -14,6 +14,7 @@ const PAGES: { to: string; label: string }[] = [
   { to: '/pages/all-teams-one', label: 'All teams one' },
   { to: '/pages/candidate', label: 'Candidate' },
   { to: '/pages/hiring-campaign', label: 'Hiring campaign' },
+  { to: '/pages/automation', label: 'Automation' },
   { to: '/release-notes', label: 'Release Notes' },
 ]
 

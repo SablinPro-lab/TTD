@@ -1,0 +1,31 @@
+import { FlowCanvas } from './FlowCanvas'
+
+# FlowCanvas
+
+**Назначение.** Канва автоматизаций: ноды (`FlowNode`) можно **перетаскивать** мышью/тачем, а порты —
+**соединять «нитками»** (drag от чёрного выходного порта к серому входному другой ноды). Нитки —
+SVG-кривые Безье, пересчитываются при перетаскивании. Источник правды: Figma → canvas `1:4253`,
+node `1:4254`. **Статус:** stable.
+
+| prop      | значения                                              | по умолч. |
+| --------- | ----------------------------------------------------- | --------- |
+| `nodes`   | `{ id; title; subtitle?; color?; x; y }[]`            | —         |
+| `edges`   | `{ from; to }[]` (выход→вход)                          | `[]`      |
+| `onSelect`| `(id) => void` (клик/перетаскивание ноды)             | —         |
+
+**Взаимодействие.** Перетаскивание ноды — pointerdown по телу. Соединение — pointerdown по правому
+(чёрному) порту → тянем к левому (серому) порту другой ноды → отпускаем. Оптимизация: слушатели на
+`window` + троттлинг `requestAnimationFrame`, позиционирование через CSS `transform`.
+
+## Живой вариант
+
+<FlowCanvas
+  nodes={[
+    { id: 'a', title: 'Applicant Screening', subtitle: 'Review resumes and applications', color: 'red', x: 40, y: 40 },
+    { id: 'b', title: 'Interview Stage', subtitle: 'Conduct initial interviews', color: 'lavender', x: 60, y: 320 },
+    { id: 'c', title: 'Final Decision', subtitle: 'Select candidate and extend offer', color: 'pink', x: 380, y: 170 },
+  ]}
+  edges={[{ from: 'a', to: 'c' }, { from: 'b', to: 'c' }]}
+/>
+
+<!-- D58: новый организм FlowCanvas — drag-and-drop ноды + соединение нитками (SVG bezier). Переиспользует FlowNode. -->

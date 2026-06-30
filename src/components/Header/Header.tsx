@@ -14,6 +14,8 @@ export interface HeaderProps {
   userMenu?: ReactNode
   breadcrumbs?: string[]
   onBack?: () => void
+  /** Действия справа во вторичном ряду (builder-вариант SecondRow): напр. Save / Deploy. */
+  secondRowActions?: ReactNode
   /** Этапы пайплайна (uppercase-колонки под прогресс-баром). */
   stages?: string[]
   /** Заполнение прогресс-бара пайплайна 0–100 (Figma: `bar` в Frame 1382). */
@@ -26,13 +28,13 @@ export interface HeaderProps {
  * Третий ряд (Figma Frame 1382): прогресс-бар (dots) + uppercase-подписи этапов под ним.
  */
 export function Header({
-  logo, action, tabs, value, onTabChange, userMenu, breadcrumbs, onBack, stages = [], progress = 60,
+  logo, action, tabs, value, onTabChange, userMenu, breadcrumbs, onBack, secondRowActions, stages = [], progress = 60,
 }: HeaderProps) {
   return (
     <div className="ds-header">
       <TopMenu logo={logo} action={action} tabs={tabs} value={value} onTabChange={onTabChange} userMenu={userMenu} />
-      {(onBack || (breadcrumbs && breadcrumbs.length > 0)) && (
-        <SecondRow onBack={onBack} breadcrumbs={breadcrumbs} />
+      {(onBack || (breadcrumbs && breadcrumbs.length > 0) || secondRowActions) && (
+        <SecondRow onBack={onBack} breadcrumbs={breadcrumbs} actions={secondRowActions} />
       )}
       {stages.length > 0 && (
         <div className="ds-header__pipeline">
