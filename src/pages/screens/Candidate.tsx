@@ -29,6 +29,27 @@ const MENTORING: { name: string; role: string; color: 'olive' | 'lavender' | 'pe
   { name: 'James Wilson', role: 'Data analyst', color: 'peach' },
 ]
 
+// Figma card_top dropdowns (раскрываются по клику; первый option = текущая метка).
+const TEAM_TAGS = [
+  { label: 'frontend-team', options: [
+    { label: 'Frontend-team', value: 'frontend' }, { label: 'Backend-team', value: 'backend' },
+    { label: 'Design-team', value: 'design' }, { label: 'QA-team', value: 'qa' }] },
+  { label: 'Innovation Lab', options: [
+    { label: 'Innovation Lab', value: 'innovation' }, { label: 'Research', value: 'research' },
+    { label: 'Platform', value: 'platform' }, { label: 'Growth', value: 'growth' }] },
+  { label: 'Lead Developer', options: [
+    { label: 'Lead Developer', value: 'lead' }, { label: 'Senior Developer', value: 'senior' },
+    { label: 'Staff Engineer', value: 'staff' }, { label: 'Architect', value: 'architect' }] },
+  { label: 'Member', options: [
+    { label: 'Member', value: 'member' }, { label: 'Admin', value: 'admin' },
+    { label: 'Owner', value: 'owner' }, { label: 'Viewer', value: 'viewer' }] },
+]
+const LEVEL_TAGS = [
+  { label: 'Level 4 (code red)', options: [
+    { label: 'Level 4 (code red)', value: 'l4' }, { label: 'Level 3', value: 'l3' },
+    { label: 'Level 2', value: 'l2' }, { label: 'Level 1', value: 'l1' }] },
+]
+
 /** Экран 1:4092 «Candidate» — карточка кандидата: yellow CardTop + notify + ачивки + развитие + связи. */
 export function Candidate() {
   return (
@@ -42,8 +63,8 @@ export function Candidate() {
           cornerRight="Access"
           actions={['Promote', 'Negotiate', 'Suspend', 'Fire']}
           activeAction="Promote"
-          tags={['frontend-team', 'Innovation Lab', 'Lead Developer', 'Member']}
-          tagsRight={['Level 4 (code red)']}
+          tags={TEAM_TAGS}
+          tagsRight={LEVEL_TAGS}
         />
 
         <Notify action={<Button variant="onColor">More info</Button>}>

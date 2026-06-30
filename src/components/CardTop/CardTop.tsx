@@ -1,4 +1,7 @@
 import type { ReactNode } from 'react'
+import { useEffect, useState } from 'react'
+import { Dropdown } from '../Dropdown'
+import type { DropdownOption } from '../Dropdown'
 import cardTopBg from '../../assets/cardtop-bg.jpg'
 import cardTopGlass from '../../assets/cardtop-glass.jpg'
 import './CardTop.css'
@@ -8,6 +11,9 @@ export interface CardTopTag {
   label: string
   /** Необязательная gold-микроподпись над тегом (Figma dropdown «head line»). */
   headline?: string
+  /** Если заданы — тег становится раскрывающимся дропдауном (компонент Dropdown, onColor),
+   *  открывается по клику. Без options — простая пилюля-кнопка (onTag). */
+  options?: DropdownOption[]
 }
 
 export interface CardTopProps {
@@ -55,6 +61,23 @@ function TagIcon() {
   )
 }
 
+/** Тег-дропдаун: раскрывается по клику (компонент Dropdown, onColor). Состояние выбора — локальное;
+ *  первый option = текущая метка тега. Меню раскрывается ВВЕРХ (CSS в CardTop — теги внизу карточки). */
+function TagDropdown({ tag }: { tag: CardTopTag }) {
+  const opts = tag.options ?? []
+  const [value, setValue] = useState(opts[0]?.value)
+  return (
+    <Dropdown
+      variant="onColor"
+      label={tag.headline}
+      options={opts}
+      value={value}
+      onChange={setValue}
+      placeholder={tag.label}
+    />
+  )
+}
+
 /**
  * CardTop — карточка-шапка профиля: акцентный блок с углами, именем-серифом,
  * gold-подзаголовком, белыми пилюлями-действиями и коричневыми тегами с иконками.
@@ -71,15 +94,22 @@ export function CardTop({
   // «Чистый» hero (default, без углов и тегов, напр. Hiring campaign 1:4147) — контент центрируется
   // по вертикали (нет верхних/нижних блоков, которые бы распределялись через space-between).
   const clean = !glass && !cornerLeft && !cornerRight && left.length === 0 && right.length === 0
-  const renderTag = (t: CardTopTag, i: number) => (
-    <div key={`${t.label}-${i}`} className="ds-card-top__tag-wrap">
-      {t.headline && <span className="ds-card-top__tag-headline">{t.headline}</span>}
-      <button type="button" className="ds-card-top__tag" onClick={() => onTag?.(t.label)}>
-        <span className="ds-card-top__tag-label">{t.label}</span>
-        <TagIcon />
-      </button>
-    </div>
-  )
+  // активная пилюля-действие — локальное состояние (клик переключает), синхронно с пропом
+  const [active, setActive] = useState(activeAction)
+  useEffect(() => setActive(activeAction), [activeAction])
+  const renderTag = (t: CardTopTag, i: number) =>
+    t.options && t.options.length > 0 ? (
+      // раскрывающийся дропдаун (открывается по клику) — компонент Dropdown
+      <TagDropdown key={`${t.label}-${i}`} tag={t} />
+    ) : (
+      <div key={`${t.label}-${i}`} className="ds-card-top__tag-wrap">
+        {t.headline && <span className="ds-card-top__tag-headline">{t.headline}</span>}
+        <button type="button" className="ds-card-top__tag" onClick={() => onTag?.(t.label)}>
+          <span className="ds-card-top__tag-label">{t.label}</span>
+          <TagIcon />
+        </button>
+      </div>
+    )
 
   const cornersEl = (cornerLeft || cornerRight) ? (
     <div className="ds-card-top__corners">
@@ -136,7 +166,7 @@ export function CardTop({
         {actions.length > 0 && (
           <div className="ds-card-top__actions">
             {actions.map((a) => (
-              <button key={a} type="button" className={`ds-card-top__pill${a === activeAction ? ' is-active' : ''}`} onClick={() => onAction?.(a)}>{a}</button>
+              <button key={a} type="button" className={`ds-card-top__pill${a === active ? ' is-active' : ''}`} onClick={() => { setActive(a); onAction?.(a) }}>{a}</button>
             ))}
           </div>
         )}

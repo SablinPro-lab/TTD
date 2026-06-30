@@ -209,3 +209,13 @@
 .ds-card-top__add:hover { opacity: 0.92; }
 .ds-card-top__add:active { transform: translateY(1px); }
 .ds-card-top__add:focus-visible { outline: var(--ds-focus-ring); outline-offset: 2px; }
+
+/* Теги-дропдауны (компонент Dropdown, onColor) внутри CardTop: компактные (по контенту, не фикс-200);
+   меню раскрывается ВВЕРХ — теги внизу карточки, а у .ds-card-top overflow:hidden (вниз меню обрезалось бы). */
+.ds-card-top .ds-dropdown__wrap { min-width: 0; }
+.ds-card-top .ds-dropdown__control { width: auto; }
+.ds-card-top .ds-dropdown__menu {
+  top: auto;
+  bottom: calc(100% + var(--ds-indent-xxs));
+  min-width: 180px;
+}
