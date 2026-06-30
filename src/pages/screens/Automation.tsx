@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Header, Button, Input, SwitchGroup, TextArea, FlowCanvas } from '../../components'
+import { Header, Button, Input, SwitchGroup, TextArea, FlowCanvas, FLOWNODE_DND_MIME } from '../../components'
 import type { FlowCanvasNode, FlowCanvasHandle, FlowNodeColor } from '../../components'
 
 // Figma 1:4230 «Automation» — библиотека узлов (цвета/тексты из узлов 1:4240–4246).
@@ -71,9 +71,16 @@ export function Automation() {
                 <button
                   key={n.title}
                   type="button"
-                  title="Добавить на доску"
+                  draggable
+                  title="Перетащи на канву или кликни, чтобы добавить"
+                  onDragStart={(e) =>
+                    e.dataTransfer.setData(
+                      FLOWNODE_DND_MIME,
+                      JSON.stringify({ title: n.title, subtitle: n.sub, color: n.color }),
+                    )
+                  }
                   onClick={() => canvasRef.current?.addNode({ title: n.title, subtitle: n.sub, color: n.color })}
-                  className="flex flex-col gap-ds-xs rounded-s p-ds-s text-left transition-[box-shadow,transform] hover:shadow-[0_1px_3px_rgba(0,0,0,0.12)] active:translate-y-px"
+                  className="flex cursor-grab flex-col gap-ds-xs rounded-s p-ds-s text-left transition-[box-shadow,transform] hover:shadow-[0_1px_3px_rgba(0,0,0,0.12)] active:translate-y-px"
                   style={{ background: `var(--ds-color-${n.bg})` }}
                 >
                   <span className="text-text-gr text-text-primary">{n.title}</span>

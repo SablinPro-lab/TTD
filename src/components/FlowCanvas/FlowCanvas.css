@@ -1,16 +1,21 @@
-/* FlowCanvas — область канвы (Figma Frame 1401): ноды на фоне страницы + SVG-нитки.
-   Перетаскивание/соединение — pointer-события; ноды позиционируются через transform. */
+/* FlowCanvas — рабочая канва (Figma Frame 1401): ноды на grid-фоне + SVG-нитки поверх.
+   Перетаскивание/соединение/DnD — pointer + HTML5 drag-and-drop; ноды позиционируются transform. */
 .ds-flow-canvas {
   position: relative;
   width: 100%;
   height: 100%;
   min-height: 700px;
   overflow: hidden;
-  touch-action: none; /* перетаскивание не конфликтует со скроллом на тач-устройствах */
+  touch-action: none;
+  /* «настоящая» канва — точечный грид (как в node-редакторах) */
+  background-image: radial-gradient(circle, var(--ds-color-lines) 1.2px, transparent 1.4px);
+  background-size: 22px 22px;
+  background-position: -1px -1px;
+  border-radius: var(--ds-radius-l);
 }
 
-/* слой ниток — ПОВЕРХ карточек (верхний z-index), не перехватывает указатель
-   (порты/ноды под ним остаются интерактивными) */
+/* слой ниток — ПОВЕРХ карточек (верхний z-index); сам контейнер не перехватывает указатель,
+   но провод-хит (stroke) кликабелен → отключение связи */
 .ds-flow-canvas__wires {
   position: absolute;
   inset: 0;
@@ -24,10 +29,23 @@
   fill: none;
   stroke: var(--ds-color-black);
   stroke-width: 1.5;
+  pointer-events: none;
 }
 .ds-flow-canvas__wire--live {
   stroke-dasharray: 4 4;
   opacity: 0.6;
+}
+/* широкая прозрачная зона клика вдоль провода — для отключения */
+.ds-flow-canvas__wire-hit {
+  fill: none;
+  stroke: transparent;
+  stroke-width: 14;
+  pointer-events: stroke;
+  cursor: pointer;
+}
+.ds-flow-canvas__edge:hover .ds-flow-canvas__wire {
+  stroke: var(--ds-color-tech-red);
+  stroke-width: 2.5;
 }
 
 /* нода — абсолютно позиционируется transform'ом; ширина 280 (Figma node 1:4254) */
@@ -43,7 +61,6 @@
   cursor: grabbing;
   z-index: 5;
 }
-/* нода на канве: ширина 280, радиус 8 (Figma node 1:4254 — rounds/M) */
 .ds-flow-canvas .ds-flownode {
   width: 280px;
   box-sizing: border-box;
@@ -54,39 +71,50 @@
   outline-offset: 2px;
 }
 
-/* удалить ноду — × в правом-верхнем углу, видна при наведении на ноду */
-.ds-flow-canvas__remove {
+/* «...» — прозрачная кликабельная зона поверх more-иконки FlowNode (правый-верхний угол) */
+.ds-flow-canvas__more {
   position: absolute;
-  top: -8px;
-  right: -8px;
-  width: 20px;
-  height: 20px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  top: 8px;
+  right: 8px;
+  width: 28px;
+  height: 24px;
   border: none;
-  border-radius: 50%;
-  background: var(--ds-color-black);
-  color: var(--ds-color-text-on-color);
-  font-size: 14px;
-  line-height: 1;
+  background: transparent;
   cursor: pointer;
-  opacity: 0;
-  transition: opacity var(--ds-transition), transform var(--ds-transition);
-  z-index: 6;
+  padding: 0;
+  border-radius: var(--ds-radius-s);
 }
-.ds-flow-canvas__node:hover .ds-flow-canvas__remove,
-.ds-flow-canvas__remove:focus-visible {
-  opacity: 1;
-}
-.ds-flow-canvas__remove:hover {
-  transform: scale(1.1);
-}
+.ds-flow-canvas__more:focus-visible { outline: var(--ds-focus-ring); }
 
-/* порт-хэндлы — поверх точек FlowNode (центры 19/261 по X, 96 по Y); хит-зона 16px */
+/* контекстное меню ноды (Delete) — под «...» */
+.ds-flow-canvas__menu {
+  position: absolute;
+  top: 34px;
+  right: 8px;
+  z-index: 7;
+  margin: 0;
+  padding: var(--ds-indent-xxs);
+  list-style: none;
+  min-width: 120px;
+  background: var(--ds-color-control-on-color);
+  border-radius: var(--ds-radius-s);
+  box-shadow: var(--ds-shadow-3);
+}
+.ds-flow-canvas__menu-item {
+  padding: var(--ds-indent-xs) var(--ds-indent-s);
+  border-radius: var(--ds-radius-s);
+  font-size: var(--ds-font-size-m);
+  color: var(--ds-color-text-primary);
+  cursor: pointer;
+  transition: background var(--ds-transition);
+}
+.ds-flow-canvas__menu-item:hover { background: var(--ds-color-control-secondary); }
+.ds-flow-canvas__menu-item--danger { color: var(--ds-color-tech-red); }
+
+/* порт-хэндлы — точно на точках FlowNode (центры X=19/261, Y=106); хит-зона 16px */
 .ds-flow-canvas__port {
   position: absolute;
-  top: 88px;
+  top: 98px;
   width: 16px;
   height: 16px;
   border-radius: 50%;

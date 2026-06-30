@@ -1,5 +1,5 @@
 import { forwardRef, useCallback, useEffect, useImperativeHandle, useRef, useState } from 'react'
-import type { PointerEvent as ReactPointerEvent } from 'react'
+import type { PointerEvent as ReactPointerEvent, DragEvent as ReactDragEvent } from 'react'
 import { FlowNode } from '../FlowNode'
 import type { FlowNodeColor } from '../FlowNode'
 import './FlowCanvas.css'
@@ -14,12 +14,12 @@ export interface FlowCanvasNode {
   y: number
 }
 export interface FlowCanvasEdge {
-  /** id ноды-источника (выходной порт, чёрный) → id ноды-приёмника (входной порт, серый). */
+  /** id ноды-источника (чёрный выходной порт) → id ноды-приёмника (серый входной порт). */
   from: string
   to: string
 }
 
-/** Императивный API канвы: добавить ноду на доску (из библиотеки слева). */
+/** Императивный API канвы: добавить ноду на доску (клик по библиотеке). */
 export interface FlowCanvasHandle {
   addNode: (node: Omit<FlowCanvasNode, 'id' | 'x' | 'y'> & Partial<Pick<FlowCanvasNode, 'x' | 'y'>>) => void
 }
@@ -27,14 +27,17 @@ export interface FlowCanvasHandle {
 export interface FlowCanvasProps {
   nodes: FlowCanvasNode[]
   edges?: FlowCanvasEdge[]
-  /** Выбор ноды (клик/начало перетаскивания) — напр. для панели свойств. */
+  /** Выбор ноды (клик/начало перетаскивания). */
   onSelect?: (id: string) => void
 }
 
-/* Геометрия ноды (Figma node 1:4254): 280×115, точки-порты в нижнем ряду
-   (pad 14 + body 53 + gap 24 + half-dot 5 = 96 по Y; центры точек 19 / 261 по X). */
+/** MIME для drag-and-drop из библиотеки на канву. Значение DataTransfer — JSON { title, subtitle, color }. */
+export const FLOWNODE_DND_MIME = 'application/x-flownode'
+
+/* Геометрия ноды (рендер FlowNode на канве, измерено): 280 ширина, точки-порты по Y=106
+   (низ карточки − pad 14 − half-dot 5), центры точек X = 19 (серый/вход) / 261 (чёрный/выход). */
 const NODE_W = 280
-const PORT_Y = 96
+const PORT_Y = 106
 const PORT_X_IN = 19
 const PORT_X_OUT = NODE_W - 19
 
@@ -50,11 +53,14 @@ function wirePath(x1: number, y1: number, x2: number, y2: number) {
 }
 
 /**
- * FlowCanvas — канва автоматизаций: ноды (FlowNode) можно ПЕРЕТАСКИВАТЬ, порты — СОЕДИНЯТЬ «нитками»
- * (drag от чёрного выходного к серому входному), ноды — ДОБАВЛЯТЬ (imperative `addNode`, из библиотеки)
- * и УДАЛЯТЬ (кнопка × на ноде). Нитки рисуются ПОВЕРХ карточек (верхний SVG-слой, pointer-events:none).
- * Оптимизация: pointer-события на window + троттлинг rAF; позиционирование через CSS transform.
- * Источник правды: Figma → ds-organisms (canvas 1:4253, node 1:4254).
+ * FlowCanvas — рабочая канва автоматизаций (grid-фон):
+ *  • ноды (FlowNode) перетаскиваются по доске;
+ *  • ноды добавляются drag-and-drop из библиотеки (drop) и кликом (imperative addNode);
+ *  • порты соединяются «нитками» (drag от ЧЁРНОГО выходного порта к серому входному); нитки крепятся
+ *    точно к точкам и удаляются кликом по проводу (отключение);
+ *  • «...» на ноде открывает контекстное меню с Delete.
+ *  Нитки рисуются поверх карточек. Оптимизация: pointer на window + rAF; позиции через transform.
+ *  Источник: Figma → ds-organisms (canvas 1:4253, node 1:4254).
  */
 export const FlowCanvas = forwardRef<FlowCanvasHandle, FlowCanvasProps>(function FlowCanvas(
   { nodes: initialNodes, edges: initialEdges = [], onSelect },
@@ -65,6 +71,7 @@ export const FlowCanvas = forwardRef<FlowCanvasHandle, FlowCanvasProps>(function
   const [edges, setEdges] = useState<FlowCanvasEdge[]>(initialEdges)
   const [drag, setDrag] = useState<Drag>(null)
   const [selected, setSelected] = useState<string | null>(null)
+  const [menuFor, setMenuFor] = useState<string | null>(null)
   const hoverInput = useRef<string | null>(null)
   const dragRef = useRef<Drag>(null)
   dragRef.current = drag
@@ -75,14 +82,19 @@ export const FlowCanvas = forwardRef<FlowCanvasHandle, FlowCanvasProps>(function
     return { x: clientX - r.left, y: clientY - r.top }
   }, [])
 
-  // добавление ноды на доску из библиотеки (каскадом, чтобы не накладывались)
-  useImperativeHandle(ref, () => ({
-    addNode: (node) => {
+  const addAt = useCallback(
+    (node: Omit<FlowCanvasNode, 'id' | 'x' | 'y'>, x: number, y: number) => {
       const i = seq.current++
       const id = `n${i}-${node.title.replace(/\s+/g, '-').toLowerCase()}`
-      const x = node.x ?? 60 + (i % 5) * 28
-      const y = node.y ?? 60 + (i % 5) * 28
       setItems((arr) => [...arr, { id, title: node.title, subtitle: node.subtitle, color: node.color, x, y }])
+    },
+    [],
+  )
+
+  useImperativeHandle(ref, () => ({
+    addNode: (node) => {
+      const i = seq.current
+      addAt(node, node.x ?? 60 + (i % 5) * 28, node.y ?? 60 + (i % 5) * 28)
     },
   }))
 
@@ -90,7 +102,9 @@ export const FlowCanvas = forwardRef<FlowCanvasHandle, FlowCanvasProps>(function
     setItems((arr) => arr.filter((n) => n.id !== id))
     setEdges((es) => es.filter((e) => e.from !== id && e.to !== id))
     if (selected === id) setSelected(null)
+    setMenuFor(null)
   }
+  const removeEdge = (idx: number) => setEdges((es) => es.filter((_, j) => j !== idx))
 
   // перетаскивание/соединение — слушатели на window, троттлинг через rAF
   useEffect(() => {
@@ -126,6 +140,19 @@ export const FlowCanvas = forwardRef<FlowCanvasHandle, FlowCanvasProps>(function
     }
   }, [drag, toCanvas])
 
+  // закрытие контекстного меню «...» по клику вне / Esc
+  useEffect(() => {
+    if (!menuFor) return
+    const close = () => setMenuFor(null)
+    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && setMenuFor(null)
+    window.addEventListener('pointerdown', close)
+    window.addEventListener('keydown', onKey)
+    return () => {
+      window.removeEventListener('pointerdown', close)
+      window.removeEventListener('keydown', onKey)
+    }
+  }, [menuFor])
+
   const byId = (id: string) => items.find((n) => n.id === id)
   const startNodeDrag = (e: ReactPointerEvent, id: string) => {
     e.preventDefault()
@@ -142,6 +169,23 @@ export const FlowCanvas = forwardRef<FlowCanvasHandle, FlowCanvasProps>(function
     setDrag({ kind: 'wire', from: id, x: n.x + PORT_X_OUT, y: n.y + PORT_Y })
   }
 
+  // drag-and-drop из библиотеки: drop кладёт ноду по позиции курсора (центрируем на курсоре)
+  const onDrop = (e: ReactDragEvent) => {
+    const raw = e.dataTransfer.getData(FLOWNODE_DND_MIME)
+    if (!raw) return
+    e.preventDefault()
+    try {
+      const node = JSON.parse(raw) as Omit<FlowCanvasNode, 'id' | 'x' | 'y'>
+      const p = toCanvas(e.clientX, e.clientY)
+      addAt(node, p.x - NODE_W / 2, p.y - PORT_Y / 2)
+    } catch {
+      /* ignore malformed payload */
+    }
+  }
+  const onDragOver = (e: ReactDragEvent) => {
+    if (e.dataTransfer.types.includes(FLOWNODE_DND_MIME)) e.preventDefault()
+  }
+
   const out = (id: string) => {
     const n = byId(id)!
     return { x: n.x + PORT_X_OUT, y: n.y + PORT_Y }
@@ -152,7 +196,7 @@ export const FlowCanvas = forwardRef<FlowCanvasHandle, FlowCanvasProps>(function
   }
 
   return (
-    <div className="ds-flow-canvas" ref={rootRef}>
+    <div className="ds-flow-canvas" ref={rootRef} onDrop={onDrop} onDragOver={onDragOver}>
       {items.map((n) => {
         const isDragging = drag?.kind === 'node' && drag.id === n.id
         return (
@@ -163,16 +207,32 @@ export const FlowCanvas = forwardRef<FlowCanvasHandle, FlowCanvasProps>(function
             onPointerDown={(e) => startNodeDrag(e, n.id)}
           >
             <FlowNode title={n.title} subtitle={n.subtitle} color={n.color} />
-            {/* удалить ноду с доски */}
+
+            {/* «...» — контекстное меню ноды (Delete) */}
             <button
               type="button"
-              className="ds-flow-canvas__remove"
-              aria-label={`Удалить ${n.title}`}
+              className="ds-flow-canvas__more"
+              aria-label="Меню ноды"
+              aria-haspopup="menu"
+              aria-expanded={menuFor === n.id}
               onPointerDown={(e) => e.stopPropagation()}
-              onClick={() => removeNode(n.id)}
-            >
-              ×
-            </button>
+              onClick={(e) => {
+                e.stopPropagation()
+                setMenuFor((m) => (m === n.id ? null : n.id))
+              }}
+            />
+            {menuFor === n.id && (
+              <ul className="ds-flow-canvas__menu" role="menu" onPointerDown={(e) => e.stopPropagation()}>
+                <li
+                  role="menuitem"
+                  className="ds-flow-canvas__menu-item ds-flow-canvas__menu-item--danger"
+                  onClick={() => removeNode(n.id)}
+                >
+                  Delete
+                </li>
+              </ul>
+            )}
+
             {/* входной порт (серый, слева) — приёмник нитки */}
             <span
               className="ds-flow-canvas__port ds-flow-canvas__port--in"
@@ -194,13 +254,21 @@ export const FlowCanvas = forwardRef<FlowCanvasHandle, FlowCanvasProps>(function
         )
       })}
 
-      {/* нитки — ПОВЕРХ карточек (верхний слой), указатель не перехватывают */}
+      {/* нитки — поверх карточек; клик по проводу отключает (удаляет) связь */}
       <svg className="ds-flow-canvas__wires" aria-hidden="true">
         {edges.map((e, i) => {
           if (!byId(e.from) || !byId(e.to)) return null
           const a = out(e.from)
           const b = inp(e.to)
-          return <path key={`${e.from}-${e.to}-${i}`} className="ds-flow-canvas__wire" d={wirePath(a.x, a.y, b.x, b.y)} />
+          const d = wirePath(a.x, a.y, b.x, b.y)
+          return (
+            <g key={`${e.from}-${e.to}-${i}`} className="ds-flow-canvas__edge">
+              <path className="ds-flow-canvas__wire" d={d} />
+              <path className="ds-flow-canvas__wire-hit" d={d} onClick={() => removeEdge(i)}>
+                <title>Отключить связь</title>
+              </path>
+            </g>
+          )
         })}
         {drag?.kind === 'wire' && (
           <path
