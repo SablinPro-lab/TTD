@@ -19,11 +19,12 @@
   flex-wrap: wrap;
 }
 
-/* действие + табы, внутренний gap 20 (M) */
+/* действие + табы, внутренний gap 20 (M). Переносим на узких (табы-навигация: 5 пунктов не влезают в один ряд). */
 .ds-topmenu__controls {
   display: flex;
   align-items: center;
   gap: var(--ds-indent-m);
+  flex-wrap: wrap;
 }
 
 /* Figma: «Hired & Wired» — Instrument Serif 23px, чёрный (не uppercase) */
@@ -35,8 +36,8 @@
   white-space: nowrap;
 }
 
-/* Figma menu_switch gap между табами 20 (M) */
-.ds-topmenu__tabs { display: flex; align-items: center; gap: var(--ds-indent-m); }
+/* Figma menu_switch gap между табами 20 (M); перенос на узких (навигация из 5 пунктов) */
+.ds-topmenu__tabs { display: flex; align-items: center; gap: var(--ds-indent-m); flex-wrap: wrap; }
 
 /* Figma: «Profile  Log out» — Akkurat 11px, чёрный, НЕ uppercase, gap 8 (XS) */
 .ds-topmenu__user {

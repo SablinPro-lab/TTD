@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react'
-import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Header, Button } from '../../components'
+import { usePageNav } from '../pageNav'
 
 export interface PageFrameProps {
   children: ReactNode
@@ -23,8 +23,9 @@ export interface PageFrameProps {
  * документом (никакого контейнерного скролла). Контент-колонка адаптивна (max-w-[830px] + max-w-full).
  */
 export function PageFrame({ children, stages, hero, after }: PageFrameProps) {
-  const [tab, setTab] = useState('teams')
   const navigate = useNavigate()
+  // Табы шапки — реальная навигация по страницам (активный = текущий роут); логотип → каталог.
+  const { tabs, value, onTabChange, toHome } = usePageNav()
   // «Назад»: к предыдущей странице, иначе в каталог превью.
   const goBack = () => {
     if (window.history.length > 1) navigate(-1)
@@ -32,14 +33,20 @@ export function PageFrame({ children, stages, hero, after }: PageFrameProps) {
   }
   const header = (
     <Header
-      logo="Hired & Wired"
+      logo={
+        <button
+          type="button"
+          onClick={toHome}
+          aria-label="На главную (каталог)"
+          className="cursor-pointer appearance-none border-0 bg-transparent p-0 text-inherit transition-opacity [font:inherit] hover:opacity-70"
+        >
+          Hired &amp; Wired
+        </button>
+      }
       action={<Button variant="cta">Generate report</Button>}
-      tabs={[
-        { label: 'All teams', value: 'teams' },
-        { label: 'All templates', value: 'tpl' },
-      ]}
-      value={tab}
-      onTabChange={setTab}
+      tabs={tabs}
+      value={value}
+      onTabChange={onTabChange}
       userMenu="Profile · Log out"
       breadcrumbs={['Home', 'Something', 'Something']}
       onBack={goBack}

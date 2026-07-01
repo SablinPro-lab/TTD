@@ -2,6 +2,7 @@ import { useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Header, Button, Input, SwitchGroup, TextArea, FlowCanvas, FLOWNODE_DND_MIME } from '../../components'
 import type { FlowCanvasNode, FlowCanvasHandle, FlowNodeColor } from '../../components'
+import { usePageNav } from '../pageNav'
 
 // Figma 1:4230 «Automation» — библиотека узлов (цвета/тексты из узлов 1:4240–4246).
 // bg — цвет кнопки библиотеки (токен); color — цвет ноды на канве (FlowNode) при добавлении.
@@ -30,7 +31,7 @@ const EDGES = [
 /** Экран 1:4230 «Automation» — node-graph редактор: библиотека · канва (drag + нитки) · свойства. */
 export function Automation() {
   const navigate = useNavigate()
-  const [tab, setTab] = useState('teams')
+  const { tabs, value, onTabChange, toHome } = usePageNav() // табы шапки = навигация по страницам
   const [props, setProps] = useState('Parametrs')
   const [nodeName, setNodeName] = useState('Welcome letter')
   const [propsOpen, setPropsOpen] = useState(true) // правая панель свойств — сворачиваемая (освобождает поле канвы)
@@ -49,14 +50,20 @@ export function Automation() {
 
       <div className="relative z-10">
       <Header
-        logo="Hired & Wired"
+        logo={
+          <button
+            type="button"
+            onClick={toHome}
+            aria-label="На главную (каталог)"
+            className="cursor-pointer appearance-none border-0 bg-transparent p-0 text-inherit transition-opacity [font:inherit] hover:opacity-70"
+          >
+            Hired &amp; Wired
+          </button>
+        }
         action={<Button variant="cta">Generate report</Button>}
-        tabs={[
-          { label: 'All teams', value: 'teams' },
-          { label: 'All templates', value: 'tpl' },
-        ]}
-        value={tab}
-        onTabChange={setTab}
+        tabs={tabs}
+        value={value}
+        onTabChange={onTabChange}
         userMenu="Profile · Log out"
         onBack={goBack}
         secondRowActions={
