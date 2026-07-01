@@ -14,3 +14,6 @@ dist-ssr
 *.log
 .vercel
 .env*
+
+# Локальный дефолтный контекст агента (не коммитим — см. DECISIONS D69)
+CLAUDE_default.md
