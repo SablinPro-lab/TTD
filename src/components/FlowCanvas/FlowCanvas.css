@@ -5,13 +5,13 @@
   width: 100%;
   height: 100%;
   min-height: 700px;
-  overflow: hidden;
+  /* без клип-рамки/скругления: ноды клампятся сами, wires клипаются самим <canvas> (референс — грид без рамки) */
+  overflow: visible;
   touch-action: none;
   /* «настоящая» канва — точечный грид (как в node-редакторах) */
   background-image: radial-gradient(circle, var(--ds-color-lines) 1.2px, transparent 1.4px);
   background-size: 22px 22px;
   background-position: -1px -1px;
-  border-radius: var(--ds-radius-l);
 }
 
 /* слой связей — настоящий HTML5 <canvas> ПОВЕРХ карточек (линии сверху);
@@ -40,6 +40,8 @@
   width: 280px;
   box-sizing: border-box;
   border-radius: var(--ds-radius-m);
+  /* полупрозрачность — точечный грид просвечивает сквозь ноду (как на референсе) */
+  opacity: 0.9;
 }
 .ds-flow-canvas__node.is-selected .ds-flownode {
   outline: 2px solid var(--ds-color-tech-green);
