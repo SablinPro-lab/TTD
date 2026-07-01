@@ -40,6 +40,9 @@ const NODE_H = 125
 const PORT_Y = 106
 const PORT_X_IN = 19
 const PORT_X_OUT = NODE_W - 19
+/* при перетаскивании ноды не «упираются в стену»: можно свободно накладывать и уводить за край,
+   удерживаем лишь минимум видимой части (чтобы ноду не потерять). overflow:hidden клипает остальное. */
+const MIN_VISIBLE = 40
 
 type Drag =
   | { kind: 'node'; id: string; dx: number; dy: number }
@@ -135,10 +138,15 @@ export const FlowCanvas = forwardRef<FlowCanvasHandle, FlowCanvasProps>(function
         const p = toCanvas(e.clientX, e.clientY)
         if (d.kind === 'node') {
           const { w, h } = bounds()
+          // свободно: можно накладывать друг на друга и уводить за край, но ≥MIN_VISIBLE остаётся видно
           setItems((arr) =>
             arr.map((n) =>
               n.id === d.id
-                ? { ...n, x: clamp(p.x - d.dx, 0, w - NODE_W), y: clamp(p.y - d.dy, 0, h - NODE_H) }
+                ? {
+                    ...n,
+                    x: clamp(p.x - d.dx, MIN_VISIBLE - NODE_W, w - MIN_VISIBLE),
+                    y: clamp(p.y - d.dy, MIN_VISIBLE - NODE_H, h - MIN_VISIBLE),
+                  }
                 : n,
             ),
           )

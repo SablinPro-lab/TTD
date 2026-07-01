@@ -42,6 +42,9 @@
   --ds-color-bar-filled: #b8c6c3;
   --ds-color-bar-empty: #ffffff;
 
+  /* колонки-направляющие фона canvas (Figma layout grid узла 1:4230: COLUMNS, sage #a1bfb5 @ 10%) */
+  --ds-color-grid-column: rgba(161, 191, 181, 0.1);
+
   /* tech / status (Color/tech/*) */
   --ds-color-tech-purple: #9747ff;
   --ds-color-tech-green: #00867b;

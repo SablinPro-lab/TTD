@@ -5,13 +5,10 @@
   width: 100%;
   height: 100%;
   min-height: 700px;
-  /* без клип-рамки/скругления: ноды клампятся сами, wires клипаются самим <canvas> (референс — грид без рамки) */
-  overflow: visible;
+  /* прозрачная канва — фон-колонки страницы просвечивают сквозь неё и полупрозрачные ноды.
+     overflow:hidden контейнит ноды/wires (без клампа-стены и без паразитного скролла); без border-radius — без рамки. */
+  overflow: hidden;
   touch-action: none;
-  /* «настоящая» канва — точечный грид (как в node-редакторах) */
-  background-image: radial-gradient(circle, var(--ds-color-lines) 1.2px, transparent 1.4px);
-  background-size: 22px 22px;
-  background-position: -1px -1px;
 }
 
 /* слой связей — настоящий HTML5 <canvas> ПОВЕРХ карточек (линии сверху);
@@ -45,7 +42,7 @@
 }
 .ds-flow-canvas__node.is-selected .ds-flownode {
   outline: 2px solid var(--ds-color-tech-green);
-  outline-offset: 2px;
+  outline-offset: -3px; /* внутрь — не клипается overflow'ом у краёв (без «рамки») */
 }
 
 /* «...» — прозрачная кликабельная зона поверх more-иконки FlowNode (правый-верхний угол) */

@@ -37,7 +37,16 @@ export function Automation() {
   const goBack = () => (window.history.length > 1 ? navigate(-1) : navigate('/'))
 
   return (
-    <div className="min-h-screen bg-bg-base text-text-primary">
+    <div className="relative min-h-screen bg-bg-base text-text-primary">
+      {/* фон-колонки (Figma layout grid 1:4230: 8 columns, offset 20, gutter 8, sage @10%) —
+          самый нижний слой, не перехватывает клики; под нодами и панелями */}
+      <div className="ds-column-grid pointer-events-none absolute inset-0 z-0 flex gap-ds-xs px-ds-m" aria-hidden="true">
+        {Array.from({ length: 8 }).map((_, i) => (
+          <i key={i} className="flex-1 bg-[var(--ds-color-grid-column)]" />
+        ))}
+      </div>
+
+      <div className="relative z-10">
       <Header
         logo="Hired & Wired"
         action={<Button variant="cta">Generate report</Button>}
@@ -135,6 +144,7 @@ export function Automation() {
             <Button variant="cta">Save</Button>
           </div>
         </aside>
+      </div>
       </div>
     </div>
   )
