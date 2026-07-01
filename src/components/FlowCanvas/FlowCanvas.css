@@ -133,26 +133,26 @@
   border-radius: 50%;
   transition: background var(--ds-transition), transform var(--ds-transition), box-shadow var(--ds-transition);
 }
-.ds-flow-canvas__port--in .ds-flow-canvas__dot { background: var(--ds-color-text-secondary); } /* серый (свободен) */
-.ds-flow-canvas__port--out .ds-flow-canvas__dot { background: var(--ds-color-black); }         /* чёрный (свободен) */
+/* свободен — серый (как на референсе); подключён — ярко-чёрный */
+.ds-flow-canvas__dot { background: var(--ds-color-text-secondary); }
 
-/* подключён — зелёный + «поп» (короткая анимация при цеплянии; при отцеплянии — плавный возврат) */
+/* подключён — ярко-чёрный + «поп» (при цеплянии; при отцеплянии — плавный возврат к серому) */
 .ds-flow-canvas__port.is-connected .ds-flow-canvas__dot {
-  background: var(--ds-color-tech-green);
+  background: var(--ds-color-black);
   animation: ds-port-pop 0.24s ease;
 }
 
-/* во время протяжки: цели-входы приглашают (зелёный пульс), источник-выход пульсирует */
+/* во время протяжки: цели-входы приглашают (чёрный пульс), источник-выход пульсирует */
 .ds-flow-canvas__port--in.is-target .ds-flow-canvas__dot,
 .ds-flow-canvas__port--out.is-source .ds-flow-canvas__dot {
-  background: var(--ds-color-tech-green);
+  background: var(--ds-color-black);
   animation: ds-port-pulse 1s ease-in-out infinite;
 }
-/* наведён как цель — крупнее + зелёное кольцо */
+/* наведён как цель — крупнее + чёрное кольцо */
 .ds-flow-canvas__port--in.is-hover .ds-flow-canvas__dot {
-  background: var(--ds-color-tech-green);
+  background: var(--ds-color-black);
   transform: scale(1.6);
-  box-shadow: 0 0 0 4px rgba(0, 134, 123, 0.2);
+  box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.15);
   animation: none;
 }
 
