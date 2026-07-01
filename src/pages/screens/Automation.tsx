@@ -18,9 +18,9 @@ const TEMPLATES = ['Hiring funnel', 'Onboarding flow', 'Development plan']
 
 // Канва (Figma 1:4253): позиции/цвета узлов 1:4254–4256, нитки → Final Decision.
 const NODES: FlowCanvasNode[] = [
-  { id: 'screening', title: 'Applicant Screening', subtitle: 'Review resumes and applications', color: 'red', x: 133, y: 156 },
-  { id: 'interview', title: 'Interview Stage', subtitle: 'Conduct initial interviews', color: 'lavender', x: 161, y: 483 },
-  { id: 'final', title: 'Final Decision', subtitle: 'Select candidate and extend offer', color: 'pink', x: 473, y: 268 },
+  { id: 'screening', title: 'Applicant Screening', subtitle: 'Review resumes and applications', color: 'red', x: 30, y: 70 },
+  { id: 'interview', title: 'Interview Stage', subtitle: 'Conduct initial interviews', color: 'lavender', x: 40, y: 360 },
+  { id: 'final', title: 'Final Decision', subtitle: 'Select candidate and extend offer', color: 'pink', x: 320, y: 210 },
 ]
 const EDGES = [
   { from: 'screening', to: 'final' },
@@ -57,10 +57,11 @@ export function Automation() {
         }
       />
 
-      {/* 3 панели (Figma Frame 1407): library 350 · canvas flex · properties 350; gap/padding 30 */}
-      <div className="flex items-start gap-ds-xl p-ds-xl">
+      {/* 3 панели (Figma Frame 1407): library 350 · canvas flex · properties 350; gap/padding 30.
+          Адаптив: <1024 колонки в стопку (без гориз. overflow), ≥1024 — три колонки. */}
+      <div className="flex flex-col gap-ds-xl p-ds-xl lg:flex-row lg:items-start">
         {/* LEFT — Automation / Node library / Templates */}
-        <aside className="flex w-[350px] shrink-0 flex-col gap-ds-xl rounded-l bg-card-white p-ds-xl">
+        <aside className="flex w-full flex-col gap-ds-xl rounded-l bg-card-white p-ds-xl lg:w-[350px] lg:shrink-0">
           <h1 className="m-0 font-display text-description leading-none text-text-primary">Automation</h1>
           <Input label="Automation name" defaultValue="Marketing funnel" />
 
@@ -107,7 +108,7 @@ export function Automation() {
         </aside>
 
         {/* CENTER — канва: drag-and-drop ноды + соединение нитками */}
-        <main className="min-w-0 flex-1 self-stretch">
+        <main className="w-full lg:min-w-0 lg:flex-1 lg:self-stretch">
           <FlowCanvas
             ref={canvasRef}
             nodes={NODES}
@@ -120,7 +121,7 @@ export function Automation() {
         </main>
 
         {/* RIGHT — Node Properties */}
-        <aside className="flex w-[350px] shrink-0 flex-col gap-ds-xl rounded-l bg-card-white p-ds-xl">
+        <aside className="flex w-full flex-col gap-ds-xl rounded-l bg-card-white p-ds-xl lg:w-[350px] lg:shrink-0">
           <h1 className="m-0 font-display text-description leading-none text-text-primary">Node Properties</h1>
           <div className="flex flex-col gap-ds-m">
             <Input label="Node name" value={nodeName} onChange={(e) => setNodeName(e.target.value)} />

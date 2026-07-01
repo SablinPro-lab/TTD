@@ -1,4 +1,4 @@
-/* FlowCanvas — рабочая канва (Figma Frame 1401): ноды на grid-фоне + SVG-нитки поверх.
+/* FlowCanvas — рабочая канва (Figma Frame 1401): ноды на grid-фоне + связи на HTML5 <canvas> поверх.
    Перетаскивание/соединение/DnD — pointer + HTML5 drag-and-drop; ноды позиционируются transform. */
 .ds-flow-canvas {
   position: relative;
@@ -14,38 +14,13 @@
   border-radius: var(--ds-radius-l);
 }
 
-/* слой ниток — ПОВЕРХ карточек (верхний z-index); сам контейнер не перехватывает указатель,
-   но провод-хит (stroke) кликабелен → отключение связи */
-.ds-flow-canvas__wires {
+/* слой связей — настоящий HTML5 <canvas> ПОВЕРХ карточек (линии сверху);
+   не перехватывает указатель → ноды/порты под ним кликабельны (отключение провода — hit-test по canvas) */
+.ds-flow-canvas__gl {
   position: absolute;
   inset: 0;
-  width: 100%;
-  height: 100%;
-  overflow: visible;
-  pointer-events: none;
   z-index: 10;
-}
-.ds-flow-canvas__wire {
-  fill: none;
-  stroke: var(--ds-color-black);
-  stroke-width: 1.5;
   pointer-events: none;
-}
-.ds-flow-canvas__wire--live {
-  stroke-dasharray: 4 4;
-  opacity: 0.6;
-}
-/* широкая прозрачная зона клика вдоль провода — для отключения */
-.ds-flow-canvas__wire-hit {
-  fill: none;
-  stroke: transparent;
-  stroke-width: 14;
-  pointer-events: stroke;
-  cursor: pointer;
-}
-.ds-flow-canvas__edge:hover .ds-flow-canvas__wire {
-  stroke: var(--ds-color-tech-red);
-  stroke-width: 2.5;
 }
 
 /* нода — абсолютно позиционируется transform'ом; ширина 280 (Figma node 1:4254) */

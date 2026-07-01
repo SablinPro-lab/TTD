@@ -27,16 +27,16 @@ export interface FlowCanvasHandle {
 export interface FlowCanvasProps {
   nodes: FlowCanvasNode[]
   edges?: FlowCanvasEdge[]
-  /** Выбор ноды (клик/начало перетаскивания). */
   onSelect?: (id: string) => void
 }
 
 /** MIME для drag-and-drop из библиотеки на канву. Значение DataTransfer — JSON { title, subtitle, color }. */
 export const FLOWNODE_DND_MIME = 'application/x-flownode'
 
-/* Геометрия ноды (рендер FlowNode на канве, измерено): 280 ширина, точки-порты по Y=106
-   (низ карточки − pad 14 − half-dot 5), центры точек X = 19 (серый/вход) / 261 (чёрный/выход). */
+/* Геометрия ноды (рендер FlowNode на канве, измерено): 280×125, точки-порты Y=106 (низ − pad14 − 5),
+   центры X = 19 (серый/вход) / 261 (чёрный/выход). */
 const NODE_W = 280
+const NODE_H = 125
 const PORT_Y = 106
 const PORT_X_IN = 19
 const PORT_X_OUT = NODE_W - 19
@@ -46,20 +46,21 @@ type Drag =
   | { kind: 'wire'; from: string; x: number; y: number }
   | null
 
-/** Кубическая кривая «нитки» с горизонтальными контрол-точками (плавная S-кривая). */
-function wirePath(x1: number, y1: number, x2: number, y2: number) {
-  const dx = Math.max(40, Math.abs(x2 - x1) * 0.5)
-  return `M ${x1} ${y1} C ${x1 + dx} ${y1}, ${x2 - dx} ${y2}, ${x2} ${y2}`
+const clamp = (v: number, lo: number, hi: number) => Math.max(lo, Math.min(hi, v))
+/** Точка на кубической кривой Безье при t∈[0,1]. */
+function bezierPt(x1: number, y1: number, cx1: number, cy1: number, cx2: number, cy2: number, x2: number, y2: number, t: number) {
+  const u = 1 - t
+  const a = u * u * u, b = 3 * u * u * t, c = 3 * u * t * t, d = t * t * t
+  return { x: a * x1 + b * cx1 + c * cx2 + d * x2, y: a * y1 + b * cy1 + c * cy2 + d * y2 }
 }
 
 /**
- * FlowCanvas — рабочая канва автоматизаций (grid-фон):
- *  • ноды (FlowNode) перетаскиваются по доске;
- *  • ноды добавляются drag-and-drop из библиотеки (drop) и кликом (imperative addNode);
- *  • порты соединяются «нитками» (drag от ЧЁРНОГО выходного порта к серому входному); нитки крепятся
- *    точно к точкам и удаляются кликом по проводу (отключение);
- *  • «...» на ноде открывает контекстное меню с Delete.
- *  Нитки рисуются поверх карточек. Оптимизация: pointer на window + rAF; позиции через transform.
+ * FlowCanvas — рабочая канва автоматизаций. Связи (нитки) рисуются на НАСТОЯЩЕМ HTML5 `<canvas>`
+ * (программно по данным, DPR-чётко, ресайз через ResizeObserver, лёгкая rAF-анимация «сигнала» с
+ * учётом prefers-reduced-motion). Ноды/порты/меню — интерактивный DOM поверх. Grid — CSS.
+ *  • ноды: drag по доске (с клампом в границы), add (DnD из библиотеки + imperative), delete («...»→меню);
+ *  • связи: connect (drag от чёрного выхода к серому входу), disconnect (клик по проводу — hit-test по canvas);
+ *  • порты меняют цвет (чёрный подключён / серый свободен) с анимацией (см. CSS).
  *  Источник: Figma → ds-organisms (canvas 1:4253, node 1:4254).
  */
 export const FlowCanvas = forwardRef<FlowCanvasHandle, FlowCanvasProps>(function FlowCanvas(
@@ -67,6 +68,7 @@ export const FlowCanvas = forwardRef<FlowCanvasHandle, FlowCanvasProps>(function
   ref,
 ) {
   const rootRef = useRef<HTMLDivElement>(null)
+  const glRef = useRef<HTMLCanvasElement>(null)
   const [items, setItems] = useState<FlowCanvasNode[]>(initialNodes)
   const [edges, setEdges] = useState<FlowCanvasEdge[]>(initialEdges)
   const [drag, setDrag] = useState<Drag>(null)
@@ -74,28 +76,41 @@ export const FlowCanvas = forwardRef<FlowCanvasHandle, FlowCanvasProps>(function
   const [menuFor, setMenuFor] = useState<string | null>(null)
   const [hoverTarget, setHoverTarget] = useState<string | null>(null)
   const hoverInput = useRef<string | null>(null)
-  const dragRef = useRef<Drag>(null)
-  dragRef.current = drag
   const seq = useRef(0)
+
+  // refs с актуальным состоянием — читаются из canvas-цикла без пересоздания эффекта
+  const itemsRef = useRef(items); itemsRef.current = items
+  const edgesRef = useRef(edges); edgesRef.current = edges
+  const dragRef = useRef<Drag>(null); dragRef.current = drag
+  const redrawRef = useRef<(() => void) | null>(null) // ручная перерисовка (reduced-motion)
 
   const toCanvas = useCallback((clientX: number, clientY: number) => {
     const r = rootRef.current!.getBoundingClientRect()
     return { x: clientX - r.left, y: clientY - r.top }
   }, [])
+  const bounds = () => {
+    const r = rootRef.current
+    return { w: r?.clientWidth ?? 0, h: r?.clientHeight ?? 0 }
+  }
 
-  const addAt = useCallback(
-    (node: Omit<FlowCanvasNode, 'id' | 'x' | 'y'>, x: number, y: number) => {
-      const i = seq.current++
-      const id = `n${i}-${node.title.replace(/\s+/g, '-').toLowerCase()}`
-      setItems((arr) => [...arr, { id, title: node.title, subtitle: node.subtitle, color: node.color, x, y }])
-    },
-    [],
-  )
+  const addAt = useCallback((node: Omit<FlowCanvasNode, 'id' | 'x' | 'y'>, x: number, y: number) => {
+    const i = seq.current++
+    const id = `n${i}-${node.title.replace(/\s+/g, '-').toLowerCase()}`
+    const { w, h } = bounds()
+    setItems((arr) => [
+      ...arr,
+      {
+        id, title: node.title, subtitle: node.subtitle, color: node.color,
+        x: clamp(x, 0, Math.max(0, (w || NODE_W * 2) - NODE_W)),
+        y: clamp(y, 0, Math.max(0, (h || NODE_H * 4) - NODE_H)),
+      },
+    ])
+  }, [])
 
   useImperativeHandle(ref, () => ({
     addNode: (node) => {
       const i = seq.current
-      addAt(node, node.x ?? 60 + (i % 5) * 28, node.y ?? 60 + (i % 5) * 28)
+      addAt(node, node.x ?? 40 + (i % 5) * 26, node.y ?? 40 + (i % 5) * 26)
     },
   }))
 
@@ -107,7 +122,7 @@ export const FlowCanvas = forwardRef<FlowCanvasHandle, FlowCanvasProps>(function
   }
   const removeEdge = (idx: number) => setEdges((es) => es.filter((_, j) => j !== idx))
 
-  // перетаскивание/соединение — слушатели на window, троттлинг через rAF
+  // ── перетаскивание/соединение (pointer на window + rAF) ──
   useEffect(() => {
     if (!drag) return
     let raf = 0
@@ -118,8 +133,16 @@ export const FlowCanvas = forwardRef<FlowCanvasHandle, FlowCanvasProps>(function
         const d = dragRef.current
         if (!d) return
         const p = toCanvas(e.clientX, e.clientY)
-        if (d.kind === 'node') setItems((arr) => arr.map((n) => (n.id === d.id ? { ...n, x: p.x - d.dx, y: p.y - d.dy } : n)))
-        else setDrag({ ...d, x: p.x, y: p.y })
+        if (d.kind === 'node') {
+          const { w, h } = bounds()
+          setItems((arr) =>
+            arr.map((n) =>
+              n.id === d.id
+                ? { ...n, x: clamp(p.x - d.dx, 0, w - NODE_W), y: clamp(p.y - d.dy, 0, h - NODE_H) }
+                : n,
+            ),
+          )
+        } else setDrag({ ...d, x: p.x, y: p.y })
       })
     }
     const onUp = () => {
@@ -142,7 +165,7 @@ export const FlowCanvas = forwardRef<FlowCanvasHandle, FlowCanvasProps>(function
     }
   }, [drag, toCanvas])
 
-  // закрытие контекстного меню «...» по клику вне / Esc
+  // закрытие меню «...» по клику вне / Esc
   useEffect(() => {
     if (!menuFor) return
     const close = () => setMenuFor(null)
@@ -154,6 +177,145 @@ export const FlowCanvas = forwardRef<FlowCanvasHandle, FlowCanvasProps>(function
       window.removeEventListener('keydown', onKey)
     }
   }, [menuFor])
+
+  // ── реальный canvas: grid остаётся CSS, здесь рисуем связи (DPR, ресайз, rAF, reduced-motion) ──
+  useEffect(() => {
+    const canvas = glRef.current
+    const root = rootRef.current
+    const ctx = canvas?.getContext('2d')
+    if (!canvas || !root || !ctx) return
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    const cs = getComputedStyle(document.documentElement)
+    const wireColor = cs.getPropertyValue('--ds-color-black').trim() || '#000'
+    const flowColor = cs.getPropertyValue('--ds-color-white').trim() || '#fff'
+    let w = 0, h = 0, dpr = 1
+
+    const resize = () => {
+      dpr = Math.min(window.devicePixelRatio || 1, 2.5)
+      w = root.clientWidth
+      h = root.clientHeight
+      canvas.width = Math.round(w * dpr)
+      canvas.height = Math.round(h * dpr)
+      canvas.style.width = `${w}px`
+      canvas.style.height = `${h}px`
+    }
+
+    const stroke = (x1: number, y1: number, x2: number, y2: number) => {
+      const dx = Math.max(40, Math.abs(x2 - x1) * 0.5)
+      return { cx1: x1 + dx, cy1: y1, cx2: x2 - dx, cy2: y2 }
+    }
+
+    const render = (phase: number) => {
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
+      ctx.clearRect(0, 0, w, h)
+      ctx.lineCap = 'round'
+      ctx.lineJoin = 'round'
+      const find = (id: string) => itemsRef.current.find((n) => n.id === id)
+      // связи
+      for (const e of edgesRef.current) {
+        const a = find(e.from)
+        const b = find(e.to)
+        if (!a || !b) continue
+        const x1 = a.x + PORT_X_OUT, y1 = a.y + PORT_Y, x2 = b.x + PORT_X_IN, y2 = b.y + PORT_Y
+        const c = stroke(x1, y1, x2, y2)
+        ctx.beginPath()
+        ctx.moveTo(x1, y1)
+        ctx.bezierCurveTo(c.cx1, c.cy1, c.cx2, c.cy2, x2, y2)
+        ctx.setLineDash([])
+        ctx.globalAlpha = 1
+        ctx.shadowBlur = 0
+        ctx.strokeStyle = wireColor
+        ctx.lineWidth = 1.5
+        ctx.stroke()
+        // «сигнал» бежит по проводу (только если анимация разрешена)
+        if (!reduce) {
+          const t = (phase % 1600) / 1600
+          const p = bezierPt(x1, y1, c.cx1, c.cy1, c.cx2, c.cy2, x2, y2, t)
+          ctx.beginPath()
+          ctx.arc(p.x, p.y, 3, 0, Math.PI * 2)
+          ctx.fillStyle = flowColor
+          ctx.globalAlpha = 0.9
+          ctx.shadowColor = wireColor
+          ctx.shadowBlur = 6
+          ctx.fill()
+          ctx.globalAlpha = 1
+          ctx.shadowBlur = 0
+        }
+      }
+      // live-провод при протяжке
+      const d = dragRef.current
+      if (d?.kind === 'wire') {
+        const a = find(d.from)
+        if (a) {
+          const x1 = a.x + PORT_X_OUT, y1 = a.y + PORT_Y
+          const c = stroke(x1, y1, d.x, d.y)
+          ctx.beginPath()
+          ctx.moveTo(x1, y1)
+          ctx.bezierCurveTo(c.cx1, c.cy1, c.cx2, c.cy2, d.x, d.y)
+          ctx.setLineDash([5, 5])
+          ctx.strokeStyle = wireColor
+          ctx.globalAlpha = 0.6
+          ctx.lineWidth = 1.5
+          ctx.stroke()
+          ctx.setLineDash([])
+          ctx.globalAlpha = 1
+        }
+      }
+    }
+
+    // подгонка нод в границы канвы — не вылезают и не обрезаются overflow (mount + resize)
+    const fit = () => {
+      const maxX = Math.max(0, w - NODE_W)
+      const maxY = Math.max(0, h - NODE_H)
+      setItems((arr) => {
+        let changed = false
+        const next = arr.map((n) => {
+          const x = clamp(n.x, 0, maxX)
+          const y = clamp(n.y, 0, maxY)
+          if (x !== n.x || y !== n.y) {
+            changed = true
+            return { ...n, x, y }
+          }
+          return n
+        })
+        return changed ? next : arr
+      })
+    }
+
+    resize()
+    fit()
+    render(0)
+    const ro = new ResizeObserver(() => {
+      resize()
+      fit()
+      render(0)
+    })
+    ro.observe(root)
+
+    let rafId = 0
+    let t0 = 0
+    if (!reduce) {
+      const loop = (t: number) => {
+        if (!t0) t0 = t
+        render(t - t0)
+        rafId = requestAnimationFrame(loop)
+      }
+      rafId = requestAnimationFrame(loop)
+    } else {
+      redrawRef.current = () => render(0)
+    }
+
+    return () => {
+      ro.disconnect()
+      if (rafId) cancelAnimationFrame(rafId)
+      redrawRef.current = null
+    }
+  }, [])
+
+  // reduced-motion: перерисовка при изменениях (drag/add/remove/connect)
+  useEffect(() => {
+    redrawRef.current?.()
+  }, [items, edges, drag])
 
   const byId = (id: string) => items.find((n) => n.id === id)
   const startNodeDrag = (e: ReactPointerEvent, id: string) => {
@@ -171,7 +333,31 @@ export const FlowCanvas = forwardRef<FlowCanvasHandle, FlowCanvasProps>(function
     setDrag({ kind: 'wire', from: id, x: n.x + PORT_X_OUT, y: n.y + PORT_Y })
   }
 
-  // drag-and-drop из библиотеки: drop кладёт ноду по позиции курсора (центрируем на курсоре)
+  // отключение провода — клик по пустой области рядом с кривой (hit-test по семплам безье)
+  const onRootPointerDown = (e: ReactPointerEvent) => {
+    if (e.target !== rootRef.current) return // клики по нодам/портам обрабатывают они сами
+    const p = toCanvas(e.clientX, e.clientY)
+    let hit = -1
+    let best = 8 // порог, px
+    edges.forEach((ed, idx) => {
+      const a = byId(ed.from)
+      const b = byId(ed.to)
+      if (!a || !b) return
+      const x1 = a.x + PORT_X_OUT, y1 = a.y + PORT_Y, x2 = b.x + PORT_X_IN, y2 = b.y + PORT_Y
+      const dx = Math.max(40, Math.abs(x2 - x1) * 0.5)
+      for (let s = 0; s <= 24; s++) {
+        const pt = bezierPt(x1, y1, x1 + dx, y1, x2 - dx, y2, x2, y2, s / 24)
+        const dist = Math.hypot(pt.x - p.x, pt.y - p.y)
+        if (dist < best) {
+          best = dist
+          hit = idx
+        }
+      }
+    })
+    if (hit >= 0) removeEdge(hit)
+  }
+
+  // drag-and-drop из библиотеки: drop кладёт ноду в точку курсора (центрируем)
   const onDrop = (e: ReactDragEvent) => {
     const raw = e.dataTransfer.getData(FLOWNODE_DND_MIME)
     if (!raw) return
@@ -181,41 +367,28 @@ export const FlowCanvas = forwardRef<FlowCanvasHandle, FlowCanvasProps>(function
       const p = toCanvas(e.clientX, e.clientY)
       addAt(node, p.x - NODE_W / 2, p.y - PORT_Y / 2)
     } catch {
-      /* ignore malformed payload */
+      /* ignore */
     }
   }
   const onDragOver = (e: ReactDragEvent) => {
     if (e.dataTransfer.types.includes(FLOWNODE_DND_MIME)) e.preventDefault()
   }
 
-  const out = (id: string) => {
-    const n = byId(id)!
-    return { x: n.x + PORT_X_OUT, y: n.y + PORT_Y }
-  }
-  const inp = (id: string) => {
-    const n = byId(id)!
-    return { x: n.x + PORT_X_IN, y: n.y + PORT_Y }
-  }
-
   return (
-    <div className="ds-flow-canvas" ref={rootRef} onDrop={onDrop} onDragOver={onDragOver}>
+    <div className="ds-flow-canvas" ref={rootRef} onDrop={onDrop} onDragOver={onDragOver} onPointerDown={onRootPointerDown}>
       {items.map((n) => {
         const isDragging = drag?.kind === 'node' && drag.id === n.id
         const wiring = drag?.kind === 'wire'
         const inConnected = edges.some((e) => e.to === n.id)
         const outConnected = edges.some((e) => e.from === n.id)
-        // порт-вход: подключён / приглашение при протяжке / наведён как цель
         const inClass = [
-          'ds-flow-canvas__port',
-          'ds-flow-canvas__port--in',
+          'ds-flow-canvas__port', 'ds-flow-canvas__port--in',
           inConnected ? 'is-connected' : '',
           wiring && drag.from !== n.id ? 'is-target' : '',
           wiring && hoverTarget === n.id && drag.from !== n.id ? 'is-hover' : '',
         ].filter(Boolean).join(' ')
-        // порт-выход: подключён / источник текущей протяжки
         const outClass = [
-          'ds-flow-canvas__port',
-          'ds-flow-canvas__port--out',
+          'ds-flow-canvas__port', 'ds-flow-canvas__port--out',
           outConnected ? 'is-connected' : '',
           wiring && drag.from === n.id ? 'is-source' : '',
         ].filter(Boolean).join(' ')
@@ -228,7 +401,6 @@ export const FlowCanvas = forwardRef<FlowCanvasHandle, FlowCanvasProps>(function
           >
             <FlowNode title={n.title} subtitle={n.subtitle} color={n.color} />
 
-            {/* «...» — контекстное меню ноды (Delete) */}
             <button
               type="button"
               className="ds-flow-canvas__more"
@@ -253,7 +425,6 @@ export const FlowCanvas = forwardRef<FlowCanvasHandle, FlowCanvasProps>(function
               </ul>
             )}
 
-            {/* входной порт (серый, слева) — приёмник нитки */}
             <span
               className={inClass}
               onPointerEnter={() => {
@@ -268,7 +439,6 @@ export const FlowCanvas = forwardRef<FlowCanvasHandle, FlowCanvasProps>(function
             >
               <i className="ds-flow-canvas__dot" />
             </span>
-            {/* выходной порт (чёрный, справа) — тянем нитку отсюда */}
             <span className={outClass} onPointerDown={(e) => startWire(e, n.id)} aria-hidden="true">
               <i className="ds-flow-canvas__dot" />
             </span>
@@ -276,29 +446,8 @@ export const FlowCanvas = forwardRef<FlowCanvasHandle, FlowCanvasProps>(function
         )
       })}
 
-      {/* нитки — поверх карточек; клик по проводу отключает (удаляет) связь */}
-      <svg className="ds-flow-canvas__wires" aria-hidden="true">
-        {edges.map((e, i) => {
-          if (!byId(e.from) || !byId(e.to)) return null
-          const a = out(e.from)
-          const b = inp(e.to)
-          const d = wirePath(a.x, a.y, b.x, b.y)
-          return (
-            <g key={`${e.from}-${e.to}-${i}`} className="ds-flow-canvas__edge">
-              <path className="ds-flow-canvas__wire" d={d} />
-              <path className="ds-flow-canvas__wire-hit" d={d} onClick={() => removeEdge(i)}>
-                <title>Отключить связь</title>
-              </path>
-            </g>
-          )
-        })}
-        {drag?.kind === 'wire' && (
-          <path
-            className="ds-flow-canvas__wire ds-flow-canvas__wire--live"
-            d={wirePath(out(drag.from).x, out(drag.from).y, drag.x, drag.y)}
-          />
-        )}
-      </svg>
+      {/* настоящий HTML5 canvas — связи/нитки (поверх карточек, не перехватывает указатель) */}
+      <canvas className="ds-flow-canvas__gl" ref={glRef} aria-hidden="true" />
     </div>
   )
 })
