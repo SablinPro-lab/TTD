@@ -72,6 +72,7 @@ export const FlowCanvas = forwardRef<FlowCanvasHandle, FlowCanvasProps>(function
   const [drag, setDrag] = useState<Drag>(null)
   const [selected, setSelected] = useState<string | null>(null)
   const [menuFor, setMenuFor] = useState<string | null>(null)
+  const [hoverTarget, setHoverTarget] = useState<string | null>(null)
   const hoverInput = useRef<string | null>(null)
   const dragRef = useRef<Drag>(null)
   dragRef.current = drag
@@ -128,6 +129,7 @@ export const FlowCanvas = forwardRef<FlowCanvasHandle, FlowCanvasProps>(function
         setEdges((es) => (es.some((e) => e.from === d.from && e.to === to) ? es : [...es, { from: d.from, to }]))
       }
       hoverInput.current = null
+      setHoverTarget(null)
       if (raf) cancelAnimationFrame(raf)
       setDrag(null)
     }
@@ -199,6 +201,24 @@ export const FlowCanvas = forwardRef<FlowCanvasHandle, FlowCanvasProps>(function
     <div className="ds-flow-canvas" ref={rootRef} onDrop={onDrop} onDragOver={onDragOver}>
       {items.map((n) => {
         const isDragging = drag?.kind === 'node' && drag.id === n.id
+        const wiring = drag?.kind === 'wire'
+        const inConnected = edges.some((e) => e.to === n.id)
+        const outConnected = edges.some((e) => e.from === n.id)
+        // порт-вход: подключён / приглашение при протяжке / наведён как цель
+        const inClass = [
+          'ds-flow-canvas__port',
+          'ds-flow-canvas__port--in',
+          inConnected ? 'is-connected' : '',
+          wiring && drag.from !== n.id ? 'is-target' : '',
+          wiring && hoverTarget === n.id && drag.from !== n.id ? 'is-hover' : '',
+        ].filter(Boolean).join(' ')
+        // порт-выход: подключён / источник текущей протяжки
+        const outClass = [
+          'ds-flow-canvas__port',
+          'ds-flow-canvas__port--out',
+          outConnected ? 'is-connected' : '',
+          wiring && drag.from === n.id ? 'is-source' : '',
+        ].filter(Boolean).join(' ')
         return (
           <div
             key={n.id}
@@ -235,21 +255,23 @@ export const FlowCanvas = forwardRef<FlowCanvasHandle, FlowCanvasProps>(function
 
             {/* входной порт (серый, слева) — приёмник нитки */}
             <span
-              className="ds-flow-canvas__port ds-flow-canvas__port--in"
+              className={inClass}
               onPointerEnter={() => {
                 hoverInput.current = n.id
+                setHoverTarget(n.id)
               }}
               onPointerLeave={() => {
                 if (hoverInput.current === n.id) hoverInput.current = null
+                setHoverTarget((t) => (t === n.id ? null : t))
               }}
               aria-hidden="true"
-            />
+            >
+              <i className="ds-flow-canvas__dot" />
+            </span>
             {/* выходной порт (чёрный, справа) — тянем нитку отсюда */}
-            <span
-              className="ds-flow-canvas__port ds-flow-canvas__port--out"
-              onPointerDown={(e) => startWire(e, n.id)}
-              aria-hidden="true"
-            />
+            <span className={outClass} onPointerDown={(e) => startWire(e, n.id)} aria-hidden="true">
+              <i className="ds-flow-canvas__dot" />
+            </span>
           </div>
         )
       })}
