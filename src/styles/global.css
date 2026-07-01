@@ -4,6 +4,16 @@
 
 * { box-sizing: border-box; }
 
+/* preflight выключен (D29) → нативные контролы (button/input/select/textarea) сохраняют UA-бордер
+   («чёрная outset-рамка», которой нет в Figma). Приводим их border к Tailwind-базе: width 0 + style solid
+   (тогда утилиты .border снова работают, а без .border рамки нет). DS-компоненты (.ds-*) и утилиты
+   border-* задают свой border с большей специфичностью и не затрагиваются. (D72) */
+button, input, optgroup, select, textarea {
+  border-width: 0;
+  border-style: solid;
+  border-color: currentColor;
+}
+
 body {
   margin: 0;
   font-family: var(--ds-font-family);

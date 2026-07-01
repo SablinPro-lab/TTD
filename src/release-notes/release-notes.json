@@ -1,6 +1,12 @@
 [
   {
     "date": "2026-07-01",
+    "component": "Global",
+    "type": "fixed",
+    "change": "Убраны чёрные UA-рамки нативных контролов (preflight выключен D29 → браузер рисовал 2px outset border на кастомных button/input/select/textarea; в Figma их нет). Глобальный сброс в global.css: border width 0 + style solid — утилиты .border снова работают, DS-компоненты (.ds-*) со своим border не затронуты. Аудит всех роутов: 0 таких рамок (были на Node library/Templates/шеврон Automation и в каталоге)."
+  },
+  {
+    "date": "2026-07-01",
     "component": "CardTop",
     "type": "changed",
     "change": "Теги-дропдауны в hero раскрываются ВНИЗ (как базовый Dropdown), а не вверх. Снят overflow:hidden с .ds-card-top (фон-картинку клипает собственный слой .ds-card-top__bg) → меню не обрезается снизу и видно поверх контента (z-index 20). Проверено (Candidate): меню под контролом, не перекрыто, page overflow 0; фон карточки остаётся скруглённым, без регрессий."
