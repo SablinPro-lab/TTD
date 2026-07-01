@@ -40,6 +40,9 @@ const NODE_H = 125
 const PORT_Y = 106
 const PORT_X_IN = 19
 const PORT_X_OUT = NODE_W - 19
+/* сколько px ноды остаётся видно в окне канвы, когда её задвигают за боковую панель —
+   чтобы не потерять и вытащить обратно (панели непрозрачные, лежат ПОВЕРХ канвы) */
+const MIN_VISIBLE = 48
 
 type Drag =
   | { kind: 'node'; id: string; dx: number; dy: number }
@@ -135,13 +138,16 @@ export const FlowCanvas = forwardRef<FlowCanvasHandle, FlowCanvasProps>(function
         const p = toCanvas(e.clientX, e.clientY)
         if (d.kind === 'node') {
           const { w, h } = bounds()
-          // строго в границах канвы — ноды не режутся у краёв; наложение друг на друга работает (обе в поле канвы)
+          // по горизонтали ноду можно задвинуть за боковые панели (≥MIN_VISIBLE остаётся видно в окне канвы,
+          // чтобы вытащить обратно) — за краем overflow:visible уводит её ПОД непрозрачные панели, а не режет;
+          // по вертикали держим целиком в поле канвы. Наложение нод друг на друга сохраняется.
+          const minX = MIN_VISIBLE - NODE_W
           setItems((arr) =>
             arr.map((n) =>
               n.id === d.id
                 ? {
                     ...n,
-                    x: clamp(p.x - d.dx, 0, Math.max(0, w - NODE_W)),
+                    x: clamp(p.x - d.dx, minX, Math.max(minX, w - MIN_VISIBLE)),
                     y: clamp(p.y - d.dy, 0, Math.max(0, h - NODE_H)),
                   }
                 : n,

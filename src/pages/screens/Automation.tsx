@@ -33,6 +33,7 @@ export function Automation() {
   const [tab, setTab] = useState('teams')
   const [props, setProps] = useState('Parametrs')
   const [nodeName, setNodeName] = useState('Welcome letter')
+  const [propsOpen, setPropsOpen] = useState(true) // правая панель свойств — сворачиваемая (освобождает поле канвы)
   const canvasRef = useRef<FlowCanvasHandle>(null)
   const goBack = () => (window.history.length > 1 ? navigate(-1) : navigate('/'))
 
@@ -68,10 +69,12 @@ export function Automation() {
 
       {/* 3 панели (Figma Frame 1407): library 350 · canvas flex · properties 350; наружный padding 30,
           зазор панель↔канва 8 (Figma gap 8px, не 30 — иначе «серая рамка» у панели).
+          overflow-x-clip: ноду, задвинутую за боковую панель, клипаем на краю ряда → страница не скроллится
+          (overflow:clip не создаёт скролл-контейнер и не трогает вертикаль). Панели — z поверх канвы (ниже).
           Адаптив: <1024 колонки в стопку (без гориз. overflow), ≥1024 — три колонки. */}
-      <div className="flex flex-col gap-ds-xl p-ds-xl lg:flex-row lg:items-start lg:gap-ds-xs">
-        {/* LEFT — Automation / Node library / Templates */}
-        <aside className="flex w-full flex-col gap-ds-xl rounded-l bg-card-white p-ds-xl lg:w-[350px] lg:shrink-0">
+      <div className="ds-automation-row flex flex-col gap-ds-xl overflow-x-clip p-ds-xl lg:flex-row lg:items-start lg:gap-ds-xs">
+        {/* LEFT — Automation / Node library / Templates (z-10: нода задвигается ПОД панель) */}
+        <aside className="relative z-10 flex w-full flex-col gap-ds-xl rounded-l bg-card-white p-ds-xl lg:w-[350px] lg:shrink-0">
           <h1 className="m-0 font-display text-description leading-none text-text-primary">Automation</h1>
           <Input label="Automation name" defaultValue="Marketing funnel" />
 
@@ -117,8 +120,8 @@ export function Automation() {
           </section>
         </aside>
 
-        {/* CENTER — канва: drag-and-drop ноды + соединение нитками */}
-        <main className="w-full lg:min-w-0 lg:flex-1 lg:self-stretch">
+        {/* CENTER — канва: drag-and-drop ноды + соединение нитками (z-0: под боковыми панелями) */}
+        <main className="relative z-0 w-full lg:min-w-0 lg:flex-1 lg:self-stretch">
           <FlowCanvas
             ref={canvasRef}
             nodes={NODES}
@@ -130,21 +133,54 @@ export function Automation() {
           />
         </main>
 
-        {/* RIGHT — Node Properties */}
-        <aside className="flex w-full flex-col gap-ds-xl rounded-l bg-card-white p-ds-xl lg:w-[350px] lg:shrink-0">
-          <h1 className="m-0 font-display text-description leading-none text-text-primary">Node Properties</h1>
-          <div className="flex flex-col gap-ds-m">
-            <Input label="Node name" value={nodeName} onChange={(e) => setNodeName(e.target.value)} />
-            <SwitchGroup options={['Parametrs', 'Custom code']} value={props} onChange={setProps} />
-            <TextArea label="Letter headline" placeholder="Type something here" rows={1} />
-            <TextArea label="Main text" placeholder="Type something here" />
-            <TextArea label="Body text" placeholder="Type something here" />
-            <TextArea label="Bye-bye text" placeholder="Type something here" />
-          </div>
-          <div>
-            <Button variant="cta">Save</Button>
-          </div>
-        </aside>
+        {/* RIGHT — Node Properties: сворачиваемая (z-10 — нода задвигается ПОД панель).
+            Свёрнута → узкий rail с кнопкой развернуть; освободившееся место забирает канва (flex-1). */}
+        {propsOpen ? (
+          <aside className="relative z-10 flex w-full flex-col gap-ds-xl rounded-l bg-card-white p-ds-xl lg:w-[350px] lg:shrink-0">
+            <div className="flex items-start justify-between gap-ds-s">
+              <h1 className="m-0 font-display text-description leading-none text-text-primary">Node Properties</h1>
+              <button
+                type="button"
+                onClick={() => setPropsOpen(false)}
+                aria-label="Свернуть панель свойств"
+                title="Свернуть"
+                className="grid h-8 w-8 shrink-0 place-items-center rounded-s text-text-primary transition-colors hover:bg-control-secondary focus-visible:[outline:var(--ds-focus-ring)]"
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="m9 18 6-6-6-6" />
+                </svg>
+              </button>
+            </div>
+            <div className="flex flex-col gap-ds-m">
+              <Input label="Node name" value={nodeName} onChange={(e) => setNodeName(e.target.value)} />
+              <SwitchGroup options={['Parametrs', 'Custom code']} value={props} onChange={setProps} />
+              <TextArea label="Letter headline" placeholder="Type something here" rows={1} />
+              <TextArea label="Main text" placeholder="Type something here" />
+              <TextArea label="Body text" placeholder="Type something here" />
+              <TextArea label="Bye-bye text" placeholder="Type something here" />
+            </div>
+            <div>
+              <Button variant="cta">Save</Button>
+            </div>
+          </aside>
+        ) : (
+          <aside className="relative z-10 flex w-full shrink-0 items-center justify-between gap-ds-s rounded-l bg-card-white p-ds-s lg:w-11 lg:flex-col lg:items-center lg:gap-ds-m lg:py-ds-m">
+            <button
+              type="button"
+              onClick={() => setPropsOpen(true)}
+              aria-label="Развернуть панель свойств"
+              title="Развернуть"
+              className="grid h-8 w-8 shrink-0 place-items-center rounded-s text-text-primary transition-colors hover:bg-control-secondary focus-visible:[outline:var(--ds-focus-ring)]"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="m15 18-6-6 6-6" />
+              </svg>
+            </button>
+            <span className="font-pixel text-text-gr uppercase tracking-caps text-text-primary lg:[writing-mode:vertical-rl] lg:rotate-180">
+              Node Properties
+            </span>
+          </aside>
+        )}
       </div>
       </div>
     </div>
