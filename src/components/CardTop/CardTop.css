@@ -9,7 +9,10 @@
   background: #ffb700; /* база (под фото-слоем); image-fill — в .ds-card-top__bg */
   box-shadow: var(--ds-shadow-2);
   position: relative;
-  overflow: hidden;
+  /* overflow:visible — чтобы теги-дропдауны могли раскрываться ВНИЗ за пределы карточки (не обрезались).
+     Фон-картинка клипается СВОИМ слоем .ds-card-top__bg (own overflow:hidden + border-radius), а фон-цвет
+     карточки клипается border-radius — так что скруглённый вид не теряется. */
+  overflow: visible;
   /* Figma 830×480 — высокая воздушная карточка; SPACE_BETWEEN распределяет углы/имя/теги.
      Адаптив: без фикс min-width (раньше 600 → overflow на узких); ширину держит контейнер. */
   min-height: 480px;
@@ -211,11 +214,12 @@
 .ds-card-top__add:focus-visible { outline: var(--ds-focus-ring); outline-offset: 2px; }
 
 /* Теги-дропдауны (компонент Dropdown, onColor) внутри CardTop: компактные (по контенту, не фикс-200);
-   меню раскрывается ВВЕРХ — теги внизу карточки, а у .ds-card-top overflow:hidden (вниз меню обрезалось бы). */
+   меню раскрывается ВНИЗ (как базовый Dropdown) — карточка больше не клипает (overflow:visible), меню
+   поверх контента (z-index 20). */
 .ds-card-top .ds-dropdown__wrap { min-width: 0; }
 .ds-card-top .ds-dropdown__control { width: auto; }
 .ds-card-top .ds-dropdown__menu {
-  top: auto;
-  bottom: calc(100% + var(--ds-indent-xxs));
+  top: calc(100% + var(--ds-indent-xxs));
+  bottom: auto;
   min-width: 180px;
 }

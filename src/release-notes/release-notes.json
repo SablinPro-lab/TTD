@@ -1,6 +1,12 @@
 [
   {
     "date": "2026-07-01",
+    "component": "CardTop",
+    "type": "changed",
+    "change": "Теги-дропдауны в hero раскрываются ВНИЗ (как базовый Dropdown), а не вверх. Снят overflow:hidden с .ds-card-top (фон-картинку клипает собственный слой .ds-card-top__bg) → меню не обрезается снизу и видно поверх контента (z-index 20). Проверено (Candidate): меню под контролом, не перекрыто, page overflow 0; фон карточки остаётся скруглённым, без регрессий."
+  },
+  {
+    "date": "2026-07-01",
     "page": "screens",
     "component": "Navigation",
     "type": "added",

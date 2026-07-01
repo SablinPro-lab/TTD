@@ -27,5 +27,13 @@
   `dangerouslySetInnerHTML`/`eval` нет. `git grep` секретов — пусто; `.env` не трекается; `dist/` без утечек;
   `npm audit --omit=dev` = **0 уязвимостей** (⚠️ vite/esbuild — только dev-tooling, на прод-статику не влияют).
 
+## Изменения к деплою D69–D71 (перепроверка перед прод-деплоем)
+- **D69** — CLAUDE_default.md (local-only, в .gitignore, в репо не коммитится).
+- **D70** — навигация по табам шапки (`usePageNav`, react-router `navigate`) + `flex-wrap` в TopMenu.
+- **D71** — CardTop: теги-дропдауны раскрываются вниз (снят `overflow:hidden`, CSS).
+- Всё — клиентский роутинг/CSS/локальный стейт. Новых зависимостей/сетевых вызовов/обработки внешнего
+  ввода/`dangerouslySetInnerHTML`/`eval` нет. `git grep` секретов в новых файлах — пусто; `.env` не
+  трекается; `npm audit --omit=dev` = **0 уязвимостей**.
+
 ## Итог
 **🔴 = 0 — push/deploy разрешён.** ⚠️ vite/esbuild (dev-only) — в `audit/security-todo.md`.
