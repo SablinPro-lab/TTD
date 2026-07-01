@@ -66,9 +66,10 @@ export function Automation() {
         }
       />
 
-      {/* 3 панели (Figma Frame 1407): library 350 · canvas flex · properties 350; gap/padding 30.
+      {/* 3 панели (Figma Frame 1407): library 350 · canvas flex · properties 350; наружный padding 30,
+          зазор панель↔канва 8 (Figma gap 8px, не 30 — иначе «серая рамка» у панели).
           Адаптив: <1024 колонки в стопку (без гориз. overflow), ≥1024 — три колонки. */}
-      <div className="flex flex-col gap-ds-xl p-ds-xl lg:flex-row lg:items-start">
+      <div className="flex flex-col gap-ds-xl p-ds-xl lg:flex-row lg:items-start lg:gap-ds-xs">
         {/* LEFT — Automation / Node library / Templates */}
         <aside className="flex w-full flex-col gap-ds-xl rounded-l bg-card-white p-ds-xl lg:w-[350px] lg:shrink-0">
           <h1 className="m-0 font-display text-description leading-none text-text-primary">Automation</h1>
