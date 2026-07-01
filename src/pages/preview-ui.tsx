@@ -128,7 +128,9 @@ export function Card({ id, name, level, desc, code, children }: {
         </div>
         <CopyCodeButton code={code} />
       </header>
-      <div className="ds-demo flex flex-wrap items-center gap-ds-m rounded-m bg-bg-base p-ds-m transition-colors">
+      {/* min-w-0 + overflow-x-auto: широкое демо (десктоп-компоненты) скроллится ВНУТРИ карточки,
+          не распирая страницу на узких экранах */}
+      <div className="ds-demo flex min-w-0 max-w-full flex-wrap items-center gap-ds-m overflow-x-auto rounded-m bg-bg-base p-ds-m transition-colors">
         {children}
       </div>
     </section>

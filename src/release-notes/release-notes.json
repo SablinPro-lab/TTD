@@ -1,9 +1,9 @@
 [
   {
     "date": "2026-07-01",
-    "component": "FlowCanvas",
-    "type": "changed",
-    "change": "Связи вынесены на настоящий HTML5 <canvas> (программно по данным, DPR-чётко, ResizeObserver-ресайз, rAF-анимация «сигнала» с prefers-reduced-motion). Цвета/толщина — из токенов. Canvas-слой pointer-events:none (не блокирует интерактив). Grid — CSS. Ноды клампятся в границы канвы (без overflow/обрезаний). Отключение провода — hit-test по canvas."
+    "component": "Preview",
+    "type": "fixed",
+    "change": "Аудит границ/отступов всех страниц. Каталог: карточки-демо получили min-w-0 + overflow-x-auto — широкие десктоп-компоненты (ListItem/Project/… ) скроллятся ВНУТРИ карточки, не распирая страницу (был гориз. overflow ~173px на мобиле → 0). Остальные страницы (all-teams/one/candidate/hiring/automation/release-notes) — overflow=0 на 1440/375, main 830 центр, блоки выровнены."
   },
   {
     "date": "2026-07-01",
